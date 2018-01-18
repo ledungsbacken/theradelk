@@ -1,0 +1,43 @@
+<template>
+    <div>
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Posts</div>
+
+                    <div class="panel-body">
+                        <input type="text" v-model="post.data.title" placeholder="title" /><br /><br />
+                        <input type="text" v-model="post.data.content" placeholder="content" /><br /><br />
+                        <input type="button" @click="store()" value="Create" /><br /><br />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<script>
+import Post from '../../models/Post.js';
+
+export default {
+    data() {
+        return {
+            post : new Post(),
+        }
+    },
+    mounted() {
+        // this.load();
+    },
+    methods : {
+        store() {
+            this.post.store().then(post => {
+                console.log(post);
+                this.post = post;
+            });
+        }
+    }
+}
+</script>
+
+<style scoped>
+</style>

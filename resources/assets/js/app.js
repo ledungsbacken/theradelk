@@ -7,6 +7,42 @@
 
 require('./bootstrap');
 
+/**
+ * Next, we will create a fresh Vue application instance and attach it to
+ * the page. Then, you may begin adding components to this application
+ * or customize the JavaScript scaffolding to fit your unique needs.
+ */
+import Vue from 'vue';
+
+//https://router.vuejs.org/en/essentials/getting-started.html
+import VueRouter from 'vue-router';
+
+Vue.use(VueRouter);
+
+
+// Each route should map to a component. The "component" can
+// either be an actual component constructor created via
+// `Vue.extend()`, or just a component options object.
+const router = new VueRouter({
+    routes :  [
+        // { path: '*', redirect: '/home' },
+        {
+            path: '/post',
+            component: require('./app/posts/Index.vue')
+        },
+        {
+            path: '/create/post',
+            component: require('./app/createPost/Index.vue')
+        },
+        {
+            path: '/example',
+            component: require('./components/ExampleComponent.vue')
+        }
+    ]
+});
+
+
+
 window.Vue = require('vue');
 
 /**
@@ -18,5 +54,5 @@ window.Vue = require('vue');
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
 
 const app = new Vue({
-    el: '#app'
-});
+    router
+}).$mount('#app');

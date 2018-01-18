@@ -33,4 +33,10 @@ Route::group(['middleware' => ['auth:api']], function () {
             'index',
         ]
     ]);
+    Route::resource('/post', 'PostController', [
+        'only' => [
+            'store',
+            'update',
+        ]
+    ]);
 });

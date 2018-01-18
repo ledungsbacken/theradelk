@@ -18,7 +18,8 @@ class CreatePostsTable extends Migration
             $table->integer('user_id')->unsigned()->nullable();
             $table->string('title');
             $table->text('content');
-            $table->boolean('deleted');
+            $table->boolean('published')->default(0);
+            $table->boolean('deleted')->default(0);
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');

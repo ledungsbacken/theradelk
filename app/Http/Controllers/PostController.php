@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
 
 use App\User;
 use App\Post;
@@ -10,12 +11,24 @@ use App\Post;
 class PostController extends Controller
 {
     public function index(Request $request) {
-        $posts = Post::with('subcategories.category')->get();
+        $posts = Post::with(['subcategories.category', 'user'])->get();
         return $posts;
     }
 
     public function show($id) {
-        $post = Post::with('subcategories.category')->find((int)$id);
+        $post = Post::with(['subcategories.category', 'user'])->find((int)$id);
+        return $post;
+    }
+
+    public function store(Request $request) {
+        $post = Post::create($request->all());
+        $post->user()->associate(Auth::id())->save();
+        return $post->load('user');
+    }
+
+    public function update(Request $request, $id) {
+        $post = Post::find((int)$id);
+        $post->update($request->all());
         return $post;
     }
 }
