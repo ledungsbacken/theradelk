@@ -19,6 +19,7 @@
     "vue": "^2.5.7"
   },
   "dependencies": {
+    "vue-ckeditor2": "^1.23.0",
     "vue-router": "^3.0.1"
   }
 }

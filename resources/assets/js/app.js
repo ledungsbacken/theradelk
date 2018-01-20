@@ -25,7 +25,7 @@ Vue.use(VueRouter);
 // `Vue.extend()`, or just a component options object.
 const router = new VueRouter({
     routes :  [
-        // { path: '*', redirect: '/home' },
+        { path: '*', redirect: '/post' },
         {
             path: '/post',
             component: require('./app/posts/Index.vue')
@@ -35,8 +35,16 @@ const router = new VueRouter({
             component: require('./app/createPost/Index.vue')
         },
         {
+            path: '/user/log',
+            component: require('./app/users/Log.vue')
+        },
+        {
             path: '/example',
             component: require('./components/ExampleComponent.vue')
+        },
+        {
+            path: '/editor',
+            component: require('./app/Ckeditor.vue')
         }
     ]
 });

@@ -31,7 +31,11 @@ $factory->define(App\User::class, function (Faker $faker) {
 $factory->define(App\Post::class, function(Faker $faker) {
     return [
         'title' => $faker->word,
+        'subtitle' => $faker->sentence,
         'content' => $faker->paragraph,
+        'updated_reason' => $faker->words(3, true),
+        'hidden' => $faker->boolean,
+        'published' => $faker->boolean,
         'deleted' => $faker->boolean,
     ];
 });

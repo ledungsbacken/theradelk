@@ -17,7 +17,10 @@ class CreatePostsTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned()->nullable();
             $table->string('title');
+            $table->string('subtitle');
             $table->text('content');
+            $table->string('updated_reason')->nullable();
+            $table->boolean('hidden')->default(0);
             $table->boolean('published')->default(0);
             $table->boolean('deleted')->default(0);
             $table->timestamps();

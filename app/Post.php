@@ -18,7 +18,10 @@ class Post extends Model
         'user_id',
         'category_id',
         'title',
+        'subtitle',
         'content',
+        'hidden',
+        'published',
         'deleted'
     ];
 

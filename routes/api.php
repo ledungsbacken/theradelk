@@ -39,4 +39,5 @@ Route::group(['middleware' => ['auth:api']], function () {
             'update',
         ]
     ]);
+    Route::get('/user/log', 'UserController@logged_in_log');
 });

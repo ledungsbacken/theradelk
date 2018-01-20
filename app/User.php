@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 use App\Role;
 use App\Post;
+use App\LoggedInLog;
 
 class User extends Authenticatable
 {
@@ -50,6 +51,10 @@ class User extends Authenticatable
             }
         });
         return $hasPermission;
+    }
+
+    public function logged_in_log() {
+        return $this->hasMany(LoggedInLog::class);
     }
 
 }

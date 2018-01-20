@@ -8,7 +8,8 @@
                     <div class="panel-body">
                         <input type="text" v-model="post.data.title" placeholder="title" /><br /><br />
                         <input type="text" v-model="post.data.content" placeholder="content" /><br /><br />
-                        <input type="button" @click="store()" value="Create" /><br /><br />
+                        <editor></editor>
+                        <input type="button" class="btn btn-success" @click="store()" value="Create" /><br /><br />
                     </div>
                 </div>
             </div>
@@ -18,6 +19,7 @@
 
 <script>
 import Post from '../../models/Post.js';
+import Editor from '../Ckeditor.vue';
 
 export default {
     data() {
@@ -35,6 +37,9 @@ export default {
                 this.post = post;
             });
         }
+    },
+    components : {
+        Editor : Editor
     }
 }
 </script>

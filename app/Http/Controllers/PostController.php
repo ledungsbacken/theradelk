@@ -11,7 +11,7 @@ use App\Post;
 class PostController extends Controller
 {
     public function index(Request $request) {
-        $posts = Post::with(['subcategories.category', 'user'])->get();
+        $posts = Post::with(['subcategories.category', 'user'])->orderBy('id', 'DESC')->get();
         return $posts;
     }
 

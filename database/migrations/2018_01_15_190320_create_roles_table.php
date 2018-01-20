@@ -26,8 +26,8 @@ class CreateRolesTable extends Migration
                 'label' => 'Noob',
             ],
             [
-                'name' => 'user',
-                'label' => 'User',
+                'name' => 'editor',
+                'label' => 'Editor',
             ],
             [
                 'name' => 'admin',

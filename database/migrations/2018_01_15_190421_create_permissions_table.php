@@ -22,11 +22,15 @@ class CreatePermissionsTable extends Migration
         DB::table('permissions')->insert([
             [
                 'name' => 'access',
-                'description' => 'Can login and create posts, but not publish',
+                'description' => 'Can login',
+            ],
+            [
+                'name' => 'create_post',
+                'description' => 'Can create posts',
             ],
             [
                 'name' => 'publish',
-                'description' => 'Can fully administer own posts',
+                'description' => 'Can publish and fully administer own posts',
             ],
             [
                 'name' => 'full',
