@@ -33,11 +33,14 @@ Route::group(['middleware' => ['auth:api']], function () {
             'index',
         ]
     ]);
+    Route::get('/user/log', 'UserController@logged_in_log');
+
+
     Route::resource('/post', 'PostController', [
         'only' => [
             'store',
             'update',
+            'destroy',
         ]
     ]);
-    Route::get('/user/log', 'UserController@logged_in_log');
 });

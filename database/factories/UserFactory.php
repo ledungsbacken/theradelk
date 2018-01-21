@@ -36,7 +36,6 @@ $factory->define(App\Post::class, function(Faker $faker) {
         'updated_reason' => $faker->words(3, true),
         'hidden' => $faker->boolean,
         'published' => $faker->boolean,
-        'deleted' => $faker->boolean,
     ];
 });
 

@@ -11,7 +11,13 @@ use App\Post;
 class PostController extends Controller
 {
     public function index(Request $request) {
-        $posts = Post::with(['subcategories.category', 'user'])->orderBy('id', 'DESC')->get();
+        $posts = Post::with(['subcategories.category', 'user'])
+                     ->where([
+                         ['hidden', '0'],
+                         ['published', '0'],
+                     ])
+                     ->orderBy('id', 'DESC')
+                     ->get();
         return $posts;
     }
 
@@ -29,6 +35,12 @@ class PostController extends Controller
     public function update(Request $request, $id) {
         $post = Post::find((int)$id);
         $post->update($request->all());
+        return $post;
+    }
+
+    public function destroy($id) {
+        $post = Post::find((int)$id);
+        $post->delete();
         return $post;
     }
 }

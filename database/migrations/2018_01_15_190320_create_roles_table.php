@@ -30,6 +30,10 @@ class CreateRolesTable extends Migration
                 'label' => 'Editor',
             ],
             [
+                'name' => 'moderator',
+                'label' => 'Moderator',
+            ],
+            [
                 'name' => 'admin',
                 'label' => 'Admin',
             ],

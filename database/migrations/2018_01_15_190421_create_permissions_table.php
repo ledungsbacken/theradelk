@@ -25,12 +25,28 @@ class CreatePermissionsTable extends Migration
                 'description' => 'Can login',
             ],
             [
-                'name' => 'create_post',
+                'name' => 'create_posts',
                 'description' => 'Can create posts',
             ],
             [
-                'name' => 'publish',
-                'description' => 'Can publish and fully administer own posts',
+                'name' => 'my_content',
+                'description' => 'Can fully administer own posts',
+            ],
+            [
+                'name' => 'admin_posts',
+                'description' => 'Can admin all posts (publish, unpublish, softdelete)',
+            ],
+            [
+                'name' => 'admin_users',
+                'description' => 'Can admin all users',
+            ],
+            [
+                'name' => 'delete_posts',
+                'description' => 'Can hard delete posts',
+            ],
+            [
+                'name' => 'edit_posts',
+                'description' => 'Can edit all posts',
             ],
             [
                 'name' => 'full',

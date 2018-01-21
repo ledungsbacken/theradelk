@@ -23,17 +23,21 @@ class CreatePermissionRoleTable extends Migration
         });
 
         DB::table('permission_role')->insert([
+            // noob
+            // access create_posts
             [
                 'permission_id' => '1',
                 'role_id' => '1',
             ],
             [
-                'permission_id' => '1',
-                'role_id' => '2',
+                'permission_id' => '2',
+                'role_id' => '1',
             ],
+            // editor
+            // access create_posts my_content
             [
                 'permission_id' => '1',
-                'role_id' => '3',
+                'role_id' => '2',
             ],
             [
                 'permission_id' => '2',
@@ -41,7 +45,59 @@ class CreatePermissionRoleTable extends Migration
             ],
             [
                 'permission_id' => '3',
+                'role_id' => '2',
+            ],
+            // moderator
+            // access create_posts my_content admin_posts
+            [
+                'permission_id' => '1',
                 'role_id' => '3',
+            ],
+            [
+                'permission_id' => '2',
+                'role_id' => '3',
+            ],
+            [
+                'permission_id' => '3',
+                'role_id' => '3',
+            ],
+            [
+                'permission_id' => '4',
+                'role_id' => '3',
+            ],
+            // admin
+            // access create_posts my_content admin_users admin_posts delete_posts edit_posts full
+            [
+                'permission_id' => '1',
+                'role_id' => '4',
+            ],
+            [
+                'permission_id' => '2',
+                'role_id' => '4',
+            ],
+            [
+                'permission_id' => '3',
+                'role_id' => '4',
+            ],
+            [
+                'permission_id' => '4',
+                'role_id' => '4',
+            ],
+            [
+                'permission_id' => '5',
+                'role_id' => '4',
+            ],
+            [
+                'permission_id' => '6',
+                'role_id' => '4',
+            ],
+            [
+                'permission_id' => '7',
+                'role_id' => '4',
+            ],
+            [
+                'permission_id' => '8',
+                'role_id' => '4',
             ],
         ]);
     }

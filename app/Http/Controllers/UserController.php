@@ -19,6 +19,28 @@ class UserController extends Controller
         return response()->json('Forbidden', 403);
     }
 
+    public function show($id) {
+        $user = User::find((int)$id);
+        return $user;
+    }
+
+    public function store(Request $request) {
+        $user = User::create($request->all());
+        return $user;
+    }
+
+    public function update(Request $request, $id) {
+        $user = User::find((int)$id);
+        $user->update($request->all());
+        return $user;
+    }
+
+    public function destroy($id) {
+        $user = User::find((int)$id);
+        $user->delete();
+        return $user;
+    }
+
     public function logged_in_log() {
         $log = LoggedInLog::with('user')->orderBy('id', 'DESC')->get();
         return $log;
