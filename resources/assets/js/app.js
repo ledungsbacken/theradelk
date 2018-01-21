@@ -35,6 +35,10 @@ const router = new VueRouter({
             component: require('./app/createPost/Index.vue')
         },
         {
+            path: '/file/upload',
+            component: require('./app/file/Upload.vue')
+        },
+        {
             path: '/user/log',
             component: require('./app/users/Log.vue')
         },

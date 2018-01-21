@@ -12,14 +12,30 @@ import Ckeditor from 'vue-ckeditor2';
 
 export default {
     props : {
-
+        value : {
+            type: [String, Number],
+            default: ""
+        },
     },
     data() {
         return {
-            content: '',
+            content: this.value,
             config: {
                 toolbar: [
-                    [ 'Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript' ]
+                    [
+                        'Bold',
+                        'Italic',
+                        'Underline',
+                        'Strike',
+                        'Blockquote',
+                        'NumberedList',
+                        'BulletedList',
+                        'Image',
+                        'Source',
+                        'Styles',
+                        'Link',
+                        'Unlink'
+                    ]
                 ],
                 height: 300
             }
@@ -29,7 +45,14 @@ export default {
 
     },
     methods : {
-        
+        update(value) {
+            this.$emit('input', value);
+        }
+    },
+    watch : {
+        'content' : function(value) {
+            this.update(value);
+        }
     },
     components : {
         Ckeditor : Ckeditor

@@ -7,8 +7,8 @@
 
                     <div class="panel-body">
                         <input type="text" v-model="post.data.title" placeholder="title" /><br /><br />
-                        <input type="text" v-model="post.data.content" placeholder="content" /><br /><br />
-                        <editor></editor>
+                        <input type="text" v-model="post.data.subtitle" placeholder="subtitle" /><br /><br />
+                        <editor v-model="post.data.content"></editor>
                         <input type="button" class="btn btn-success" @click="store()" value="Create" /><br /><br />
                     </div>
                 </div>
@@ -24,6 +24,7 @@ import Editor from '../Ckeditor.vue';
 export default {
     data() {
         return {
+            content : '',
             post : new Post(),
         }
     },

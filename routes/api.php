@@ -11,6 +11,11 @@ use Illuminate\Http\Request;
 | routes are loaded by the RouteServiceProvider within a group which
 | is assigned the "api" middleware group. Enjoy building your API!
 |
+| get() = index() || show()
+| post() = create()
+| put() = update()
+| delete() = destroy()
+|
 */
 
 // Route::middleware('auth:api')->get('/user', function (Request $request) {
@@ -33,7 +38,7 @@ Route::group(['middleware' => ['auth:api']], function () {
             'index',
         ]
     ]);
-    Route::get('/user/log', 'UserController@logged_in_log');
+    Route::get('/user/log', 'UserController@loggedInLog');
 
 
     Route::resource('/post', 'PostController', [
@@ -43,4 +48,10 @@ Route::group(['middleware' => ['auth:api']], function () {
             'destroy',
         ]
     ]);
+    Route::put('/post/{id}/restore', 'PostController@restoreDestroyed');
+    Route::put('/post/{id}/file', 'PostController@storeFile');
+    Route::put('/post/{id}/visibility', 'PostController@visibiltyStatus');
+    Route::delete('/post/{id}/hard', 'PostController@hardDelete');
+
+    Route::post('/image/upload', 'ImageController@upload');
 });

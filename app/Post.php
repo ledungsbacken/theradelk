@@ -13,7 +13,7 @@ class Post extends Model
     use SoftDeletes;
 
 
-    
+
     /**
      * The attributes that are mass assignable.
      *
@@ -25,6 +25,7 @@ class Post extends Model
         'title',
         'subtitle',
         'content',
+        'slug',
         'hidden',
         'published',
         'deleted'

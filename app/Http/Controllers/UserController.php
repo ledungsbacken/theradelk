@@ -41,7 +41,7 @@ class UserController extends Controller
         return $user;
     }
 
-    public function logged_in_log() {
+    public function loggedInLog() {
         $log = LoggedInLog::with('user')->orderBy('id', 'DESC')->get();
         return $log;
     }

@@ -5,7 +5,7 @@ export default class User extends Model {
     constructor(args = {}) {
         super({
             'id'         : args.id,
-            'name'       : args.user_id,
+            'name'       : args.name,
             'created_at' : args.created_at,
             'updated_at' : args.updated_at,
     });

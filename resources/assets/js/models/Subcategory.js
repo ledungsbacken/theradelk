@@ -1,0 +1,86 @@
+import Model from './Model.js';
+import Category from './Category.js';
+
+export default class Subcategory extends Model {
+
+    constructor(args = {}) {
+        super({
+            'id'          : args.id,
+            'name'        : args.name,
+            'category_id' : args.category_id,
+        });
+
+        this.category = new Category(args.category);
+
+        this.http.defaults.baseURL += 'subcategory/';
+    }
+
+    /**
+     * @return $promise
+    */
+    show() {
+        return this.http
+            .get(this.data.id.toString())
+            .then(response => new Subcategory(response.data));
+    }
+
+    /**
+     * @return $promise
+    */
+    store() {
+        return this.http
+            .post(null, this.data)
+            .then(response => new Subcategory(response.data));
+    }
+
+    /**
+     * @return $promise
+    */
+    update() {
+        return this.http
+            .put(this.data.id.toString(), this.data)
+            .then(response => new Subcategory(response.data));
+    }
+
+    /**
+    * @return $promise
+    */
+    destroy() {
+        return this.http
+        .delete(this.data.id.toString())
+        .then(response => new Subcategory(response.data));
+    }
+
+    /**
+    * @return $promise
+    */
+    restoreDestroyed() {
+        return this.http
+        .put(this.data.id + '/restore')
+        .then(response => new Subcategory(response.data));
+    }
+
+    /**
+    * @return $promise
+    */
+    hardDelete() {
+        return this.http
+        .delete(this.data.id + '/hard')
+        .then(response => new Subcategory(response.data));
+    }
+
+    /**
+     * @return $promise
+    */
+    static index(args = {}) {
+        return super._createAxios('post')
+            .get(null, {params : args})
+            .then((response) => {
+                response.data.data = Subcategory.collect(response.data.data);
+                return response.data;
+            });
+    }
+
+
+
+}

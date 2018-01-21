@@ -29,11 +29,13 @@ $factory->define(App\User::class, function (Faker $faker) {
 });
 
 $factory->define(App\Post::class, function(Faker $faker) {
+    $title = $faker->words(2, true);
     return [
-        'title' => $faker->word,
+        'title' => $title,
         'subtitle' => $faker->sentence,
         'content' => $faker->paragraph,
-        'updated_reason' => $faker->words(3, true),
+        'slug' => $slug = str_replace([' ', 'å', 'ä', 'ö', 'Å', 'Ä', 'Ö'], ['-', 'a', 'a', 'o', 'A', 'A', 'O'], strtolower($title)),
+        'updated_reason' => $faker->words(6, true),
         'hidden' => $faker->boolean,
         'published' => $faker->boolean,
     ];
