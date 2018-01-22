@@ -36,6 +36,15 @@ class PostController extends Controller
     }
 
     /**
+     * @param $id
+     * @return Post
+     */
+    public function showBySlug($slug) {
+        $post = Post::with(['subcategories.category', 'user'])->where('slug', '=', $slug)->first();
+        return $post;
+    }
+
+    /**
      * @param Request $request
      * @return Post
      */

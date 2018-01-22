@@ -9,7 +9,7 @@
                         <div v-for="post in posts">
                             <div>Title: {{ post.data.title }}</div>
                             <div>Author: {{ post.user.data.name }}</div>
-                            <div>Slug: {{ post.data.slug }}</div>
+                            <div><router-link :to="'/post/'+post.data.slug">Link</router-link></div>
                             <div v-for="subcategory in post.subcategories">Category: {{subcategory.category.data.name}}/{{ subcategory.data.name }}</div>
                             <br />
                         </div>
@@ -47,7 +47,7 @@ export default {
             Post.index({
                 'page' : this.listData.current_page,
                 'count' : this.listData.per_page
-            }).then(posts => {console.log(posts);
+            }).then(posts => {
                 this.posts = posts.data;
                 this.listData.total = posts.last_page;
             });

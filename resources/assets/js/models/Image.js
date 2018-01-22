@@ -8,6 +8,8 @@ export default class Image extends Model {
         super({
             'id'         : args.id,
             'url'        : args.url,
+            'created_at' : args.created_at,
+            'updated_at' : args.updated_at,
         });
 
         this.http.defaults.baseURL += 'image/';
@@ -17,7 +19,7 @@ export default class Image extends Model {
      * @return $promise
     */
     static index(args = {}) {
-        return super._createAxios('post')
+        return super._createAxios('image')
             .get(null, {params : args})
             .then((response) => {
                 response.data.data = Image.collect(response.data.data);
@@ -43,7 +45,7 @@ export default class Image extends Model {
     store(file){
         let formData = new FormData();
         formData.append("file", file);
-        return this.http().post(this.data.id + '/file', formData, {
+        return this.http.post('upload', formData, {
             headers: {
                 'Content-Type': 'multipart/form-data'
             }

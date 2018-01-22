@@ -1,0 +1,49 @@
+<template>
+    <div>
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Post</div>
+
+                    <div class="panel-body">
+                        <div>Title: {{ post.data.title }}</div>
+                        <div>Author: {{ post.user.data.name }}</div>
+                        <div>Slug: {{ post.data.slug }}</div>
+                        <div v-for="subcategory in post.subcategories">Category: {{subcategory.category.data.name}}/{{ subcategory.data.name }}</div>
+                        <br />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<script>
+import Post from '../../models/Post.js';
+
+export default {
+    props : {
+        slug : {
+            type : [String, Number]
+        },
+    },
+    data() {
+        return {
+            post : new Post({ slug : this.slug }),
+        }
+    },
+    mounted() {
+        this.load();
+    },
+    methods : {
+        load() {
+            this.post.showBySlug().then(post => {
+                this.post = post;
+            });
+        },
+    }
+}
+</script>
+
+<style scoped>
+</style>

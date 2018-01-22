@@ -28,7 +28,12 @@ const router = new VueRouter({
         { path: '*', redirect: '/post' },
         {
             path: '/post',
-            component: require('./app/posts/Index.vue')
+            component: require('./app/posts/Index.vue'),
+        },
+        {
+            path: '/post/:slug',
+            component: require('./app/post/Index.vue'),
+            props : true
         },
         {
             path: '/create/post',

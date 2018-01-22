@@ -25,6 +25,7 @@ class CreatePostsTable extends Migration
             $table->boolean('published')->default(0);
             $table->timestamps();
             $table->softDeletes();
+            
             $table->foreign('user_id')->references('id')->on('users');
         });
     }

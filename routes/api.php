@@ -29,6 +29,7 @@ Route::resource('/post', 'PostController', [
         'show',
     ]
 ]);
+Route::get('/post/slug/{slug}', 'PostController@showBySlug');
 
 
 // Only logged in users here

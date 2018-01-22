@@ -49,6 +49,15 @@ export default class Post extends Model {
     /**
      * @return $promise
     */
+    showBySlug() {
+        return this.http
+            .get('slug/'+this.data.slug)
+            .then(response => new Post(response.data));
+    }
+
+    /**
+     * @return $promise
+    */
     store() {
         return this.http
             .post(null, this.data)

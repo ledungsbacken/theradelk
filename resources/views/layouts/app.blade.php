@@ -37,6 +37,7 @@
                         &nbsp;
                         <li><router-link to="/post">Posts</router-link></li>
                         <li><router-link to="/create/post">Create Post</router-link></li>
+                        <li><router-link to="/file/upload">Upload</router-link></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
