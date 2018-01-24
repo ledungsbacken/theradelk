@@ -35,6 +35,9 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
                         &nbsp;
+                        <li><router-link to="/post">Posts</router-link></li>
+                        <li><router-link to="/create/post">Create Post</router-link></li>
+                        <li><router-link to="/file/upload">Upload</router-link></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -69,7 +72,7 @@
             </div>
         </nav>
 
-        @yield('content')
+        <router-view class="container"></router-view>
     </div>
 
     <!-- Scripts -->

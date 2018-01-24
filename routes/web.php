@@ -17,7 +17,24 @@
 
 Auth::routes();
 
-Route::get('/', 'HomeController@index')->name('home');
+Route::get('/register', function() {
+    return redirect('/');
+})->name('register');
+
+Route::post('/register', function() {
+    return redirect('/');
+})->name('register');
+
+Route::get('/logout', function() {
+    if(Auth::check()) {
+        Auth::logout();
+    }
+    return redirect('/');
+})->name('logout');
+
+
+Route::get('/', 'ViewController@master')->name('master');
+Route::get('/admin', 'ViewController@admin')->name('admin');
 
 Route::get('images/{filename}', function ($filename)
 {
