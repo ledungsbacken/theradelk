@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Auth;
+
 class ViewController extends Controller
 {
     /**
@@ -33,6 +35,9 @@ class ViewController extends Controller
      */
     public function admin()
     {
-        return view('admin');
+        if(Auth::check()) {
+            return view('admin');
+        }
+        return redirect('login');
     }
 }
