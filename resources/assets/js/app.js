@@ -17,48 +17,33 @@ import Vue from 'vue';
 //https://router.vuejs.org/en/essentials/getting-started.html
 import VueRouter from 'vue-router';
 
+/**
+ * Load in all frontend routes.
+ */
+import routes from './routes.js';
+
+import User from './models/User.js';
+
 Vue.use(VueRouter);
 
-
-// Each route should map to a component. The "component" can
-// either be an actual component constructor created via
-// `Vue.extend()`, or just a component options object.
+/**
+ * Setup frontend router
+ */
 const router = new VueRouter({
-    routes :  [
-        { path: '*', redirect: '/post' },
-        {
-            path: '/post',
-            component: require('./app/posts/Index.vue'),
-        },
-        {
-            path: '/post/:slug',
-            component: require('./app/post/Index.vue'),
-            props : true
-        },
-        {
-            path: '/create/post',
-            component: require('./app/createPost/Index.vue')
-        },
-        {
-            path: '/file/upload',
-            component: require('./app/file/Upload.vue')
-        },
-        {
-            path: '/user/log',
-            component: require('./app/users/Log.vue')
-        },
-        {
-            path: '/example',
-            component: require('./components/ExampleComponent.vue')
-        },
-        {
-            path: '/editor',
-            component: require('./app/Ckeditor.vue')
-        }
-    ]
+    routes
 });
 
-
+router.beforeEach((to, from, next) => {
+    // Check if route requires you to be logged in
+    if(to.meta.secure) {
+        // Check if is logged in
+        let isLoggedIn = false;
+        User.isLoggedIn().then(response => {
+            isLoggedIn = response.status;
+        });
+    }
+    next();
+});
 
 window.Vue = require('vue');
 

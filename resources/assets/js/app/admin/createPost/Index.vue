@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import Post from '../../models/Post.js';
+import Post from '../../../models/Post.js';
 import Editor from '../Ckeditor.vue';
 
 export default {

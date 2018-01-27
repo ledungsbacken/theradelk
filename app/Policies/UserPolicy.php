@@ -25,6 +25,20 @@ class UserPolicy
     }
 
     /**
+     * Determine whether the user can view models.
+     *
+     * @param  \App\User  $user
+     * @return mixed
+     */
+    public function view(User $user)
+    {
+        if($user->hasPermission('admin_users')) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
      * Determine whether the user can create models.
      *
      * @param  \App\User  $user

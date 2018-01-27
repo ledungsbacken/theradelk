@@ -27,17 +27,4 @@ class ViewController extends Controller
     {
         return view('master');
     }
-
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function admin()
-    {
-        if(Auth::check()) {
-            return view('admin');
-        }
-        return redirect('login');
-    }
 }

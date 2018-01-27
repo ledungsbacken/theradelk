@@ -2,9 +2,10 @@
 
 namespace App\Policies;
 
+use Illuminate\Auth\Access\HandlesAuthorization;
+
 use App\User;
 use App\Post;
-use Illuminate\Auth\Access\HandlesAuthorization;
 
 class PostPolicy
 {
@@ -49,7 +50,7 @@ class PostPolicy
     public function update(User $user, Post $post)
     {
         if($user->id == $post->user_id && $user->hasPermission('my_content') || $user->hasPermission('edit_posts')) {
-            return true
+            return true;
         }
         return false;
     }

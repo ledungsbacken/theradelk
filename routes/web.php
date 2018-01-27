@@ -33,8 +33,9 @@ Route::get('/logout', function() {
 })->name('logout');
 
 
-Route::get('/', 'ViewController@master')->name('master');
-Route::get('/admin', 'ViewController@admin')->name('admin');
+Route::get('/', function() {
+    return view('master');
+});
 
 Route::get('images/{filename}', function ($filename)
 {

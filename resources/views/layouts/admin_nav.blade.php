@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default navbar-static-top">
+<nav class="navbar navbar-default navbar-static-top" style="z-index:1001;">
     <div class="container">
         <div class="navbar-header">
 
@@ -11,15 +11,15 @@
             </button>
 
             <!-- Branding Image -->
-            <router-link class="navbar-brand" to="/">{{ config('app.name', 'Laravel') }}</router-link>
+            <router-link class="navbar-brand" to="/admin">Admin</router-link>
         </div>
 
         <div class="collapse navbar-collapse" id="app-navbar-collapse">
             <!-- Left Side Of Navbar -->
             <ul class="nav navbar-nav">
                 &nbsp;
-                <li><router-link to="/create/post">Create Post</router-link></li>
-                <li><router-link to="/file/upload">Upload</router-link></li>
+                <li><router-link to="/admin/create/post">Create Post</router-link></li>
+                <li><router-link to="/admin/file/upload">Upload</router-link></li>
             </ul>
 
             <!-- Right Side Of Navbar -->

@@ -6,7 +6,13 @@
                     <div class="panel-heading">Posts</div>
 
                     <div class="panel-body">
-                        <img v-if="image.data.url" :src="image.data.url" />
+                        <button @click="show = true">Open</button>
+                        <modal v-if="show" @close="show = false">
+                            <h4 slot="header"></h4>
+                            <div slot="body"></div>
+                            <div slot="footer"></div>
+                        </modal>
+                        <img v-if="image.data.url" :src="image.data.url" width="100%" />
                         <file-input @submit="upload"></file-input>
                     </div>
                 </div>
@@ -16,13 +22,15 @@
 </template>
 
 <script>
-import Image from '../../models/Image.js';
+import Image from '../../../models/Image.js';
+import Modal from '../../Modal.vue';
 import FileInput from '../FileInput.vue';
 
 export default {
     data() {
         return {
             image : new Image(),
+            show : false,
         }
     },
     methods : {
@@ -39,7 +47,8 @@ export default {
         }
     },
     components : {
-        FileInput : FileInput
+        FileInput : FileInput,
+        Modal : Modal,
     }
 }
 </script>

@@ -45,4 +45,17 @@ class UserController extends Controller
         $log = LoggedInLog::with('user')->orderBy('id', 'DESC')->get();
         return $log;
     }
+
+    public function getCurrent() {
+        
+    }
+
+    public function isLoggedIn(Request $request) {
+        $return = [];
+        $return['status'] = false;
+        if(Auth::check()) {
+            $return['status'] = true;
+        }
+        return $return;
+    }
 }

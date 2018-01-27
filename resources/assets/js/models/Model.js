@@ -55,7 +55,34 @@ export default class Model {
         let http = axios.create({
             'baseURL' : 'api/' + url
         });
+
+        this.registerDefaultResponseInterceptor(http);
+
         return http;
+    }
+
+    static registerDefaultResponseInterceptor(http) {
+        http.interceptors.response.use(function (response) {
+            // Do something with response data
+            return response;
+        }, function (error) {
+            let status = error.response.status;
+            switch (true) {
+                case /401/.test(status):
+                    alert(error);
+                    window.location = '/';
+                    break;
+                case /422/.test(status):
+                    break;
+                case /^4..$/.test(status):
+                    alert(error);
+                    break;
+                case /^5..$/.test(status):
+                    alert(error);
+                    break;
+            }
+            return Promise.reject(error);
+        });
     }
 
 

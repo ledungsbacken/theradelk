@@ -44,10 +44,21 @@ export default class User extends Model {
      * @return $promise
     */
     static index(args = {}) {
-        return super._createAxios('post')
+        return super._createAxios('user')
             .get(null, {params : args})
             .then((response) => {
                 response.data.data = User.collect(response.data.data);
+                return response.data;
+            });
+    }
+
+    /**
+     * @return $promise
+    */
+    static isLoggedIn(args = {}) {
+        return super._createAxios('user')
+            .get('/status')
+            .then((response) => {
                 return response.data;
             });
     }

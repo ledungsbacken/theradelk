@@ -34,12 +34,14 @@ Route::get('/post/slug/{slug}', 'PostController@showBySlug');
 
 // Only logged in users here
 Route::group(['middleware' => ['auth:api']], function () {
+    Route::get('/user/status', 'UserController@isLoggedIn');
     Route::resource('/user', 'UserController', [
         'only' => [
             'index',
         ]
     ]);
     Route::get('/user/log', 'UserController@loggedInLog');
+    Route::get('/user/current', 'UserController@getCurrent');
 
 
     Route::resource('/post', 'PostController', [
