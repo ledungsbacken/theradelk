@@ -19,7 +19,7 @@
             <ul class="nav navbar-nav">
                 &nbsp;
                 <li><router-link to="/admin/create/post">Create Post</router-link></li>
-                <li><router-link to="/admin/file/upload">Upload</router-link></li>
+                <li><router-link to="/admin/file/upload">Upload Head Images</router-link></li>
             </ul>
 
             <!-- Right Side Of Navbar -->

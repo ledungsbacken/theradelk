@@ -1,13 +1,12 @@
 <template>
     <modal v-if="show" width="80%" @close="$emit('close')">
         <div slot="header">
-            <h4>Files</h4>
+            <h4>Head Images</h4>
         </div>
         <div slot="body">
             <div class="row">
                 <div class="col-md-3" style="width:300px;" v-for="image in images">
-                    <img :src="image.data.url" width="100%" />
-                    <input type="text" readonly :value="image.data.url" style="width:80%;" />
+                    <img :src="image.data.thumbnail" @click="select(image)" width="100%" />
                 </div>
             </div>
         </div>
@@ -19,13 +18,18 @@
 </template>
 
 <script>
-import Image from '../../../models/Image.js';
+import HeadImage from '../../../models/HeadImage.js';
 import Modal from '../../Modal.vue';
+import FileInput from '../FileInput.vue';
 import Paging from '../../Paging.vue';
 import Count from '../../Count.vue';
 
 export default {
     props : {
+        value : {
+            type: [Object],
+            required: true
+        },
         show : {
             type: Boolean,
             required: true
@@ -33,7 +37,8 @@ export default {
     },
     data() {
         return {
-            images : {},
+            images : [],
+            chosenImage : new HeadImage(),
             counts : [5, 10, 30],
             listData : {
                 'total': 0,
@@ -47,13 +52,18 @@ export default {
     },
     methods : {
         load() {
-            Image.index({
+            HeadImage.index({
                 'page' : this.listData.current_page,
                 'count' : this.listData.per_page
             }).then(response => {
                 this.images = response.data;
                 this.listData.total = response.last_page;
             });
+        },
+        select(image) {
+            this.chosenImage = image;
+            this.$emit('input', image);
+            this.$emit('close');
         },
     },
     watch : {
@@ -66,6 +76,7 @@ export default {
     },
     components : {
         Modal : Modal,
+        FileInput : FileInput,
         paging : Paging,
         count : Count,
     }

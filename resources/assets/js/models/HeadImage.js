@@ -8,7 +8,10 @@ export default class HeadImage extends Model {
         super({
             'id'         : args.id,
             'user_id'    : args.user_id,
-            'url'        : args.url,
+            'thumbnail'  : args.thumbnail,
+            'desktop'    : args.desktop,
+            'tablet'     : args.tablet,
+            'phone'      : args.phone,
             'created_at' : args.created_at,
             'updated_at' : args.updated_at,
         });

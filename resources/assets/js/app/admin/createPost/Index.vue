@@ -7,28 +7,48 @@
 
                     <div class="panel-body">
                         <div class="row">
-                            <button @click="show = true">Bilder</button>
-                            <images-modal v-if="show" :show="show" @close="show = false">
-                                <h4 slot="header"></h4>
-                                <div slot="body"></div>
-                                <div slot="footer"></div>
-                            </images-modal>
+                            <button @click="showImagesModal = true">Bilder</button>
+                            <images-modal
+                                v-if="showImagesModal"
+                                :show="showImagesModal"
+                                @close="showImagesModal = false"></images-modal>
                         </div>
                         <div class="row">
-                            <img v-if="image.desktop" :src="image.desktop" />
-                            <button class="form-control" @click="">Välj huvudbild</button>
-                            <input type="text" class="form-control" v-model="post.data.title" placeholder="Title" />
-                            <input type="text" class="form-control" v-model="post.data.subtitle" placeholder="Subtitle" />
+                            <img v-if="image.data.thumbnail"
+                                :src="image.data.thumbnail"
+                                @click="showHeadImagesModal = true"
+                                width="100%" />
+                            <button
+                                class="form-control"
+                                v-if="!image.data.thumbnail"
+                                @click="showHeadImagesModal = true">Välj huvudbild</button>
+                            <head-images-modal
+                                v-model="image"
+                                v-if="showHeadImagesModal"
+                                :show="showHeadImagesModal"
+                                @close="showHeadImagesModal = false">
+                            </head-images-modal>
+
+                            <input
+                                type="text"
+                                class="form-control"
+                                v-model="post.data.title"
+                                placeholder="Title" />
+                            <input
+                                type="text"
+                                class="form-control"
+                                v-model="post.data.subtitle"
+                                placeholder="Subtitle" />
+
                             <div v-for="subcategory in subcategories">
                                 <label>
-                                    <input
-                                        type="checkbox"
+                                    <input type="checkbox"
                                         v-model="chosenCategories"
                                         :value="subcategory" />
-                                        <!-- @click="handleCategory(subcategory.data.id)" -->
                                     {{ subcategory.category.data.name }}/{{ subcategory.data.name }}
                                 </label>
                             </div>
+
                             <editor id="editor1" v-model="post.data.content"></editor>
                             <input type="button" class="btn btn-success" @click="store()" value="Create" />
                         </div>
@@ -44,6 +64,7 @@ import Post from '../../../models/Post.js';
 import HeadImage from '../../../models/HeadImage.js';
 import Subcategory from '../../../models/Subcategory.js';
 import ImagesModal from './ImagesModal.vue';
+import HeadImagesModal from './HeadImagesModal.vue';
 import Editor from '../Ckeditor.vue';
 
 export default {
@@ -52,7 +73,8 @@ export default {
             content : '',
             subcategories : {},
             chosenCategories : [],
-            show : false,
+            showImagesModal : false,
+            showHeadImagesModal : false,
             post : new Post(),
             image : new HeadImage(),
         }
@@ -69,10 +91,9 @@ export default {
         store() {
             this.post.data.subcategories = this.chosenCategories;
             this.post.store().then(post => {
-                console.log(post);
                 this.post = post;
             });
-        }
+        },
     },
     beforeRouteLeave (to, from, next) {
         CKEDITOR.instances.editor1.destroy();
@@ -80,6 +101,7 @@ export default {
     },
     components : {
         ImagesModal : ImagesModal,
+        HeadImagesModal : HeadImagesModal,
         Editor : Editor,
     }
 }

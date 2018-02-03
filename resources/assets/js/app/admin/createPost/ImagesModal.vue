@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import HeadImage from '../../../models/HeadImage.js';
+import Image from '../../../models/Image.js';
 import Modal from '../../Modal.vue';
 import FileInput from '../FileInput.vue';
 import Paging from '../../Paging.vue';
@@ -39,7 +39,7 @@ export default {
     data() {
         return {
             images : [],
-            image : new HeadImage(),
+            image : new Image(),
             counts : [5, 10, 30],
             listData : {
                 'total': 0,
@@ -53,7 +53,7 @@ export default {
     },
     methods : {
         load() {
-            HeadImage.index({
+            Image.index({
                 'page' : this.listData.current_page,
                 'count' : this.listData.per_page
             }).then(response => {
@@ -63,7 +63,7 @@ export default {
         },
         upload(file) {
             return this.image.store(file).then(response => {
-                this.image = new HeadImage(response.data);
+                this.image = new Image(response.data);
                 if(this.images.length == this.listData.per_page) {
                     if(this.listData.total == 1) {
                         this.listData.total = this.listData.total + 1;
