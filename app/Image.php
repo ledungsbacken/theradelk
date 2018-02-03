@@ -14,8 +14,13 @@ class Image extends Model
      * @var array
      */
     protected $fillable = [
-        'url'
+        'user_id',
+        'url',
     ];
+
+    public function user() {
+        return $this->belongsTo(User::class);
+    }
 
     public function posts() {
         return $this->hasMany(Post::class);

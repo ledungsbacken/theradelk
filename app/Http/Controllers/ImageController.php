@@ -15,7 +15,8 @@ class ImageController extends Controller
      * @return Post
      */
     public function index(Request $request) {
-        $images = Image::orderBy('id', 'DESC')
+        $images = Image::where('user_id', '=', Auth::id())
+                     ->orderBy('id', 'DESC')
                      ->paginate((int)$request['count']);
         return $images;
     }
@@ -33,8 +34,9 @@ class ImageController extends Controller
         $path = $request->file('file')->store('images', 'public');
         $url = $path;
         $image = Image::create([
-            'url' => $url
+            'url' => $url,
         ]);
+        $image->user()->associate(Auth::id())->save();
         return $image;
     }
 }
