@@ -16,7 +16,7 @@ class CreatePostsTable extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned()->nullable();
-            $table->integer('image_id')->unsigned()->nullable();
+            $table->integer('head_image_id')->unsigned()->nullable();
             $table->string('title');
             $table->string('subtitle');
             $table->text('content');
@@ -28,7 +28,7 @@ class CreatePostsTable extends Migration
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('image_id')->references('id')->on('images');
+            $table->foreign('head_image_id')->references('id')->on('head_images');
         });
     }
 

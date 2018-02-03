@@ -63,8 +63,8 @@ Route::group(['middleware' => ['auth:api']], function () {
         ]
     ]);
 
-    Route::post('/image/upload', 'ImageController@upload');
-    Route::resource('/image', 'ImageController', [
+    Route::post('/headimage/upload', 'HeadImageController@upload');
+    Route::resource('/headimage', 'HeadImageController', [
         'only' => [
             'index',
         ]

@@ -1,7 +1,7 @@
 import Model from './Model.js';
 import User from './User.js';
 import Subcategory from './Subcategory.js';
-import Image from './Image.js';
+import HeadImage from './HeadImage.js';
 
 export default class Post extends Model {
 
@@ -24,7 +24,7 @@ export default class Post extends Model {
 
         this.subcategories = Subcategory.collect(args.subcategories);
         this.user = new User(args.user);
-        this.image = args.image ? new Image(args.image) : undefined;
+        this.image = args.image ? new HeadImage(args.image) : undefined;
 
         this.http.defaults.baseURL += 'post/';
     }

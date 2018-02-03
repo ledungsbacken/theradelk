@@ -22,21 +22,21 @@
 </template>
 
 <script>
-import Image from '../../../models/Image.js';
+import HeadImage from '../../../models/HeadImage.js';
 import FilesModal from './FilesModal.vue';
-import FileInput from '../FileInput.vue';
+import FileInput from '../PostImagesInput.vue';
 
 export default {
     data() {
         return {
-            image : new Image(),
+            image : new HeadImage(),
             show : false,
         }
     },
     methods : {
-        upload(file) {
-            return this.image.store(file).then(response => {
-                this.image = new Image(response.data);
+        upload(files) {
+            return this.image.store(files).then(response => {
+                this.image = new HeadImage(response.data);
                 // if (response.data.message) {
                 //     alert(response.data.message);
                 // }else{

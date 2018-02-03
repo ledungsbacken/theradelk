@@ -18,7 +18,7 @@ class CreateImagesTable extends Migration
             $table->integer('user_id')->unsigned()->nullable();
             $table->string('url');
             $table->timestamps();
-            
+
             $table->foreign('user_id')->references('id')->on('users');
         });
     }

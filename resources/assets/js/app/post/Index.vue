@@ -6,6 +6,7 @@
                     <div class="panel-heading">Post</div>
 
                     <div class="panel-body">
+                        <div v-html="post.data.content"></div>
                         <div>Title: {{ post.data.title }}</div>
                         <div>Author: {{ post.user.data.name }}</div>
                         <div>Slug: {{ post.data.slug }}</div>

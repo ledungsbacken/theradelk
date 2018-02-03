@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import Image from '../../../models/Image.js';
+import HeadImage from '../../../models/HeadImage.js';
 import Modal from '../../Modal.vue';
 import Paging from '../../Paging.vue';
 import Count from '../../Count.vue';
@@ -47,7 +47,7 @@ export default {
     },
     methods : {
         load() {
-            Image.index({
+            HeadImage.index({
                 'page' : this.listData.current_page,
                 'count' : this.listData.per_page
             }).then(response => {

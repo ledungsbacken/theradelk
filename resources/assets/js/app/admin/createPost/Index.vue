@@ -6,29 +6,32 @@
                     <div class="panel-heading">Posts</div>
 
                     <div class="panel-body">
-                        <div>
+                        <div class="row">
                             <button @click="show = true">Bilder</button>
                             <images-modal v-if="show" :show="show" @close="show = false">
                                 <h4 slot="header"></h4>
                                 <div slot="body"></div>
                                 <div slot="footer"></div>
                             </images-modal>
-                        </div><br />
-                        <input type="text" v-model="post.data.title" placeholder="Image Url" /><br /><br />
-                        <input type="text" v-model="post.data.title" placeholder="Title" /><br /><br />
-                        <input type="text" v-model="post.data.subtitle" placeholder="Subtitle" /><br /><br />
-                        <div v-for="subcategory in subcategories">
-                            <label>
-                                <input
-                                    type="checkbox"
-                                    v-model="chosenCategories"
-                                    :value="subcategory" />
-                                    <!-- @click="handleCategory(subcategory.data.id)" -->
-                                {{ subcategory.category.data.name }}/{{ subcategory.data.name }}
-                            </label>
                         </div>
-                        <editor id="editor1" v-model="post.data.content"></editor>
-                        <input type="button" class="btn btn-success" @click="store()" value="Create" /><br /><br />
+                        <div class="row">
+                            <img v-if="image.desktop" :src="image.desktop" />
+                            <button class="form-control" @click="">Välj huvudbild</button>
+                            <input type="text" class="form-control" v-model="post.data.title" placeholder="Title" />
+                            <input type="text" class="form-control" v-model="post.data.subtitle" placeholder="Subtitle" />
+                            <div v-for="subcategory in subcategories">
+                                <label>
+                                    <input
+                                        type="checkbox"
+                                        v-model="chosenCategories"
+                                        :value="subcategory" />
+                                        <!-- @click="handleCategory(subcategory.data.id)" -->
+                                    {{ subcategory.category.data.name }}/{{ subcategory.data.name }}
+                                </label>
+                            </div>
+                            <editor id="editor1" v-model="post.data.content"></editor>
+                            <input type="button" class="btn btn-success" @click="store()" value="Create" />
+                        </div>
                     </div>
                 </div>
             </div>
@@ -38,6 +41,7 @@
 
 <script>
 import Post from '../../../models/Post.js';
+import HeadImage from '../../../models/HeadImage.js';
 import Subcategory from '../../../models/Subcategory.js';
 import ImagesModal from './ImagesModal.vue';
 import Editor from '../Ckeditor.vue';
@@ -50,6 +54,7 @@ export default {
             chosenCategories : [],
             show : false,
             post : new Post(),
+            image : new HeadImage(),
         }
     },
     mounted() {
