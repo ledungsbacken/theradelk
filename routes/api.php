@@ -30,6 +30,7 @@ Route::resource('/post', 'PostController', [
     ]
 ]);
 Route::get('/post/slug/{slug}', 'PostController@showBySlug');
+Route::post('/post/{id}/add/view', 'PostController@addView');
 
 
 // Only logged in users here

@@ -5,6 +5,7 @@ use App\Role;
 use App\Post;
 use App\Category;
 use App\Subcategory;
+use App\View;
 
 use Illuminate\Database\Seeder;
 
@@ -49,7 +50,7 @@ class DevUsersSeeder extends Seeder
                 continue;
             }
 
-            //create
+            // Create
             $user = factory(User::class)->create(
                 [
                     'name' => $devUser['name'],
@@ -67,6 +68,11 @@ class DevUsersSeeder extends Seeder
                     'post_id' => $post->id,
                     'subcategory_id' => rand(1, 4),
                 ]);
+                for ($i=0; $i < rand(10, 200); $i++) {
+                    DB::table('views')->insert([
+                        'post_id' => $post->id,
+                    ]);
+                }
             });
 
             // Set role

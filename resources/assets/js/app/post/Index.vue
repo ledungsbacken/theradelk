@@ -9,6 +9,8 @@
                         <div>Title: {{ post.data.title }}</div>
                         <div>Author: {{ post.user.data.name }}</div>
                         <div>Slug: {{ post.data.slug }}</div>
+                        <div>Views: {{ post.data.views }}</div>
+                        <div v-if="post.image"><img :src="post.image.url" /></div>
                         <div v-for="subcategory in post.subcategories">Category: {{subcategory.category.data.name}}/{{ subcategory.data.name }}</div>
                         <br />
                     </div>
@@ -37,7 +39,7 @@ export default {
     },
     methods : {
         load() {
-            this.post.showBySlug().then(post => {
+            this.post.showBySlug({add_view : true}).then(post => {
                 this.post = post;
             });
         },

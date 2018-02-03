@@ -7,6 +7,7 @@ export default class Image extends Model {
     constructor(args = {}) {
         super({
             'id'         : args.id,
+            'user_id'    : args.user_id,
             'url'        : args.url,
             'created_at' : args.created_at,
             'updated_at' : args.updated_at,

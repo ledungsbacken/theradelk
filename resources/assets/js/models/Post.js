@@ -1,6 +1,7 @@
 import Model from './Model.js';
 import User from './User.js';
 import Subcategory from './Subcategory.js';
+import Image from './Image.js';
 
 export default class Post extends Model {
 
@@ -8,6 +9,7 @@ export default class Post extends Model {
         super({
             'id'         : args.id,
             'user_id'    : args.user_id,
+            'image_id'   : args.image_id,
             'title'      : args.title,
             'subtitle'   : args.subtitle,
             'content'    : args.content,
@@ -17,10 +19,12 @@ export default class Post extends Model {
             'deleted_at' : args.deleted_at,
             'created_at' : args.created_at,
             'updated_at' : args.updated_at,
+            'views'      : args.views_count_relation ? args.views_count_relation.count : 0,
         });
 
         this.subcategories = Subcategory.collect(args.subcategories);
         this.user = new User(args.user);
+        this.image = args.image ? new Image(args.image) : undefined;
 
         this.http.defaults.baseURL += 'post/';
     }
@@ -40,18 +44,18 @@ export default class Post extends Model {
     /**
      * @return $promise
     */
-    show() {
+    show(args = {}) {
         return this.http
-            .get(this.data.id.toString())
+            .get(this.data.id.toString(), {params : args})
             .then(response => new Post(response.data));
     }
 
     /**
      * @return $promise
     */
-    showBySlug() {
+    showBySlug(args = {}) {
         return this.http
-            .get('slug/'+this.data.slug)
+            .get('slug/'+this.data.slug, {params : args})
             .then(response => new Post(response.data));
     }
 
@@ -61,6 +65,15 @@ export default class Post extends Model {
     store() {
         return this.http
             .post(null, this.data)
+            .then(response => new Post(response.data));
+    }
+
+    /**
+     * @return $promise
+    */
+    addView() {
+        return this.http
+            .post(this.data.id + '/add/view', this.data)
             .then(response => new Post(response.data));
     }
 

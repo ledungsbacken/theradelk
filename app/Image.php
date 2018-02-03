@@ -4,6 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+use App\Post;
+
 class Image extends Model
 {
     /**
@@ -14,4 +16,8 @@ class Image extends Model
     protected $fillable = [
         'url'
     ];
+
+    public function posts() {
+        return $this->hasMany(Post::class);
+    }
 }

@@ -7,6 +7,7 @@ use Auth;
 
 use App\User;
 use App\Post;
+use App\View;
 
 class PostController extends Controller
 {
@@ -16,7 +17,7 @@ class PostController extends Controller
      * @return Post
      */
     public function index(Request $request) {
-        $posts = Post::with(['subcategories.category', 'user', 'viewsCountRelation'])
+        $posts = Post::with(['subcategories.category', 'user', 'image', 'viewsCountRelation'])
                      ->where([
                          ['hidden', '0'],
                          ['published', '0'],
@@ -30,18 +31,28 @@ class PostController extends Controller
      * @param $id
      * @return Post
      */
-    public function show($id) {
-        $post = Post::with(['subcategories.category', 'user', 'viewsCountRelation'])->find((int)$id);
-        return $post;
+    public function show(Request $request, $id) {
+        $post = Post::with(['subcategories.category', 'user', 'image'])->findOrFail((int)$id);
+        if($request->add_view) {
+            View::create([
+                'post_id' => $post->id,
+            ]);
+        }
+        return $post->load('viewsCountRelation');
     }
 
     /**
      * @param $id
      * @return Post
      */
-    public function showBySlug($slug) {
-        $post = Post::with(['subcategories.category', 'user', 'viewsCountRelation'])->where('slug', '=', $slug)->first();
-        return $post;
+    public function showBySlug(Request $request, $slug) {
+        $post = Post::with(['subcategories.category', 'user', 'image'])->where('slug', '=', $slug)->firstOrFail();
+        if($request->add_view) {
+            View::create([
+                'post_id' => $post->id,
+            ]);
+        }
+        return $post->load('viewsCountRelation');
     }
 
     /**

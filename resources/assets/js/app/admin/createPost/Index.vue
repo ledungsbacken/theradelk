@@ -6,8 +6,17 @@
                     <div class="panel-heading">Posts</div>
 
                     <div class="panel-body">
-                        <input type="text" v-model="post.data.title" placeholder="title" /><br /><br />
-                        <input type="text" v-model="post.data.subtitle" placeholder="subtitle" /><br /><br />
+                        <div>
+                            <button @click="show = true">Bilder</button>
+                            <images-modal v-if="show" :show="show" @close="show = false">
+                                <h4 slot="header"></h4>
+                                <div slot="body"></div>
+                                <div slot="footer"></div>
+                            </images-modal>
+                        </div><br />
+                        <input type="text" v-model="post.data.title" placeholder="Image Url" /><br /><br />
+                        <input type="text" v-model="post.data.title" placeholder="Title" /><br /><br />
+                        <input type="text" v-model="post.data.subtitle" placeholder="Subtitle" /><br /><br />
                         <div v-for="subcategory in subcategories">
                             <label>
                                 <input
@@ -30,6 +39,7 @@
 <script>
 import Post from '../../../models/Post.js';
 import Subcategory from '../../../models/Subcategory.js';
+import ImagesModal from './ImagesModal.vue';
 import Editor from '../Ckeditor.vue';
 
 export default {
@@ -38,6 +48,7 @@ export default {
             content : '',
             subcategories : {},
             chosenCategories : [],
+            show : false,
             post : new Post(),
         }
     },
@@ -63,7 +74,8 @@ export default {
         next();
     },
     components : {
-        Editor : Editor
+        ImagesModal : ImagesModal,
+        Editor : Editor,
     }
 }
 </script>

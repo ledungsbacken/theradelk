@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 use App\User;
+use App\Image;
 use App\Category;
 use App\View;
 
@@ -34,6 +35,10 @@ class Post extends Model
 
     public function user() {
         return $this->belongsTo(User::class);
+    }
+
+    public function image() {
+        return $this->belongsTo(Image::class);
     }
 
     public function views() {
