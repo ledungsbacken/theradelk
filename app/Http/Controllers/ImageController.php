@@ -10,6 +10,16 @@ use App\Post;
 
 class ImageController extends Controller
 {
+    /**
+     * @param Request $request
+     * @return Post
+     */
+    public function index(Request $request) {
+        $images = Image::orderBy('id', 'DESC')
+                     ->paginate((int)$request['count']);
+        return $images;
+    }
+
     public function show($id) {
 
     }

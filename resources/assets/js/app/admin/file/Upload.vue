@@ -7,11 +7,11 @@
 
                     <div class="panel-body">
                         <button @click="show = true">Open</button>
-                        <modal v-if="show" @close="show = false">
+                        <files-modal v-if="show" :show="show" @close="show = false">
                             <h4 slot="header"></h4>
                             <div slot="body"></div>
                             <div slot="footer"></div>
-                        </modal>
+                        </files-modal>
                         <img v-if="image.data.url" :src="image.data.url" width="100%" />
                         <file-input @submit="upload"></file-input>
                     </div>
@@ -23,7 +23,7 @@
 
 <script>
 import Image from '../../../models/Image.js';
-import Modal from '../../Modal.vue';
+import FilesModal from './FilesModal.vue';
 import FileInput from '../FileInput.vue';
 
 export default {
@@ -48,7 +48,7 @@ export default {
     },
     components : {
         FileInput : FileInput,
-        Modal : Modal,
+        FilesModal : FilesModal,
     }
 }
 </script>

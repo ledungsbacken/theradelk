@@ -6,7 +6,7 @@
                     <div class="panel-heading">
                         <slot name="header">
                         </slot>
-                        <i class="fa fa-window-close fa-2x float-right" @click="$emit('close')"></i>
+                        <i class="fa fa-window-close fa-2x float-right" style="margin-top:-34px;" @click="$emit('close')"></i>
                     </div>
                     <div class="panel-body" v-if="$slots['body']">
                         <slot name="body">

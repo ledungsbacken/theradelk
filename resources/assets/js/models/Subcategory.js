@@ -73,10 +73,10 @@ export default class Subcategory extends Model {
      * @return $promise
     */
     static index(args = {}) {
-        return super._createAxios('post')
+        return super._createAxios('subcategory')
             .get(null, {params : args})
             .then((response) => {
-                response.data.data = Subcategory.collect(response.data.data);
+                response.data = Subcategory.collect(response.data);
                 return response.data;
             });
     }

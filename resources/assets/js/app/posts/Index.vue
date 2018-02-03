@@ -47,7 +47,7 @@ export default {
             Post.index({
                 'page' : this.listData.current_page,
                 'count' : this.listData.per_page
-            }).then(posts => {
+            }).then(posts => {console.log(posts);
                 this.posts = posts.data;
                 this.listData.total = posts.last_page;
             });

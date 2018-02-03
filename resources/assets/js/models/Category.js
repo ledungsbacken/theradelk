@@ -69,7 +69,7 @@ export default class Category extends Model {
      * @return $promise
     */
     static index(args = {}) {
-        return super._createAxios('post')
+        return super._createAxios('category')
             .get(null, {params : args})
             .then((response) => {
                 response.data.data = Category.collect(response.data.data);

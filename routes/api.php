@@ -56,5 +56,16 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::put('/post/{id}/visibility', 'PostController@visibiltyStatus');
     Route::delete('/post/{id}/hard', 'PostController@hardDelete');
 
+    Route::resource('/subcategory', 'SubcategoryController', [
+        'only' => [
+            'index',
+        ]
+    ]);
+
     Route::post('/image/upload', 'ImageController@upload');
+    Route::resource('/image', 'ImageController', [
+        'only' => [
+            'index',
+        ]
+    ]);
 });

@@ -16,7 +16,7 @@ class PostController extends Controller
      * @return Post
      */
     public function index(Request $request) {
-        $posts = Post::with(['subcategories.category', 'user'])
+        $posts = Post::with(['subcategories.category', 'user', 'viewsCountRelation'])
                      ->where([
                          ['hidden', '0'],
                          ['published', '0'],
@@ -31,7 +31,7 @@ class PostController extends Controller
      * @return Post
      */
     public function show($id) {
-        $post = Post::with(['subcategories.category', 'user'])->find((int)$id);
+        $post = Post::with(['subcategories.category', 'user', 'viewsCountRelation'])->find((int)$id);
         return $post;
     }
 
@@ -40,7 +40,7 @@ class PostController extends Controller
      * @return Post
      */
     public function showBySlug($slug) {
-        $post = Post::with(['subcategories.category', 'user'])->where('slug', '=', $slug)->first();
+        $post = Post::with(['subcategories.category', 'user', 'viewsCountRelation'])->where('slug', '=', $slug)->first();
         return $post;
     }
 
@@ -60,7 +60,11 @@ class PostController extends Controller
             'slug' => $slug,
         ]);
         $post->user()->associate(Auth::id())->save();
-        return $post->load('user');
+        foreach($request->get('subcategories') as $subcategory) {
+            $post->subcategories()->attach($subcategory['data']['id']);
+        }
+
+        return $post->load('subcategories.category', 'user');
     }
 
     /**
@@ -104,7 +108,7 @@ class PostController extends Controller
     public function destroy($id) {
         // Return 403 if not enough permissions
         if(Auth::user()->cant('delete', Post::class)) { return response()->json('Forbidden', 403); }
-        
+
         $post = Post::find((int)$id);
         $post->delete();
         return $post;
@@ -117,7 +121,7 @@ class PostController extends Controller
     public function restoreDestroyed($id) {
         // Return 403 if not enough permissions
         if(Auth::user()->cant('delete', Post::class)) { return response()->json('Forbidden', 403); }
-        
+
         $post = Post::withTrashed()->find((int)$id);
         $post->restore();
         return $post;
@@ -130,7 +134,7 @@ class PostController extends Controller
     public function hardDelete($id) {
         // Return 403 if not enough permissions
         if(Auth::user()->cant('forceDelete', Post::class)) { return response()->json('Forbidden', 403); }
-        
+
         $post = Post::withTrashed()->find((int)$id);
         $post->forceDelete();
         return $post;

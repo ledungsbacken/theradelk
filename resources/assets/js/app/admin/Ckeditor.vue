@@ -1,6 +1,7 @@
 <template>
     <div>
         <ckeditor
+            :id="id"
             v-model="content"
             :config="config">
         </ckeditor>
@@ -12,6 +13,10 @@ import Ckeditor from 'vue-ckeditor2';
 
 export default {
     props : {
+        id : {
+            type: [String, Number],
+            required: true
+        },
         value : {
             type: [String, Number],
             default: ""
