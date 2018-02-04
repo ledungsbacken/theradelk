@@ -31,6 +31,7 @@ const routes = [
         component: require('./app/admin/categories/Index.vue'),
         meta: {
             secure: true, // Requires to be logged in
+            role: 'super_admin',
         },
     },
     {

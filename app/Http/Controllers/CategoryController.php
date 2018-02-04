@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
 
 use App\Category;
 
@@ -22,6 +23,9 @@ class CategoryController extends Controller
      * @return Category
      */
     public function store(Request $request) {
+        // Return 403 if not enough permissions
+        if(!Auth::user()->hasPermission('full')) { return response()->json('Forbidden', 403); }
+
         $category = Category::create($request->all());
         return $category;
     }
@@ -31,6 +35,9 @@ class CategoryController extends Controller
      * @return Category
      */
     public function update(Request $request, $id) {
+        // Return 403 if not enough permissions
+        if(!Auth::user()->hasPermission('full')) { return response()->json('Forbidden', 403); }
+        
         $category = Category::find($id);
         $category->update($request->all());
 

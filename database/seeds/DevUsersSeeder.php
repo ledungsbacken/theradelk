@@ -18,7 +18,7 @@ class DevUsersSeeder extends Seeder
         [
             'name' => 'Robin Sandström',
             'email' => 'ledungsbacken@gmail.com',
-            'role' => 'admin',
+            'role' => 'super_admin',
         ],
         [
             'name' => 'Daniel Ljungqvist',
