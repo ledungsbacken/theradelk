@@ -27,6 +27,13 @@ const routes = [
         },
     },
     {
+        path: '/admin/category',
+        component: require('./app/admin/categories/Index.vue'),
+        meta: {
+            secure: true, // Requires to be logged in
+        },
+    },
+    {
         path: '/admin/file/upload',
         component: require('./app/admin/file/Upload.vue'),
         meta: {

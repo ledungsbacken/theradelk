@@ -48,32 +48,14 @@ export default class Category extends Model {
     }
 
     /**
-    * @return $promise
-    */
-    restoreDestroyed() {
-        return this.http
-        .put(this.data.id + '/restore')
-        .then(response => new Category(response.data));
-    }
-
-    /**
-    * @return $promise
-    */
-    hardDelete() {
-        return this.http
-        .delete(this.data.id + '/hard')
-        .then(response => new Category(response.data));
-    }
-
-    /**
      * @return $promise
     */
     static index(args = {}) {
         return super._createAxios('category')
             .get(null, {params : args})
             .then((response) => {
-                response.data.data = Category.collect(response.data.data);
-                return response.data;
+                response = Category.collect(response.data);
+                return response;
             });
     }
 

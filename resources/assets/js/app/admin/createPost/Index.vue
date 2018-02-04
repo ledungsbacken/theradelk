@@ -7,7 +7,7 @@
 
                     <div class="panel-body">
                         <div class="row">
-                            <button @click="showImagesModal = true">Bilder</button>
+                            <button @click="showImagesModal = true">Images</button>
                             <images-modal
                                 v-if="showImagesModal"
                                 :show="showImagesModal"
@@ -21,7 +21,7 @@
                             <button
                                 class="form-control"
                                 v-if="!image.data.thumbnail"
-                                @click="showHeadImagesModal = true">Välj huvudbild</button>
+                                @click="showHeadImagesModal = true">Choose head image</button>
                             <head-images-modal
                                 v-model="image"
                                 v-if="showHeadImagesModal"
