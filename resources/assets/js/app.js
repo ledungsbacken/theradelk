@@ -37,10 +37,14 @@ router.beforeEach((to, from, next) => {
     // Check if route requires you to be logged in
     if(to.meta.secure) {
         // Check if is logged in
-        let isLoggedIn = false;
-        User.isLoggedIn().then(response => {
-            isLoggedIn = response.status;
-        });
+        if(!User.isLoggedIn()) {
+            window.location = '/';
+        }
+        if(to.meta.role) {
+            if(!User.hasRole(to.meta.role) && !User.hasRole('super_admin')) {
+                window.location = '/';
+            }
+        }
     }
     next();
 });

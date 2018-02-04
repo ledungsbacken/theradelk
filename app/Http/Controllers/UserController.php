@@ -47,7 +47,11 @@ class UserController extends Controller
     }
 
     public function getCurrent() {
-        
+        $return = null;
+        if(Auth::check()) {
+            $return = User::with('roles')->find(Auth::user()->id);
+        }
+        return $return;
     }
 
     public function isLoggedIn(Request $request) {

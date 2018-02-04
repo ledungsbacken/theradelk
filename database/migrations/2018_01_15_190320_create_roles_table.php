@@ -37,6 +37,10 @@ class CreateRolesTable extends Migration
                 'name' => 'admin',
                 'label' => 'Admin',
             ],
+            [
+                'name' => 'super_admin',
+                'label' => 'Super Admin',
+            ],
         ]);
     }
 

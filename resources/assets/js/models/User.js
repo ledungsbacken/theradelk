@@ -53,17 +53,54 @@ export default class User extends Model {
     }
 
     /**
-     * @return $promise
+     * @return bool
     */
     static isLoggedIn(args = {}) {
-        return super._createAxios('user')
-            .get('/status')
-            .then((response) => {
-                return response.data;
-            });
+        if(Laravel.currentUser) {
+            return true;
+        }
+        return false;
     }
 
+    /**
+     *  Get current user
+     *  from Laravel.user
+     *
+     * @return User object
+     */
+    getCurrent() {
+        this._setAttributes(Laravel.currentUser);
+    }
 
+    /**
+     *  Get current user
+     *  from Laravel.user
+     *
+     * @return User object
+     */
+    static getCurrent(){
+        let user = new User();
+        user.getCurrent();
+        return user;
+    }
+
+    /**
+     *  Get current user
+     *  from Laravel.user
+     *
+     * @return User object
+     */
+    static hasRole(role){
+        let user = new User();
+        user.getCurrent();
+        let hasRole = false;
+        user.data.roles.forEach(user_role => {
+            if(user_role.name == role) {
+                hasRole = true;
+            }
+        });
+        return hasRole;
+    }
 
 
 }

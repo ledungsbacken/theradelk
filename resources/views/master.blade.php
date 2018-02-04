@@ -12,6 +12,11 @@
 
     <!-- Styles -->
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+    <script>
+        window.Laravel = <?php echo json_encode([
+            'currentUser' => Auth::check() ? App\User::with(['roles'])->find(Auth::user()->id) : null,
+        ]); ?>
+    </script>
 </head>
 <body>
     <div id="app">

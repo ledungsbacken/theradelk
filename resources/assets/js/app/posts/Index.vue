@@ -24,6 +24,7 @@
 
 <script>
 import Post from '../../models/Post.js';
+import User from '../../models/User.js';
 import Paging from '../Paging.vue';
 import Count from '../Count.vue';
 

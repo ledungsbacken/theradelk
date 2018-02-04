@@ -66,7 +66,7 @@ class CreatePermissionRoleTable extends Migration
                 'role_id' => '3',
             ],
             // admin
-            // access create_posts my_content admin_users admin_posts delete_posts edit_posts full
+            // access create_posts my_content admin_users admin_posts delete_posts edit_posts
             [
                 'permission_id' => '1',
                 'role_id' => '4',
@@ -95,9 +95,11 @@ class CreatePermissionRoleTable extends Migration
                 'permission_id' => '7',
                 'role_id' => '4',
             ],
+            // super_admin
+            // full
             [
                 'permission_id' => '8',
-                'role_id' => '4',
+                'role_id' => '5',
             ],
         ]);
     }
