@@ -14,7 +14,22 @@ const routes = [
     },
     {
         path: '/admin',
-        component: require('./app/posts/Index.vue'),
+        component: require('./app/admin/dashboard/Index.vue'),
+        meta: {
+            secure: true, // Requires to be logged in
+        },
+    },
+    {
+        path: '/admin/post',
+        component: require('./app/admin/posts/Index.vue'),
+        meta: {
+            secure: true, // Requires to be logged in
+        },
+    },
+    {
+        path: '/admin/post/:id',
+        component: require('./app/admin/editPost/Index.vue'),
+        props: true,
         meta: {
             secure: true, // Requires to be logged in
         },

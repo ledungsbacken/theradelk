@@ -18,6 +18,7 @@
             <!-- Left Side Of Navbar -->
             <ul class="nav navbar-nav">
                 &nbsp;
+                <li><router-link to="/admin/post">Posts</router-link></li>
                 <li><router-link to="/admin/create/post">Create Post</router-link></li>
                 <li><router-link to="/admin/file/upload">Upload Head Images</router-link></li>
                 @if (App\User::find(Auth::user()->id)->hasPermission('full'))

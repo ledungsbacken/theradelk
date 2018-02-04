@@ -50,7 +50,7 @@
                             </div>
 
                             <editor id="editor1" v-model="post.data.content"></editor>
-                            <input type="button" class="btn btn-success" @click="store()" value="Create" />
+                            <input type="button" class="btn btn-success" @click="update()" value="Save" />
                         </div>
                     </div>
                 </div>
@@ -68,19 +68,33 @@ import HeadImagesModal from './HeadImagesModal.vue';
 import Editor from '../Ckeditor.vue';
 
 export default {
+    props : {
+        id : {
+            type : [Number, String],
+            required : true,
+        }
+    },
     data() {
         return {
-            content : '',
             subcategories : {},
             chosenCategories : [],
             showImagesModal : false,
             showHeadImagesModal : false,
-            post : new Post(),
+            post : new Post({ id: this.id }),
             headImage : new HeadImage(),
         }
     },
     mounted() {
         this.load();
+        this.post.show().then(post => {
+            this.post = post;
+            if(this.post.headImage) {
+                this.headImage = this.post.headImage;
+            }
+            this.post.subcategories.forEach(subcategory => {
+                this.chosenCategories.push(subcategory);
+            });
+        });
     },
     methods : {
         load() {
@@ -88,10 +102,10 @@ export default {
                 this.subcategories = response;
             });
         },
-        store() {
+        update() {
             this.post.data.head_image_id = this.headImage.data.id;
             this.post.data.subcategories = this.chosenCategories;
-            this.post.store().then(post => {
+            this.post.update().then(post => {
                 this.post = post;
             });
         },

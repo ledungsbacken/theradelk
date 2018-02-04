@@ -7,24 +7,24 @@ export default class Post extends Model {
 
     constructor(args = {}) {
         super({
-            'id'         : args.id,
-            'user_id'    : args.user_id,
-            'image_id'   : args.image_id,
-            'title'      : args.title,
-            'subtitle'   : args.subtitle,
-            'content'    : args.content,
-            'slug'       : args.slug,
-            'hidden'     : args.hidden,
-            'published'  : args.published,
-            'deleted_at' : args.deleted_at,
-            'created_at' : args.created_at,
-            'updated_at' : args.updated_at,
-            'views'      : args.views_count_relation ? args.views_count_relation.count : 0,
+            'id'            : args.id,
+            'user_id'       : args.user_id,
+            'head_image_id' : args.head_image_id,
+            'title'         : args.title,
+            'subtitle'      : args.subtitle,
+            'content'       : args.content,
+            'slug'          : args.slug,
+            'hidden'        : args.hidden,
+            'published'     : args.published,
+            'deleted_at'    : args.deleted_at,
+            'created_at'    : args.created_at,
+            'updated_at'    : args.updated_at,
+            'views'         : args.views_count_relation ? args.views_count_relation.count : 0,
         });
 
         this.subcategories = Subcategory.collect(args.subcategories);
         this.user = new User(args.user);
-        this.image = args.image ? new HeadImage(args.image) : undefined;
+        this.headImage = args.head_image ? new HeadImage(args.head_image) : undefined;
 
         this.http.defaults.baseURL += 'post/';
     }
@@ -89,9 +89,18 @@ export default class Post extends Model {
     /**
      * @return $promise
     */
-    visibiltyStatus() {
+    setPublished() {
         return this.http
-            .put(this.data.id + '/visibilty', this.data)
+            .put(this.data.id + '/setPublished', this.data)
+            .then(response => new Post(response.data));
+    }
+
+    /**
+     * @return $promise
+    */
+    setHidden() {
+        return this.http
+            .put(this.data.id + '/setHidden', this.data)
             .then(response => new Post(response.data));
     }
 

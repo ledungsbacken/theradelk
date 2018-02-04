@@ -17,7 +17,7 @@ class PostController extends Controller
      * @return Post
      */
     public function index(Request $request) {
-        $posts = Post::with(['subcategories.category', 'user', 'image', 'viewsCountRelation'])
+        $posts = Post::with(['subcategories.category', 'user', 'headImage', 'viewsCountRelation'])
                      ->where([
                          ['hidden', '0'],
                          ['published', '0'],
@@ -32,7 +32,7 @@ class PostController extends Controller
      * @return Post
      */
     public function show(Request $request, $id) {
-        $post = Post::with(['subcategories.category', 'user', 'image'])->findOrFail((int)$id);
+        $post = Post::with(['subcategories.category', 'user', 'headImage'])->findOrFail((int)$id);
         if($request->add_view) {
             View::create([
                 'post_id' => $post->id,
@@ -46,7 +46,7 @@ class PostController extends Controller
      * @return Post
      */
     public function showBySlug(Request $request, $slug) {
-        $post = Post::with(['subcategories.category', 'user', 'image'])->where('slug', '=', $slug)->firstOrFail();
+        $post = Post::with(['subcategories.category', 'user', 'headImage'])->where('slug', '=', $slug)->firstOrFail();
         if($request->add_view) {
             View::create([
                 'post_id' => $post->id,
@@ -71,11 +71,12 @@ class PostController extends Controller
             'slug' => $slug,
         ]);
         $post->user()->associate(Auth::id())->save();
+        $post->headImage()->associate((int)$request->head_image_id)->save();
         foreach($request->get('subcategories') as $subcategory) {
             $post->subcategories()->attach($subcategory['data']['id']);
         }
 
-        return $post->load('subcategories.category', 'user');
+        return $post->load('subcategories.category', 'user', 'headImage');
     }
 
     /**
@@ -88,8 +89,23 @@ class PostController extends Controller
         if(Auth::user()->cant('update', Post::class)) { return response()->json('Forbidden', 403); }
 
         $post = Post::find((int)$id);
-        $post->update($request->all());
-        return $post;
+        $slug = str_replace([' ', 'å', 'ä', 'ö', 'Å', 'Ä', 'Ö'], ['-', 'a', 'a', 'o', 'A', 'A', 'O'], strtolower($request->title));
+        $post->update([
+            'title' => $request->title,
+            'subtitle' => $request->subtitle,
+            'content' => $request->content,
+            'slug' => $slug,
+        ]);
+        $post->headImage()->associate((int)$request->head_image_id)->save();
+        // $post->subcategories->detach();
+        $subcategories = [];
+        foreach($request->get('subcategories') as $subcategory) {
+            $subcategories[] = $subcategory['data']['id'];
+            // $post->subcategories()->attach($subcategory['data']['id']);
+        }
+        $post->subcategories()->sync($subcategories);
+
+        return $post->load('subcategories.category', 'user', 'headImage');
     }
 
     /**
@@ -97,15 +113,35 @@ class PostController extends Controller
      * @param $id
      * @return Post
      */
-    public function visibiltyStatus(Request $request, $id) {
+    public function setPublished(Request $request, $id) {
         // Return 403 if not enough permissions
-        if(Auth::user()->cant('update', Post::class)) { return response()->json('Forbidden', 403); }
+        if(Auth::user()->cant('delete', Post::class)) { return response()->json('Forbidden', 403); }
 
         $published = (int)$request->published;
         if($published == 0 || $published == 1) {
             $post = Post::find((int)$id);
             $post->update([
                 'published' => (int)$request->published
+            ]);
+            return $post;
+        }
+        return false;
+    }
+
+    /**
+     * @param Request $request
+     * @param $id
+     * @return Post
+     */
+    public function setHidden(Request $request, $id) {
+        // Return 403 if not enough permissions
+        if(Auth::user()->cant('delete', Post::class)) { return response()->json('Forbidden', 403); }
+
+        $hidden = (int)$request->hidden;
+        if($hidden == 0 || $hidden == 1) {
+            $post = Post::find((int)$id);
+            $post->update([
+                'hidden' => (int)$request->hidden
             ]);
             return $post;
         }

@@ -34,7 +34,7 @@ class CreatePermissionsTable extends Migration
             ],
             [
                 'name' => 'admin_posts',
-                'description' => 'Can admin all posts (publish, unpublish, softdelete)',
+                'description' => 'Can admin all posts (publish, unpublish, set hidden, softdelete)',
             ],
             [
                 'name' => 'admin_users',

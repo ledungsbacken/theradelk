@@ -55,9 +55,12 @@ export default {
         }
     },
     watch : {
+        'value' : function(value) {
+            this.content = this.value;
+        },
         'content' : function(value) {
             this.update(value);
-        }
+        },
     },
     components : {
         Ckeditor : Ckeditor

@@ -24,6 +24,7 @@ class Post extends Model
     protected $fillable = [
         'user_id',
         'category_id',
+        'head_image_id',
         'title',
         'subtitle',
         'content',
@@ -37,7 +38,7 @@ class Post extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function image() {
+    public function headImage() {
         return $this->belongsTo(HeadImage::class);
     }
 
