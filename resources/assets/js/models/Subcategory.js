@@ -81,6 +81,18 @@ export default class Subcategory extends Model {
             });
     }
 
+    /**
+     * @return $promise
+    */
+    static indexByCategory(args = {}) {
+        return super._createAxios('category')
+            .get(args.category_id + '/subcategory')
+            .then((response) => {
+                response.data = Subcategory.collect(response.data);
+                return response.data;
+            });
+    }
+
 
 
 }

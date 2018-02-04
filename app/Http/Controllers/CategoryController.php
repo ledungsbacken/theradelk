@@ -19,6 +19,15 @@ class CategoryController extends Controller
     }
 
     /**
+     * @param $id
+     * @return Post
+     */
+    public function show(Request $request, $id) {
+        $category = Category::findOrFail((int)$id);
+        return $category;
+    }
+
+    /**
      * @param Request $request
      * @return Category
      */
@@ -37,7 +46,7 @@ class CategoryController extends Controller
     public function update(Request $request, $id) {
         // Return 403 if not enough permissions
         if(!Auth::user()->hasPermission('full')) { return response()->json('Forbidden', 403); }
-        
+
         $category = Category::find($id);
         $category->update($request->all());
 

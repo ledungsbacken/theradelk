@@ -60,14 +60,18 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::resource('/category', 'categoryController', [
         'only' => [
             'index',
+            'show',
             'store',
             'update',
         ]
     ]);
+    Route::get('/category/{id}/subcategory', 'SubcategoryController@indexByCategory');
 
     Route::resource('/subcategory', 'SubcategoryController', [
         'only' => [
             'index',
+            'store',
+            'update',
         ]
     ]);
 

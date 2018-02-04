@@ -2,18 +2,13 @@
     <div>
         <div class="row">
             <div class="col-md-4">
-                <input type="text" class="form-control" v-model="category.data.name" :readonly="readonly" />
+                <input type="text" class="form-control" v-model="subcategory.data.name" :readonly="readonly" />
             </div>
             <button class="btn btn-sm btn-primary"
                 v-if="readonly"
                 @click="readonly = false">
                     Edit
             </button>
-            <router-link :to="'/admin/category/' + category.data.id"
-                v-if="readonly"
-                @click="readonly = false">
-                    <i class="btn btn-sm btn-success fa fa-arrow-right"></i>
-            </router-link>
             <button class="btn btn-sm btn-warning"
                 v-if="!readonly"
                 @click="cancel">
@@ -38,23 +33,24 @@ export default {
     },
     data() {
         return {
-            category : this.cat,
-            readonly : true,
+            subcategory : this.cat,
+            readonly : false,
         }
     },
     mounted() {
-
+        
     },
     methods : {
         save() {
             this.readonly = true;
-            this.category.update().then(response => {
-                this.category = response;
+            this.subcategory.store().then(response => {
+                this.subcategory = response;
+                this.$emit('newSubcategory');
             });
         },
         cancel() {
             this.readonly = true;
-            this.category.reset();
+            this.$emit('cancel');
         }
     },
 }

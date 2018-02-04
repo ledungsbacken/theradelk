@@ -35,6 +35,15 @@ const routes = [
         },
     },
     {
+        path: '/admin/category/:id',
+        component: require('./app/admin/subcategories/Index.vue'),
+        props: true,
+        meta: {
+            secure: true, // Requires to be logged in
+            role: 'super_admin',
+        },
+    },
+    {
         path: '/admin/file/upload',
         component: require('./app/admin/file/Upload.vue'),
         meta: {
