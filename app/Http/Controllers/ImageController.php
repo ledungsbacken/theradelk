@@ -31,6 +31,7 @@ class ImageController extends Controller
 
         $allowedExtensions = ['image/jpeg', 'image/pjpeg', 'image/png', 'image/gif', 'image/tiff', 'image/x-tiff'];
         $mime_type = $request->file('file')->getMimeType();
+        if(!in_array($mime_type, $allowedExtensions)) { return response()->json('Unsupported Media Type', 415); }
         $path = $request->file('file')->store('images', 'public');
         $url = $path;
         $image = Image::create([
