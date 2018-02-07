@@ -20,8 +20,20 @@ class PostController extends Controller
         $posts = Post::with(['subcategories.category', 'user', 'headImage', 'viewsCountRelation'])
                      ->where([
                          ['hidden', '0'],
-                         ['published', '0'],
+                         ['published', '1'],
                      ])
+                     ->orderBy('id', 'DESC')
+                     ->paginate((int)$request['count']);
+        return $posts;
+    }
+
+    /**
+     * @param Request $request
+     * @return Post
+     */
+    public function indexAdmin(Request $request) {
+        $posts = Post::with(['subcategories.category', 'user', 'headImage', 'viewsCountRelation'])
+                     ->where('user_id', '=', Auth::user()->id)
                      ->orderBy('id', 'DESC')
                      ->paginate((int)$request['count']);
         return $posts;
@@ -97,11 +109,9 @@ class PostController extends Controller
             'slug' => $slug,
         ]);
         $post->headImage()->associate((int)$request->head_image_id)->save();
-        // $post->subcategories->detach();
         $subcategories = [];
         foreach($request->get('subcategories') as $subcategory) {
             $subcategories[] = $subcategory['data']['id'];
-            // $post->subcategories()->attach($subcategory['data']['id']);
         }
         $post->subcategories()->sync($subcategories);
 
@@ -121,7 +131,7 @@ class PostController extends Controller
         if($published == 0 || $published == 1) {
             $post = Post::find((int)$id);
             $post->update([
-                'published' => (int)$request->published
+                'published' => $published
             ]);
             return $post;
         }
@@ -183,7 +193,13 @@ class PostController extends Controller
         if(Auth::user()->cant('forceDelete', Post::class)) { return response()->json('Forbidden', 403); }
 
         $post = Post::withTrashed()->find((int)$id);
-        $post->forceDelete();
+        if($post) {
+            $post->subcategories->each(function($subcategory) {
+                $post->detach($subcategory->id);
+            });
+            View::where('post_id', '=', $post->id)->delete();
+            $post->forceDelete();
+        }
         return $post;
     }
 }

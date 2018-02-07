@@ -37,12 +37,7 @@ export default {
         upload(files) {
             return this.image.store(files).then(response => {
                 this.image = new HeadImage(response.data);
-                // if (response.data.message) {
-                //     alert(response.data.message);
-                // }else{
-                //     alert('Uploaded!');
-                // }
-                // this.$emit('updated', file);
+                this.$router.push('/admin/create/post');
             });
         }
     },

@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="row">
-            <div class="col-md-8 col-md-offset-2">
+            <div class="col-md-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">Manage Posts</div>
 
@@ -12,29 +12,74 @@
                                     <th>Title</th>
                                     <th>Author</th>
                                     <th>Published</th>
+                                    <th></th>
                                     <th>Hidden</th>
+                                    <th></th>
                                     <th>Categories</th>
-                                    <th>Links</th>
+                                    <th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr v-for="post in posts">
                                     <td>{{ post.data.title }}</td>
                                     <td>{{ post.user.data.name }}</td>
-                                    <td>{{ post.data.published }}</td>
-                                    <td>{{ post.data.hidden }}</td>
+                                    <td>
+                                        {{ published(post.data.published) }}
+                                    </td>
+                                    <td>
+                                        <button
+                                            v-if="!post.data.published"
+                                            class="btn btn-sm btn-success"
+                                            @click="setPublish(post)">
+                                                Publish
+                                        </button>
+                                        <button
+                                            v-if="post.data.published"
+                                            class="btn btn-sm btn-warning"
+                                            @click="setPublish(post)">
+                                                Unpublish
+                                        </button>
+                                    </td>
+                                    <td>
+                                        {{ hidden(post.data.hidden) }}
+                                    </td>
+                                    <td>
+                                        <button
+                                            v-if="!post.data.hidden"
+                                            class="btn btn-sm btn-warning"
+                                            @click="setHidden(post)">
+                                                Hide
+                                        </button>
+                                        <button
+                                            v-if="post.data.hidden"
+                                            class="btn btn-sm btn-success"
+                                            @click="setHidden(post)">
+                                                Show
+                                        </button>
+                                    </td>
                                     <td>
                                         <span v-for="subcategory in post.subcategories" style="display:block;">
                                             {{subcategory.category.data.name}}/{{ subcategory.data.name }}
                                         </span>
                                     </td>
-                                    <td><router-link :to="'/admin/post/'+post.data.id">Edit</router-link></td>
-                                    <td><router-link :to="'/post/'+post.data.slug">View</router-link></td>
+                                    <td>
+                                        <router-link :to="'/admin/post/'+post.data.id" class="btn btn-sm btn-warning">
+                                            Edit
+                                        </router-link>
+                                        <router-link :to="'/post/'+post.data.slug" class="btn btn-sm btn-success">
+                                            View
+                                        </router-link>
+                                        <button class="btn btn-sm btn-danger" @click="destroy(post)">
+                                            Delete
+                                        </button>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
-                        <paging v-model="listData.current_page" class="paging" style="float:left;" :total="listData.total"></paging>
-                        <count :counts="counts" class="paging" style="float:right;" v-model="listData.per_page"></count>
+                        <paging v-model="listData.current_page" class="paging" style="float:left;" :total="listData.total">
+                        </paging>
+                        <count :counts="counts" class="paging" style="float:right;" v-model="listData.per_page">
+                        </count>
                     </div>
                 </div>
             </div>
@@ -64,12 +109,51 @@ export default {
     },
     methods : {
         load() {
-            Post.index({
+            Post.indexAdmin({
                 'page' : this.listData.current_page,
                 'count' : this.listData.per_page
             }).then(posts => {
                 this.posts = posts.data;
                 this.listData.total = posts.last_page;
+            });
+        },
+        published(value) {
+            if(value) {
+                return 'Published';
+            } else {
+                return 'Unpublished';
+            }
+        },
+        hidden(value) {
+            if(value) {
+                return 'Hidden';
+            } else {
+                return 'Not hidden';
+            }
+        },
+        setPublish(post) {
+            if(post.data.published) {
+                post.data.published = 0;
+            } else {
+                post.data.published = 1;
+            }
+            post.setPublished().then(response => {
+                this.load();
+            });
+        },
+        setHidden(post) {
+            if(post.data.hidden) {
+                post.data.hidden = 0;
+            } else {
+                post.data.hidden = 1;
+            }
+            post.setHidden().then(response => {
+                this.load();
+            });
+        },
+        destroy(post) {
+            post.destroy().then(response => {
+                this.load();
             });
         },
     },

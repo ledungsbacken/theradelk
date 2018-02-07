@@ -52,11 +52,12 @@ Route::group(['middleware' => ['auth:api']], function () {
             'destroy',
         ]
     ]);
+    Route::get('/posts/admin', 'PostController@indexAdmin');
     Route::put('/post/{id}/restore', 'PostController@restoreDestroyed');
     Route::put('/post/{id}/file', 'PostController@storeFile');
     Route::put('/post/{id}/publish', 'PostController@setPublished');
     Route::put('/post/{id}/hidden', 'PostController@setHidden');
-    Route::delete('/post/{id}/hard', 'PostController@hardDelete');
+    Route::delete('/post/{id}/delete/hard', 'PostController@hardDelete');
 
     Route::resource('/category', 'categoryController', [
         'only' => [

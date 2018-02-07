@@ -44,6 +44,18 @@ export default class Post extends Model {
     /**
      * @return $promise
     */
+    static indexAdmin(args = {}) {
+        return super._createAxios('posts/admin')
+            .get(null, {params : args})
+            .then((response) => {
+                response.data.data = Post.collect(response.data.data);
+                return response.data;
+            });
+    }
+
+    /**
+     * @return $promise
+    */
     show(args = {}) {
         return this.http
             .get(this.data.id.toString(), {params : args})
@@ -91,7 +103,7 @@ export default class Post extends Model {
     */
     setPublished() {
         return this.http
-            .put(this.data.id + '/setPublished', this.data)
+            .put(this.data.id + '/publish', this.data)
             .then(response => new Post(response.data));
     }
 
@@ -100,7 +112,7 @@ export default class Post extends Model {
     */
     setHidden() {
         return this.http
-            .put(this.data.id + '/setHidden', this.data)
+            .put(this.data.id + '/hidden', this.data)
             .then(response => new Post(response.data));
     }
 
@@ -127,7 +139,7 @@ export default class Post extends Model {
     */
     hardDelete() {
         return this.http
-        .delete(this.data.id + '/hard')
+        .delete(this.data.id + '/delete/hard')
         .then(response => new Post(response.data));
     }
 
