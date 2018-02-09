@@ -33,10 +33,14 @@ class PostController extends Controller
      */
     public function indexAdmin(Request $request) {
         $posts = Post::with(['subcategories.category', 'user', 'headImage', 'viewsCountRelation'])
-                     ->withTrashed()
-                     ->where('user_id', '=', Auth::user()->id)
-                     ->orderBy('id', 'DESC')
-                     ->paginate((int)$request['count']);
+                     ->withTrashed();
+        if($request['showAll'] == 'true' && Auth::user()->can('indexAll', Post::class)) {
+
+        } else {
+            $posts = $posts->where('user_id', '=', Auth::user()->id);
+        }
+        $posts = $posts->orderBy('id', 'DESC')
+                       ->paginate((int)$request['count']);
         return $posts;
     }
 

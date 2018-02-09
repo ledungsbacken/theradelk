@@ -26,6 +26,21 @@ class PostPolicy
     }
 
     /**
+     * Determine whether the user can update the post.
+     *
+     * @param  \App\User  $user
+     * @param  \App\Post  $post
+     * @return mixed
+     */
+    public function indexAll(User $user, Post $post)
+    {
+        if($user->id == $post->user_id && $user->hasPermission('my_content') || $user->hasPermission('edit_posts') || $user->hasPermission('admin_posts')) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
      * Determine whether the user can create posts.
      *
      * @param  \App\User  $user

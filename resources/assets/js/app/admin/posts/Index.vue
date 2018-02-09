@@ -6,6 +6,11 @@
                     <div class="panel-heading">Manage Posts</div>
 
                     <div class="panel-body">
+                        <div class="row" v-if="hasRole">
+                            <div class="col-md-2">
+                                <lh-switch id="showAllSwitch" v-model="showAll">Show All</lh-switch>
+                            </div>
+                        </div>
                         <table class="table table-hover">
                             <thead>
                                 <tr>
@@ -92,13 +97,17 @@
 
 <script>
 import Post from '../../../models/Post.js';
+import User from '../../../models/User.js';
 import Paging from '../../Paging.vue';
 import Count from '../../Count.vue';
+import Switch from '../../Switch.vue';
 
 export default {
     data() {
         return {
             posts : {},
+            hasRole : false,
+            showAll : false,
             counts : [5, 10, 30],
             listData : {
                 'total': 0,
@@ -108,11 +117,15 @@ export default {
         }
     },
     mounted() {
+        if(User.hasRole('moderator') || User.hasRole('admin') || User.hasRole('super_admin')) {
+            this.hasRole = true;
+        }
         this.load();
     },
     methods : {
         load() {
             Post.indexAdmin({
+                'showAll' : this.showAll,
                 'page' : this.listData.current_page,
                 'count' : this.listData.per_page
             }).then(posts => {
@@ -166,6 +179,9 @@ export default {
         },
     },
     watch : {
+        'showAll' : function(value){
+            this.load();
+        },
         'listData.current_page' : function(value){
             this.load();
         },
@@ -176,6 +192,7 @@ export default {
     components : {
         paging : Paging,
         count : Count,
+        LhSwitch : Switch,
     }
 }
 </script>
