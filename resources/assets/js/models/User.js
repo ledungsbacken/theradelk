@@ -56,6 +56,15 @@ export default class User extends Model {
     /**
      * @return $promise
     */
+    resetPassword(args = {}) {
+        return this.http
+            .put(this.data.id + '/password/reset', {params : args})
+            .then(response => new User(response.data));
+    }
+
+    /**
+     * @return $promise
+    */
     static index(args = {}) {
         return super._createAxios('user')
             .get(null, {params : args})

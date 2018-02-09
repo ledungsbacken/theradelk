@@ -35,19 +35,27 @@
                                                 </button>
                                         </router-link>
 
-                                        <button class="btn btn-sm btn-warning">
+                                        <button class="btn btn-sm btn-warning" @click="showModal(user)">
                                             Reset password
                                         </button>
-                                        <button class="btn btn-sm btn-danger">
+                                        <button class="btn btn-sm btn-danger" @click="stripRoles(user)">
                                             Strip roles
                                         </button>
-                                        <button class="btn btn-sm btn-success">
-                                            <i class="fa fa-arrow-right"></i>
-                                        </button>
+                                        <router-link :to="'/user/' + user.data.id">
+                                            <button class="btn btn-sm btn-success">
+                                                <i class="fa fa-arrow-right"></i>
+                                            </button>
+                                        </router-link>
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
+                        <reset-password-modal
+                            v-model="chosenUser"
+                            v-if="show"
+                            :show="show"
+                            @close="show = false">
+                        </reset-password-modal>
                     </div>
                 </div>
             </div>
@@ -57,11 +65,14 @@
 
 <script>
 import User from '../../../models/User.js';
+import ResetPasswordModal from './ResetPasswordModal.vue';
 
 export default {
     data() {
         return {
             users : {},
+            show : false,
+            chosenUser : new User(),
         }
     },
     mounted() {
@@ -73,7 +84,21 @@ export default {
                 this.users = users;
             });
         },
+        stripRoles(user) {
+            if(confirm('Are you sure you want to remove all roles from '+user.data.name+'? If you remove your own roles you wont be able to do anything anymore.')) {
+                user.setRoles({ 'roles' : {} }).then(response => {
+                    this.load();
+                });
+            }
+        },
+        showModal(user) {
+            this.chosenUser = user;
+            this.show = true;
+        },
     },
+    components : {
+        ResetPasswordModal : ResetPasswordModal,
+    }
 }
 </script>
 

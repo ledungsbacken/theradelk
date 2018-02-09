@@ -46,6 +46,7 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::get('/user/log', 'UserController@loggedInLog');
     Route::get('/user/current', 'UserController@getCurrent');
     Route::put('/user/{id}/role', 'UserController@syncRoles');
+    Route::put('/user/{id}/password/reset', 'UserController@resetPassword');
 
 
     Route::get('/role', 'UserController@indexRoles');

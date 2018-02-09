@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Auth;
+use Hash;
 
 use App\User;
 use App\Role;
@@ -43,6 +45,19 @@ class UserController extends Controller
     public function update(Request $request, $id) {
         $user = User::find((int)$id);
         $user->update($request->all());
+        return $user->load('roles');
+    }
+
+    public function resetPassword(Request $request, $id) {
+        if(Auth::user()->cant('update', User::class)) { return response()->json('Forbidden', 403); }
+        $user = User::find((int)$id);
+        if($user->hasPermission('full')) { return response()->json('Forbidden', 403); }
+        $password = $request->params['newPassword'];
+        $passwordConfirm = $request->params['newPasswordConfirm'];
+        if($password != $passwordConfirm) { return response()->json('Forbidden', 403); }
+        $user->password = Hash::make($password);
+        $user->setRememberToken(Str::random(60));
+        $user->save();
         return $user->load('roles');
     }
 
