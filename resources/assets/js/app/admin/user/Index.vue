@@ -102,6 +102,12 @@ export default {
         },
         setChosenRoles() {
             this.chosenRoles = this.user.roles;
+            this.chosenRoles.forEach(role => {
+                if(role.data.name == 'super_admin') {
+                    const index = this.chosenRoles.indexOf(role);
+                    this.chosenRoles.splice(index, 1);
+                }
+            });
         },
         setAvailableRoles() {
             this.availableRoles = this.roles;

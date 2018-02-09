@@ -79,8 +79,17 @@ class UserController extends Controller
     }
 
     public function syncRoles(Request $request, $id) {
-        $user = User::find((int)$id);
+        $user = User::with('roles')->find((int)$id);
+        $superAdmin = null;
+        $user->roles->each(function($role) use (&$superAdmin) {
+            if($role->name == 'super_admin') {
+                $superAdmin = $role;
+            }
+        });
         $roles = [];
+        if($superAdmin) {
+            $roles[] = $superAdmin->id;
+        }
         foreach($request->params['roles'] as $role) {
             $roles[] = $role['data']['id'];
         }

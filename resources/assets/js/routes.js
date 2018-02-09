@@ -70,7 +70,7 @@ const routes = [
         component: require('./app/admin/users/Index.vue'),
         meta: {
             secure: true, // Requires to be logged in
-            role: 'super_admin',
+            role: ['admin', 'super_admin'],
         },
     },
     {
@@ -79,7 +79,7 @@ const routes = [
         props: true,
         meta: {
             secure: true, // Requires to be logged in
-            role: 'super_admin',
+            role: ['admin', 'super_admin'],
         },
     },
     {

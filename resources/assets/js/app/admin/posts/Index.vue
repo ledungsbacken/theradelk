@@ -69,18 +69,27 @@
                                     </td>
                                     <td>
                                         <router-link :to="'/admin/post/'+post.data.id"
-                                            class="btn btn-sm btn-warning"
+                                            class="btn btn-sm btn-primary"
                                             v-if="post.data.user_id == currentUser.data.id || isAdmin">
                                             Edit
                                         </router-link>
                                         <router-link :to="'/post/'+post.data.slug" class="btn btn-sm btn-success">
                                             View
                                         </router-link>
-                                        <button class="btn btn-sm btn-danger" v-if="!post.data.deleted_at" @click="destroy(post)">
-                                            Delete
+                                        <button class="btn btn-sm btn-danger"
+                                            v-if="!post.data.deleted_at"
+                                            @click="destroy(post)">
+                                                Delete
                                         </button>
-                                        <button class="btn btn-sm btn-primary" v-if="post.data.deleted_at" @click="restoreDestroyed(post)">
-                                            Restore
+                                        <button class="btn btn-sm btn-primary"
+                                            v-if="post.data.deleted_at"
+                                            @click="restoreDestroyed(post)">
+                                                Restore
+                                        </button>
+                                        <button class="btn btn-sm btn-danger"
+                                            v-if="isAdmin"
+                                            @click="hardDelete(post)">
+                                                <i class="fa fa-trash"></i>
                                         </button>
                                     </td>
                                 </tr>
@@ -178,6 +187,13 @@ export default {
             post.restoreDestroyed().then(response => {
                 this.load();
             });
+        },
+        hardDelete(post) {
+            if(confirm('Are you sure you want to permanently delete this post?')) {
+                post.hardDelete().then(response => {
+                    this.load();
+                });
+            }
         },
     },
     watch : {

@@ -26,7 +26,9 @@
                                     <td>{{ user.data.email }}</td>
                                     <td>
                                         <span v-for="role in user.roles">
-                                            {{ role.data.label }}
+                                            <span v-if="role.data.name != 'super_admin'">
+                                                {{ role.data.label }}
+                                            </span>
                                         </span>
                                         <span v-if="user.roles.length == 0">None</span>
                                     </td>

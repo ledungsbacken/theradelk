@@ -51,7 +51,6 @@ Route::group(['middleware' => ['auth:api']], function () {
 
 
     Route::get('/role', 'UserController@indexRoles');
-    Route::get('/role', 'UserController@indexRoles');
 
 
     Route::resource('/post', 'PostController', [

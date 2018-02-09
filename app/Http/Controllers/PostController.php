@@ -32,8 +32,10 @@ class PostController extends Controller
      * @return Post
      */
     public function indexAdmin(Request $request) {
-        $posts = Post::with(['subcategories.category', 'user', 'headImage', 'viewsCountRelation'])
-                     ->withTrashed();
+        $posts = Post::with(['subcategories.category', 'user', 'headImage', 'viewsCountRelation']);
+        if(Auth::user()->can('indexAll', Post::class)) {
+            $posts = $posts->withTrashed();
+        }
         if($request['showAll'] == 'true' && Auth::user()->can('indexAll', Post::class)) {
 
         } else {
@@ -199,8 +201,8 @@ class PostController extends Controller
         if(Auth::user()->cant('forceDelete', $post)) { return response()->json('Forbidden', 403); }
 
         if($post) {
-            $post->subcategories->each(function($subcategory) {
-                $post->detach($subcategory->id);
+            $post->subcategories->each(function($subcategory) use ($post) {
+                $post->subcategories()->detach($subcategory->id);
             });
             View::where('post_id', '=', $post->id)->delete();
             $post->forceDelete();
