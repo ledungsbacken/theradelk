@@ -41,8 +41,20 @@ router.beforeEach((to, from, next) => {
             window.location = '/';
         }
         if(to.meta.role) {
-            if(!User.hasRole(to.meta.role) && !User.hasRole('super_admin')) {
-                window.location = '/';
+            if(Array.isArray(to.meta.role)) {
+                let hasRole = false;
+                to.meta.role.forEach(function(role) {
+                    if(User.hasRole(role) || User.hasRole('super_admin')) {
+                        hasRole = true;
+                    }
+                });
+                if(!hasRole) {
+                    window.location = '/';
+                }
+            } else {
+                if(!User.hasRole(to.meta.role) && !User.hasRole('super_admin')) {
+                    window.location = '/';
+                }
             }
         }
     }

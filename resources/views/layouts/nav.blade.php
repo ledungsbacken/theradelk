@@ -19,6 +19,7 @@
             <ul class="nav navbar-nav">
                 &nbsp;
                 <li><router-link to="/post">Posts</router-link></li>
+                <li><a href="/login">Login</a></li>
             </ul>
         </div>
     </div>

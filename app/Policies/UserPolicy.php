@@ -21,7 +21,6 @@ class UserPolicy
         if($user->hasPermission('full')) {
             return true;
         }
-        return false;
     }
 
     /**
@@ -33,6 +32,20 @@ class UserPolicy
     public function view(User $user)
     {
         if($user->hasPermission('admin_users')) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Determine whether the user can create models.
+     *
+     * @param  \App\User  $user
+     * @return mixed
+     */
+    public function login(User $user)
+    {
+        if($user->hasPermission('access')) {
             return true;
         }
         return false;

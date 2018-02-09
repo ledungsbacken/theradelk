@@ -39,10 +39,17 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::resource('/user', 'UserController', [
         'only' => [
             'index',
+            'show',
+            'update',
         ]
     ]);
     Route::get('/user/log', 'UserController@loggedInLog');
     Route::get('/user/current', 'UserController@getCurrent');
+    Route::put('/user/{id}/role', 'UserController@syncRoles');
+
+
+    Route::get('/role', 'UserController@indexRoles');
+    Route::get('/role', 'UserController@indexRoles');
 
 
     Route::resource('/post', 'PostController', [

@@ -21,7 +21,10 @@
                 <li><router-link to="/admin/post">Posts</router-link></li>
                 <li><router-link to="/admin/create/post">Create Post</router-link></li>
                 <li><router-link to="/admin/file/upload">Upload Head Images</router-link></li>
-                @if (App\User::find(Auth::user()->id)->hasPermission('full'))
+                @can('view', App\User::class)
+                    <li><router-link to="/admin/user">Users</router-link></li>
+                @endcan
+                @if(App\User::find(Auth::user()->id)->hasPermission('full'))
                     <li><router-link to="/admin/category">Categories</router-link></li>
                 @endif
             </ul>

@@ -1,4 +1,5 @@
 import Model from './Model.js';
+import Role from './Role.js';
 
 export default class User extends Model {
 
@@ -6,9 +7,12 @@ export default class User extends Model {
         super({
             'id'         : args.id,
             'name'       : args.name,
+            'email'      : args.email,
             'created_at' : args.created_at,
             'updated_at' : args.updated_at,
     });
+
+        this.roles = Role.collect(args.roles);
 
         this.http.defaults.baseURL += 'user/';
     }
@@ -34,6 +38,15 @@ export default class User extends Model {
     /**
      * @return $promise
     */
+    setRoles(args = {}) {
+        return this.http
+            .put(this.data.id + '/role', {params : args})
+            .then(response => new User(response.data));
+    }
+
+    /**
+     * @return $promise
+    */
     update() {
         return this.http
             .put(this.data.id.toString(), this.data)
@@ -47,7 +60,7 @@ export default class User extends Model {
         return super._createAxios('user')
             .get(null, {params : args})
             .then((response) => {
-                response.data.data = User.collect(response.data.data);
+                response.data = User.collect(response.data);
                 return response.data;
             });
     }

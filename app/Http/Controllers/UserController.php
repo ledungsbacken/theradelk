@@ -6,21 +6,32 @@ use Illuminate\Http\Request;
 use Auth;
 
 use App\User;
+use App\Role;
 use App\LoggedInLog;
 
 class UserController extends Controller
 {
     public function index(Request $request) {
-        $current_user = User::find(Auth::id());
-        if($current_user->hasPermission('full')) {
-            $users = User::with('roles')->get();
-            return $users;
-        }
-        return response()->json('Forbidden', 403);
+        if(Auth::user()->cant('view', User::class)) { return response()->json('Forbidden', 403); }
+        $users = User::with('roles')->get();
+        return $users;
+    }
+
+    public function indexRoles(Request $request) {
+        if(Auth::user()->cant('view', User::class)) { return response()->json('Forbidden', 403); }
+        $where = [
+            ['name', '!=', 'super_admin']
+        ];
+        User::find((int)$request['user_id'])->roles()->each(function($role) use (&$where) {
+            $where[] = ['id', '!=', $role->id];
+        });
+
+        $users = Role::where($where)->get();
+        return $users;
     }
 
     public function show($id) {
-        $user = User::find((int)$id);
+        $user = User::with('roles')->find((int)$id);
         return $user;
     }
 
@@ -32,7 +43,17 @@ class UserController extends Controller
     public function update(Request $request, $id) {
         $user = User::find((int)$id);
         $user->update($request->all());
-        return $user;
+        return $user->load('roles');
+    }
+
+    public function syncRoles(Request $request, $id) {
+        $user = User::find((int)$id);
+        $roles = [];
+        foreach($request->params['roles'] as $role) {
+            $roles[] = $role['data']['id'];
+        }
+        $user->roles()->sync($roles);
+        return $user->load('roles');
     }
 
     public function destroy($id) {

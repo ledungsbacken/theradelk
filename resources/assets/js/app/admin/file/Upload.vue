@@ -6,7 +6,6 @@
                     <div class="panel-heading">Posts</div>
 
                     <div class="panel-body">
-                        <button @click="show = true">Open</button>
                         <files-modal v-if="show" :show="show" @close="show = false">
                             <h4 slot="header"></h4>
                             <div slot="body"></div>

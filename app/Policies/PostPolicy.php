@@ -23,7 +23,6 @@ class PostPolicy
         if($user->hasPermission('full')) {
             return true;
         }
-        return false;
     }
 
     /**

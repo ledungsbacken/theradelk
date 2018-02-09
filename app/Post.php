@@ -23,15 +23,13 @@ class Post extends Model
      */
     protected $fillable = [
         'user_id',
-        'category_id',
         'head_image_id',
         'title',
         'subtitle',
         'content',
         'slug',
         'hidden',
-        'published',
-        'deleted'
+        'published'
     ];
 
     public function user() {

@@ -21,7 +21,6 @@ class CreatePostsTable extends Migration
             $table->string('subtitle');
             $table->text('content');
             $table->string('slug');
-            $table->string('updated_reason')->nullable();
             $table->boolean('hidden')->default(0);
             $table->boolean('published')->default(0);
             $table->softDeletes();

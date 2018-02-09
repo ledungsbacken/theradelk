@@ -66,6 +66,23 @@ const routes = [
         },
     },
     {
+        path: '/admin/user',
+        component: require('./app/admin/users/Index.vue'),
+        meta: {
+            secure: true, // Requires to be logged in
+            role: 'super_admin',
+        },
+    },
+    {
+        path: '/admin/user/:id',
+        component: require('./app/admin/user/Index.vue'),
+        props: true,
+        meta: {
+            secure: true, // Requires to be logged in
+            role: 'super_admin',
+        },
+    },
+    {
         path: '/admin/user/log',
         component: require('./app/admin/users/Log.vue'),
         meta: {
