@@ -102,10 +102,10 @@ class PostController extends Controller
      * @return Post
      */
     public function update(Request $request, $id) {
-        // Return 403 if not enough permissions
-        if(Auth::user()->cant('update', Post::class)) { return response()->json('Forbidden', 403); }
-
         $post = Post::find((int)$id);
+        // Return 403 if not enough permissions
+        if(Auth::user()->cant('update', $post)) { return response()->json('Forbidden', 403); }
+
         $slug = str_replace([' ', 'å', 'ä', 'ö', 'Å', 'Ä', 'Ö'], ['-', 'a', 'a', 'o', 'A', 'A', 'O'], strtolower($request->title));
         $post->update([
             'title' => $request->title,
@@ -129,12 +129,12 @@ class PostController extends Controller
      * @return Post
      */
     public function setPublished(Request $request, $id) {
+        $post = Post::find((int)$id);
         // Return 403 if not enough permissions
-        if(Auth::user()->cant('delete', Post::class)) { return response()->json('Forbidden', 403); }
+        if(Auth::user()->cant('delete', $post)) { return response()->json('Forbidden', 403); }
 
         $published = (int)$request->published;
         if($published == 0 || $published == 1) {
-            $post = Post::find((int)$id);
             $post->update([
                 'published' => $published
             ]);
@@ -149,12 +149,12 @@ class PostController extends Controller
      * @return Post
      */
     public function setHidden(Request $request, $id) {
+        $post = Post::find((int)$id);
         // Return 403 if not enough permissions
-        if(Auth::user()->cant('delete', Post::class)) { return response()->json('Forbidden', 403); }
+        if(Auth::user()->cant('delete', $post)) { return response()->json('Forbidden', 403); }
 
         $hidden = (int)$request->hidden;
         if($hidden == 0 || $hidden == 1) {
-            $post = Post::find((int)$id);
             $post->update([
                 'hidden' => (int)$request->hidden
             ]);
@@ -168,10 +168,10 @@ class PostController extends Controller
      * @return Post
      */
     public function destroy($id) {
-        // Return 403 if not enough permissions
-        if(Auth::user()->cant('delete', Post::class)) { return response()->json('Forbidden', 403); }
-
         $post = Post::find((int)$id);
+        // Return 403 if not enough permissions
+        if(Auth::user()->cant('delete', $post)) { return response()->json('Forbidden', 403); }
+
         $post->delete();
         return $post;
     }
@@ -181,10 +181,10 @@ class PostController extends Controller
      * @return Post
      */
     public function restoreDestroyed($id) {
-        // Return 403 if not enough permissions
-        if(Auth::user()->cant('delete', Post::class)) { return response()->json('Forbidden', 403); }
-
         $post = Post::withTrashed()->find((int)$id);
+        // Return 403 if not enough permissions
+        if(Auth::user()->cant('delete', $post)) { return response()->json('Forbidden', 403); }
+
         $post->restore();
         return $post;
     }
@@ -194,10 +194,10 @@ class PostController extends Controller
      * @return Post
      */
     public function hardDelete($id) {
-        // Return 403 if not enough permissions
-        if(Auth::user()->cant('forceDelete', Post::class)) { return response()->json('Forbidden', 403); }
-
         $post = Post::withTrashed()->find((int)$id);
+        // Return 403 if not enough permissions
+        if(Auth::user()->cant('forceDelete', $post)) { return response()->json('Forbidden', 403); }
+
         if($post) {
             $post->subcategories->each(function($subcategory) {
                 $post->detach($subcategory->id);

@@ -32,9 +32,9 @@ class PostPolicy
      * @param  \App\Post  $post
      * @return mixed
      */
-    public function indexAll(User $user, Post $post)
+    public function indexAll(User $user)
     {
-        if($user->id == $post->user_id && $user->hasPermission('my_content') || $user->hasPermission('edit_posts') || $user->hasPermission('admin_posts')) {
+        if($user->hasPermission('edit_posts') || $user->hasPermission('admin_posts')) {
             return true;
         }
         return false;

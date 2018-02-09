@@ -6,7 +6,7 @@
                     <div class="panel-heading">Manage Posts</div>
 
                     <div class="panel-body">
-                        <div class="row" v-if="hasRole">
+                        <div class="row" v-if="isModerator">
                             <div class="col-md-2">
                                 <lh-switch id="showAllSwitch" v-model="showAll">Show All</lh-switch>
                             </div>
@@ -68,7 +68,9 @@
                                         </span>
                                     </td>
                                     <td>
-                                        <router-link :to="'/admin/post/'+post.data.id" class="btn btn-sm btn-warning">
+                                        <router-link :to="'/admin/post/'+post.data.id"
+                                            class="btn btn-sm btn-warning"
+                                            v-if="post.data.user_id == currentUser.data.id || isAdmin">
                                             Edit
                                         </router-link>
                                         <router-link :to="'/post/'+post.data.slug" class="btn btn-sm btn-success">
@@ -106,7 +108,10 @@ export default {
     data() {
         return {
             posts : {},
-            hasRole : false,
+            currentUser : User.getCurrent(),
+            isModerator : (User.hasRole('moderator') || User.hasRole('admin') || User.hasRole('super_admin')),
+            isAdmin : (User.hasRole('admin') || User.hasRole('super_admin')),
+            isSuperAdmin : User.hasRole('super_admin'),
             showAll : false,
             counts : [5, 10, 30],
             listData : {
@@ -117,9 +122,6 @@ export default {
         }
     },
     mounted() {
-        if(User.hasRole('moderator') || User.hasRole('admin') || User.hasRole('super_admin')) {
-            this.hasRole = true;
-        }
         this.load();
     },
     methods : {
