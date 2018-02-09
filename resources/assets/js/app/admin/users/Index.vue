@@ -7,7 +7,9 @@
 
                     <div class="panel-body">
                         <div class="row">
+                            <router-link to="/admin/create/user">
                                 <button class="btn btn-sm btn-success col-md-2 col-md-offset-1">New user</button>
+                            </router-link>
                         </div>
                         <table class="table table-hover">
                             <thead>

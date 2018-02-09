@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Password;
 use Auth;
 use Hash;
 
@@ -24,9 +25,11 @@ class UserController extends Controller
         $where = [
             ['name', '!=', 'super_admin']
         ];
-        User::find((int)$request['user_id'])->roles()->each(function($role) use (&$where) {
-            $where[] = ['id', '!=', $role->id];
-        });
+        if((int)$request['user_id']) {
+            User::find((int)$request['user_id'])->roles()->each(function($role) use (&$where) {
+                $where[] = ['id', '!=', $role->id];
+            });
+        }
 
         $users = Role::where($where)->get();
         return $users;
@@ -38,7 +41,21 @@ class UserController extends Controller
     }
 
     public function store(Request $request) {
-        $user = User::create($request->all());
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make(Str::random(21)),
+        ]);
+
+        $response = Password::broker()->sendResetLink(
+            ['email' => $request->email]
+        );
+
+        // $response = $response == Password::RESET_LINK_SENT
+        //             ? $this->sendResetLinkResponse($response)
+        //             : $this->sendResetLinkFailedResponse($request, $response);
+
+
         return $user;
     }
 

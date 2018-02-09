@@ -35,7 +35,6 @@ $factory->define(App\Post::class, function(Faker $faker) {
         'subtitle' => $faker->sentence,
         'content' => $faker->paragraph,
         'slug' => $slug = str_replace([' ', 'å', 'ä', 'ö', 'Å', 'Ä', 'Ö'], ['-', 'a', 'a', 'o', 'A', 'A', 'O'], strtolower($title)),
-        'updated_reason' => $faker->words(6, true),
         'hidden' => $faker->boolean,
         'published' => $faker->boolean,
     ];
