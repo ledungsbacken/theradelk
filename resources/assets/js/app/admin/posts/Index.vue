@@ -69,8 +69,11 @@
                                         <router-link :to="'/post/'+post.data.slug" class="btn btn-sm btn-success">
                                             View
                                         </router-link>
-                                        <button class="btn btn-sm btn-danger" @click="destroy(post)">
+                                        <button class="btn btn-sm btn-danger" v-if="!post.data.deleted_at" @click="destroy(post)">
                                             Delete
+                                        </button>
+                                        <button class="btn btn-sm btn-primary" v-if="post.data.deleted_at" @click="restoreDestroyed(post)">
+                                            Restore
                                         </button>
                                     </td>
                                 </tr>
@@ -153,6 +156,11 @@ export default {
         },
         destroy(post) {
             post.destroy().then(response => {
+                this.load();
+            });
+        },
+        restoreDestroyed(post) {
+            post.restoreDestroyed().then(response => {
                 this.load();
             });
         },
