@@ -6,6 +6,7 @@
                     <div class="panel-heading">Post</div>
 
                     <div class="panel-body">
+                        <img v-if="post.headImage" :src="post.headImage.data.desktop" />
                         <div v-html="post.data.content"></div>
                         <div>Title: {{ post.data.title }}</div>
                         <div>Author: {{ post.user.data.name }}</div>

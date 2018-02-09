@@ -40,7 +40,7 @@
                                 </div>
                             </div>
                         </div>
-                        <button class="btn btn-sm btn-success float-right" @click="store()">Save</button>
+                        <button class="btn btn-sm btn-success float-right" @click="store()">Create</button>
                     </div>
                 </div>
             </div>

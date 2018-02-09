@@ -5,6 +5,7 @@ use App\Role;
 use App\Post;
 use App\Category;
 use App\Subcategory;
+use App\HeadImage;
 
 use Faker\Generator as Faker;
 
@@ -31,6 +32,7 @@ $factory->define(App\User::class, function (Faker $faker) {
 $factory->define(App\Post::class, function(Faker $faker) {
     $title = $faker->words(2, true);
     return [
+        'head_image_id' => function() { return factory(HeadImage::class)->create()->id; },
         'title' => $title,
         'subtitle' => $faker->sentence,
         'content' => $faker->paragraph,
@@ -50,5 +52,14 @@ $factory->define(App\Subcategory::class, function(Faker $faker) {
     return [
         'name' => $faker->word,
         'category_id' => function(){return factory(Category::class)->create()->id;},
+    ];
+});
+
+$factory->define(App\HeadImage::class, function(Faker $faker) {
+    return [
+        'thumbnail' => 'https://cataas.com/cat',
+        'desktop' => 'https://cataas.com/cat',
+        'tablet' => 'https://cataas.com/cat',
+        'phone' => 'https://cataas.com/cat',
     ];
 });
