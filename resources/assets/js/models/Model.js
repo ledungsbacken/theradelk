@@ -72,6 +72,15 @@ export default class Model {
                     alert(error);
                     window.location = '/';
                     break;
+                case /406/.test(status):
+                    alert(error+'\n'+error.response.data);
+                    break;
+                case /413/.test(status):
+                    alert(error+'\n'+error.response.data);
+                    break;
+                case /415/.test(status):
+                    alert(error+'\n'+error.response.data);
+                    break;
                 case /422/.test(status):
                     break;
                 case /^4..$/.test(status):
