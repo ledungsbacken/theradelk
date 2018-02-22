@@ -6,6 +6,7 @@ export default class Subcategory extends Model {
     constructor(args = {}) {
         super({
             'id'          : args.id,
+            'slug'        : args.slug,
             'name'        : args.name,
             'category_id' : args.category_id,
         });

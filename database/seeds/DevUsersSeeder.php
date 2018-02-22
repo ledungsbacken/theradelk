@@ -36,14 +36,14 @@ class DevUsersSeeder extends Seeder
     public function run()
     {
         $devUsers = $this->devUsers;
-        Category::create(['name' => 'IT']);
-        Category::create(['name' => 'Sci-fi']);
-        Category::create(['name' => 'Entertainment']);
-        Category::create(['name' => 'Tech']);
-        Subcategory::create(['name' => 'PC', 'category_id' => 1]);
-        Subcategory::create(['name' => 'Starwars', 'category_id' => 2]);
-        Subcategory::create(['name' => 'Movies', 'category_id' => 3]);
-        Subcategory::create(['name' => 'Mobile', 'category_id' => 4]);
+        Category::create(['slug' => 'it', 'name' => 'IT']);
+        Category::create(['slug' => 'sci-fi', 'name' => 'Sci-fi']);
+        Category::create(['slug' => 'entertainment', 'name' => 'Entertainment']);
+        Category::create(['slug' => 'tech', 'name' => 'Tech']);
+        Subcategory::create(['slug' => 'pc', 'name' => 'PC', 'category_id' => 1]);
+        Subcategory::create(['slug' => 'starwars', 'name' => 'Starwars', 'category_id' => 2]);
+        Subcategory::create(['slug' => 'movies', 'name' => 'Movies', 'category_id' => 3]);
+        Subcategory::create(['slug' => 'mobile', 'name' => 'Mobile', 'category_id' => 4]);
         foreach($devUsers as $index => $devUser) {
             // To not create same user twice
             if(User::whereEmail($devUser['email'])->exists()) {

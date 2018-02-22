@@ -13,6 +13,16 @@ const routes = [
         props: true
     },
     {
+        path: '/post/category/:category',
+        component: require('./app/category/Index.vue'),
+        props: true
+    },
+    {
+        path: '/post/category/:category/:subcategory',
+        component: require('./app/subcategory/Index.vue'),
+        props: true
+    },
+    {
         path: '/admin',
         component: require('./app/admin/dashboard/Index.vue'),
         meta: {

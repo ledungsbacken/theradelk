@@ -36,20 +36,24 @@ $factory->define(App\Post::class, function(Faker $faker) {
         'title' => $title,
         'subtitle' => $faker->sentence,
         'content' => $faker->paragraph,
-        'slug' => $slug = str_replace([' ', 'å', 'ä', 'ö', 'Å', 'Ä', 'Ö'], ['-', 'a', 'a', 'o', 'A', 'A', 'O'], strtolower($title)),
+        'slug' => str_replace([' ', 'å', 'ä', 'ö', 'Å', 'Ä', 'Ö'], ['-', 'a', 'a', 'o', 'A', 'A', 'O'], strtolower($title)),
         'hidden' => $faker->boolean,
         'published' => $faker->boolean,
     ];
 });
 
 $factory->define(App\Category::class, function(Faker $faker) {
+    $name = $faker->word;
     return [
+        'slug' => str_replace([' ', 'å', 'ä', 'ö', 'Å', 'Ä', 'Ö'], ['-', 'a', 'a', 'o', 'A', 'A', 'O'], strtolower($name)),
         'name' => $faker->word,
     ];
 });
 
 $factory->define(App\Subcategory::class, function(Faker $faker) {
+    $name = $faker->word;
     return [
+        'slug' => str_replace([' ', 'å', 'ä', 'ö', 'Å', 'Ä', 'Ö'], ['-', 'a', 'a', 'o', 'A', 'A', 'O'], strtolower($name)),
         'name' => $faker->word,
         'category_id' => function(){return factory(Category::class)->create()->id;},
     ];

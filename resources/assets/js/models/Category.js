@@ -5,6 +5,7 @@ export default class Category extends Model {
     constructor(args = {}) {
         super({
             'id'          : args.id,
+            'slug'        : args.slug,
             'name'        : args.name,
         });
 

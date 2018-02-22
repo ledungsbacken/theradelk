@@ -7,6 +7,7 @@ use Auth;
 
 use App\User;
 use App\Post;
+use App\Category;
 use App\View;
 
 class PostController extends Controller
@@ -17,13 +18,32 @@ class PostController extends Controller
      * @return Post
      */
     public function index(Request $request) {
-        $posts = Post::with(['subcategories.category', 'user', 'headImage', 'viewsCountRelation'])
-                     ->where([
-                         ['hidden', '0'],
-                         ['published', '1'],
-                     ])
-                     ->orderBy('id', 'DESC')
-                     ->paginate((int)$request['count']);
+        $posts = Post::with(['subcategories.category', 'user', 'headImage', 'viewsCountRelation']);
+        if(isset($request['category'])) {
+            $categorySlug = $request['category'];
+            if(isset($request['subcategory'])) {
+                $category = Category::where('slug', '=', $categorySlug)->first();
+                $subcategory_slug = $request['subcategory'];
+                $posts->whereHas('subcategories', function($query) use ($category, $subcategory_slug) {
+                    return $query->where([
+                        ['slug', '=', $subcategory_slug],
+                        ['category_id', '=', $category->id],
+                    ]);
+                });
+            } else {
+                $posts->whereHas('subcategories.category', function($query) use ($categorySlug) {
+                    return $query->where('slug', '=', $categorySlug);
+                });
+            }
+        }
+        $posts->where([
+            ['hidden', '0'],
+            ['published', '1'],
+        ]);
+        $posts->orderBy('id', 'DESC');
+
+        $posts = $posts->paginate((int)$request['count']);
+
         return $posts;
     }
 

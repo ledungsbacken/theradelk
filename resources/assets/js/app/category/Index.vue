@@ -10,16 +10,7 @@
                             <div>Title: {{ post.data.title }}</div>
                             <div>Author: {{ post.user.data.name }}</div>
                             <div><router-link :to="'/post/'+post.data.slug">Link</router-link></div>
-                            <div v-for="subcategory in post.subcategories">
-                                Category:
-                                <router-link :to="'/post/category/' + subcategory.category.data.slug">
-                                    {{subcategory.category.data.name}}
-                                </router-link>
-                                /
-                                <router-link :to="'/post/category/' + subcategory.category.data.slug + '/' + subcategory.data.slug">
-                                    {{ subcategory.data.name }}
-                                </router-link>
-                            </div>
+                            <div v-for="subcategory in post.subcategories">Category: {{subcategory.category.data.name}}/{{ subcategory.data.name }}</div>
                             <br />
                         </div>
                         <paging v-model="listData.current_page" class="paging" style="float:left;" :total="listData.total"></paging>
@@ -37,6 +28,11 @@ import Paging from '../Paging.vue';
 import Count from '../Count.vue';
 
 export default {
+    props : {
+        category : {
+            type : [String, Number]
+        },
+    },
     data() {
         return {
             posts : {},
@@ -54,6 +50,7 @@ export default {
     methods : {
         load() {
             Post.index({
+                'category' : this.category,
                 'page' : this.listData.current_page,
                 'count' : this.listData.per_page
             }).then(posts => {

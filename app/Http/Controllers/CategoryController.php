@@ -35,6 +35,7 @@ class CategoryController extends Controller
         // Return 403 if not enough permissions
         if(!Auth::user()->hasPermission('full')) { return response()->json('Forbidden', 403); }
 
+        $request->slug = str_replace([' ', 'å', 'ä', 'ö', 'Å', 'Ä', 'Ö'], ['-', 'a', 'a', 'o', 'A', 'A', 'O'], strtolower($request->name));
         $category = Category::create($request->all());
         return $category;
     }

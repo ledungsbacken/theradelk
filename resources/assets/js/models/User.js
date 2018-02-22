@@ -107,10 +107,11 @@ export default class User extends Model {
     }
 
     /**
-     *  Get current user
-     *  from Laravel.user
+     *  Check if use has role
      *
-     * @return User object
+     * @param string
+     *
+     * @return bool
      */
     static hasRole(role){
         let user = new User();

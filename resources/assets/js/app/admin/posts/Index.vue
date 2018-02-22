@@ -64,7 +64,13 @@
                                     </td>
                                     <td>
                                         <span v-for="subcategory in post.subcategories" style="display:block;">
-                                            {{subcategory.category.data.name}}/{{ subcategory.data.name }}
+                                            <router-link :to="'/post/category/' + subcategory.category.data.slug">
+                                                {{subcategory.category.data.name}}
+                                            </router-link>
+                                            /
+                                            <router-link :to="'/post/category/' + subcategory.category.data.slug + '/' + subcategory.data.slug">
+                                                {{ subcategory.data.name }}
+                                            </router-link>
                                         </span>
                                     </td>
                                     <td>

@@ -13,7 +13,16 @@
                         <div>Slug: {{ post.data.slug }}</div>
                         <div>Views: {{ post.data.views }}</div>
                         <div v-if="post.image"><img :src="post.image.url" /></div>
-                        <div v-for="subcategory in post.subcategories">Category: {{subcategory.category.data.name}}/{{ subcategory.data.name }}</div>
+                        <div v-for="subcategory in post.subcategories">
+                            Category:
+                            <router-link :to="'/post/category/' + subcategory.category.data.slug">
+                                {{subcategory.category.data.name}}
+                            </router-link>
+                            /
+                            <router-link :to="'/post/category/' + subcategory.category.data.slug + '/' + subcategory.data.slug">
+                                {{ subcategory.data.name }}
+                            </router-link>
+                        </div>
                         <br />
                     </div>
                 </div>
