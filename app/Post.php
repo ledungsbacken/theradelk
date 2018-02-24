@@ -28,6 +28,7 @@ class Post extends Model
         'subtitle',
         'content',
         'slug',
+        'is_fullscreen',
         'hidden',
         'published'
     ];

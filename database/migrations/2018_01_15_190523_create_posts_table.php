@@ -21,6 +21,7 @@ class CreatePostsTable extends Migration
             $table->string('subtitle');
             $table->text('content');
             $table->string('slug');
+            $table->boolean('is_fullscreen')->default(0);
             $table->boolean('hidden')->default(0);
             $table->boolean('published')->default(0);
             $table->softDeletes();

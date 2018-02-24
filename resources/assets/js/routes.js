@@ -98,7 +98,7 @@ const routes = [
         props: true,
         meta: {
             secure: true, // Requires to be logged in
-            role: 'super_admin',
+            role: ['admin', 'super_admin'],
         },
     },
     {
