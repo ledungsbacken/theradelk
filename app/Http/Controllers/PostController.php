@@ -86,11 +86,21 @@ class PostController extends Controller
      */
     public function showBySlug(Request $request, $slug) {
         $post = Post::with(['subcategories.category', 'user', 'headImage'])->where('slug', '=', $slug)->firstOrFail();
-        if($request->add_view) {
-            View::create([
-                'post_id' => $post->id,
-            ]);
+        if($post->published == 1) {
+            if($request->add_view) {
+                View::create([
+                    'post_id' => $post->id,
+                ]);
+            }
+        } else {
+            if(Auth::check()) {
+                // Return 404 if not enough permissions
+                if(Auth::user()->cant('update', $post)) { return response()->json('Not Found.', 404); }
+            } else {
+                return response()->json('Not Found', 404);
+            }
         }
+
         return $post->load('viewsCountRelation');
     }
 

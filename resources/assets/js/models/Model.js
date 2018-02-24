@@ -70,7 +70,7 @@ export default class Model {
             switch (true) {
                 case /401/.test(status):
                     alert(error);
-                    window.location = '/';
+                    // window.location = '/';
                     break;
                 case /406/.test(status):
                     alert(error+'\n'+error.response.data);
