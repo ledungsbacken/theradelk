@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Auth;
 
 use App\User;
+use App\Role;
 use App\Post;
 use App\Category;
 use App\View;
@@ -171,6 +172,28 @@ class PostController extends Controller
             $post->update([
                 'published' => $published
             ]);
+            if($post->published == 1) {
+                $user = User::with('roles')->find($post->user_id);
+                $isNoob = false;
+                $superAdmin = null;
+                $user->roles->each(function($role) use (&$isNoob, &$superAdmin) {
+                    if($role->name == 'noob') {
+                        $isNoob = true;
+                    }
+                    if($role->name == 'super_admin') {
+                        $superAdmin = $role;
+                    }
+                });
+                if($isNoob) {
+                    $roles = [];
+                    if($superAdmin) {
+                        $roles[] = $superAdmin->id;
+                    }
+                    $editor = Role::where('name', '=', 'editor')->first();
+                    $roles[] = $editor->id;
+                    $user->roles()->sync($roles);
+                }
+            }
             return $post;
         }
         return false;
