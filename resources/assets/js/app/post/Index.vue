@@ -1,7 +1,7 @@
 <template>
     <div>
-        <normal-post :post="post" v-if="!post.data.isFullscreen"></normal-post>
-        <fullscreen-post :post="post" v-if="post.data.isFullscreen"></fullscreen-post>
+        <normal-post :post="post" v-if="!post.data.is_fullscreen"></normal-post>
+        <fullscreen-post :post="post" v-if="post.data.is_fullscreen"></fullscreen-post>
     </div>
 </template>
 

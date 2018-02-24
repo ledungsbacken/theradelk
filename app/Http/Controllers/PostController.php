@@ -108,6 +108,7 @@ class PostController extends Controller
             'subtitle' => $request->subtitle,
             'content' => $request->content,
             'slug' => $slug,
+            'is_fullscreen' => $request->is_fullscreen ? $request->is_fullscreen : false,
         ]);
         $post->user()->associate(Auth::id())->save();
         $post->headImage()->associate((int)$request->head_image_id)->save();

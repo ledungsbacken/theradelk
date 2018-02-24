@@ -14,6 +14,11 @@
                                 @close="showImagesModal = false"></images-modal>
                         </div>
                         <div class="row">
+                            <div class="col-md-2">
+                                <lh-switch id="isFullscreenSwitch" v-model="isFullscreen">Fullscreen</lh-switch>
+                            </div>
+                        </div>
+                        <div class="row">
                             <img v-if="headImage.data.thumbnail"
                                 :src="headImage.data.thumbnail"
                                 @click="showHeadImagesModal = true"
@@ -66,6 +71,7 @@ import Subcategory from '../../../models/Subcategory.js';
 import ImagesModal from './ImagesModal.vue';
 import HeadImagesModal from './HeadImagesModal.vue';
 import Editor from '../Ckeditor.vue';
+import Switch from '../../Switch.vue';
 
 export default {
     data() {
@@ -77,6 +83,7 @@ export default {
             showHeadImagesModal : false,
             post : new Post(),
             headImage : new HeadImage(),
+            isFullscreen : false,
         }
     },
     mounted() {
@@ -101,10 +108,16 @@ export default {
         CKEDITOR.instances.editor1.destroy();
         next();
     },
+    watch : {
+        'isFullscreen' : function(value) {
+            this.post.data.is_fullscreen = value;
+        },
+    },
     components : {
         ImagesModal : ImagesModal,
         HeadImagesModal : HeadImagesModal,
         Editor : Editor,
+        LhSwitch : Switch,
     }
 }
 </script>

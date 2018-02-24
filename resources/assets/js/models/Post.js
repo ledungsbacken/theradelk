@@ -14,7 +14,7 @@ export default class Post extends Model {
             'subtitle'      : args.subtitle,
             'content'       : args.content,
             'slug'          : args.slug,
-            'isFullscreen' : args.is_fullscreen,
+            'is_fullscreen' : args.is_fullscreen,
             'hidden'        : args.hidden,
             'published'     : args.published,
             'deleted_at'    : args.deleted_at,
