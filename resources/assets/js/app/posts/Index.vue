@@ -9,6 +9,8 @@
                         <div v-for="post in posts">
                             <div>Title: {{ post.data.title }}</div>
                             <div>Author: {{ post.user.data.name }}</div>
+                            <div>Views: {{ post.data.views }}</div>
+                            <div>Posted: {{ post.dateToString(post.data.created_at) }}</div>
                             <div><router-link :to="'/post/'+post.data.slug">Link</router-link></div>
                             <div v-for="subcategory in post.subcategories">
                                 Category:

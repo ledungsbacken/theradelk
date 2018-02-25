@@ -1,3 +1,5 @@
+import Moment from 'moment';
+
 export default class Model {
 
     constructor(args) {
@@ -35,6 +37,21 @@ export default class Model {
             this.data[key] = this._original[key];
         }
         return this;
+    }
+
+    /**
+     * @return void
+    */
+    dateToString(date) {
+        return Model.dateToString(date);
+    }
+
+    /**
+     * @return void
+    */
+    static dateToString(date) {
+        date = Moment.utc(date);
+        return Moment(date).fromNow();
     }
 
     /**

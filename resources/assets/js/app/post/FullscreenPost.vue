@@ -12,6 +12,7 @@
                         <div>Author: {{ post.user.data.name }}</div>
                         <div>Slug: {{ post.data.slug }}</div>
                         <div>Views: {{ post.data.views }}</div>
+                        <div>Posted: {{ post.dateToString(post.data.created_at) }}</div>
                         <div v-if="post.image"><img :src="post.image.url" /></div>
                         <div v-for="subcategory in post.subcategories">
                             Category:
@@ -47,7 +48,7 @@ export default {
 
     },
     methods : {
-        
+
     }
 }
 </script>
