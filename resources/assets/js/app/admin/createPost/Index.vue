@@ -19,6 +19,15 @@
                             </div>
                         </div>
                         <div class="row">
+                            <slider
+                                ref="slider"
+                                v-model="post.data.opacity"
+                                :min="Number(0)"
+                                :max="Number(1)"
+                                :interval="Number(0.01)">
+                            </slider>
+                        </div>
+                        <div class="row">
                             <img v-if="headImage.data.thumbnail"
                                 :src="headImage.data.thumbnail"
                                 @click="showHeadImagesModal = true"
@@ -72,6 +81,7 @@ import ImagesModal from './ImagesModal.vue';
 import HeadImagesModal from './HeadImagesModal.vue';
 import Editor from '../Ckeditor.vue';
 import Switch from '../../Switch.vue';
+import Slider from 'vue-slider-component';
 
 export default {
     data() {
@@ -88,6 +98,7 @@ export default {
     },
     mounted() {
         this.load();
+        this.post.data.opacity = 0.3;
     },
     methods : {
         load() {
@@ -118,6 +129,7 @@ export default {
         HeadImagesModal : HeadImagesModal,
         Editor : Editor,
         LhSwitch : Switch,
+        Slider : Slider,
     }
 }
 </script>
