@@ -16,7 +16,7 @@ class UserController extends Controller
 {
     public function index(Request $request) {
         if(Auth::user()->cant('view', User::class)) { return response()->json('Forbidden', 403); }
-        $users = User::with('roles')->get();
+        $users = User::with('roles')->withCount('posts')->get();
         return $users;
     }
 

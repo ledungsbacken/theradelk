@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="row">
-            <div class="col-md-8 col-md-offset-2">
+            <div class="col-md-10 col-md-offset-1">
                 <div class="panel panel-default">
                     <div class="panel-heading">Users</div>
 
@@ -16,6 +16,7 @@
                                 <tr>
                                     <th>Name</th>
                                     <th>Email</th>
+                                    <th>Posts</th>
                                     <th>Roles</th>
                                     <th>Actions</th>
                                 </tr>
@@ -24,6 +25,7 @@
                                 <tr v-for="user in users">
                                     <td>{{ user.data.name }}</td>
                                     <td>{{ user.data.email }}</td>
+                                    <td>{{ user.posts_count }}</td>
                                     <td>
                                         <span v-for="role in user.roles">
                                             <span v-if="role.data.name != 'super_admin'">
