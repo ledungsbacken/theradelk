@@ -37,10 +37,12 @@ class PostController extends Controller
                 });
             }
         }
-        $posts->where([
-            ['hidden', '0'],
-            ['published', '1'],
-        ]);
+        if(isset($request['user_id'])) {
+            $posts->where('user_id', '=', (int)$request['user_id']);
+        } else {
+            $posts->where('hidden', '=', '0');
+        }
+        $posts->where('published', '=', '1');
         $posts->orderBy('id', 'DESC');
 
         $posts = $posts->paginate((int)$request['count']);

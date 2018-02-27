@@ -36,7 +36,11 @@ class UserController extends Controller
     }
 
     public function show($id) {
-        $user = User::with('roles')->find((int)$id);
+        $user = User::with('roles')->withCount(['posts' => function($query) {
+            return $query->where([
+                ['published', '1'],
+            ]);
+        }])->find((int)$id);
         return $user;
     }
 
@@ -60,6 +64,7 @@ class UserController extends Controller
     }
 
     public function update(Request $request, $id) {
+        if(Auth::user()->cant('update', User::class)) { return response()->json('Forbidden', 403); }
         $user = User::find((int)$id);
         $user->update($request->all());
         return $user->load('roles');
@@ -98,6 +103,7 @@ class UserController extends Controller
     }
 
     public function destroy($id) {
+        if(Auth::user()->cant('delete', User::class)) { return response()->json('Forbidden', 403); }
         $user = User::find((int)$id);
         $user->delete();
         return $user;

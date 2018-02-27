@@ -74,7 +74,7 @@ class UserPolicy
      */
     public function update(User $user, User $model)
     {
-        if($user->hasPermission('admin_users')) {
+        if($user->id == $model->id || $user->hasPermission('admin_users')) {
             return true;
         }
         return false;

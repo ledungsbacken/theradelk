@@ -23,6 +23,11 @@ const routes = [
         props: true
     },
     {
+        path: '/user/:id',
+        component: require('./app/user/Index.vue'),
+        props: true
+    },
+    {
         path: '/admin',
         component: require('./app/admin/dashboard/Index.vue'),
         meta: {

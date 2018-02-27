@@ -8,11 +8,14 @@ export default class User extends Model {
             'id'         : args.id,
             'name'       : args.name,
             'email'      : args.email,
+            'picture'    : args.picture,
+            'about'      : args.about,
             'created_at' : args.created_at,
             'updated_at' : args.updated_at,
     });
 
         this.roles = Role.collect(args.roles);
+        this.posts_count = args.posts_count;
 
         this.http.defaults.baseURL += 'user/';
     }
