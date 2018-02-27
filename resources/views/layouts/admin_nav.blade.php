@@ -42,6 +42,7 @@
                         </a>
 
                         <ul class="dropdown-menu" role="menu">
+                            <li><router-link to="/admin/profile">Profile</router-link></li>
                             <li>
                                 <a href="{{ route('logout') }}"
                                     onclick="event.preventDefault();
