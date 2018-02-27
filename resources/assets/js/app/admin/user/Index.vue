@@ -1,5 +1,6 @@
 <template>
     <div>
+        <alert v-if="alert.show" :data="alert.data" @close="alert.show = false"></alert>
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
@@ -51,6 +52,7 @@
 <script>
 import User from '../../../models/User.js';
 import Role from '../../../models/Role.js';
+import Alert from '../../Alert.vue';
 
 export default {
     props : {
@@ -65,6 +67,16 @@ export default {
             roles : [],
             chosenRoles : [],
             availableRoles : [],
+            alert : {
+                show : false,
+                data : {
+                    status : {
+                        name : '',
+                        label : '',
+                    },
+                    message : '',
+                },
+            },
         }
     },
     mounted() {
@@ -87,6 +99,10 @@ export default {
         update() {
             this.user.update().then(user => {
                 this.user = user;
+                this.alert.data.status.name = 'success';
+                this.alert.data.status.label = 'Saved';
+                this.alert.data.message = 'You have successfully updated '+user.data.name;
+                this.alert.show = true;
             });
             this.user.setRoles({ 'roles' : this.chosenRoles }).then(user => {
                 this.user = user;
@@ -123,6 +139,9 @@ export default {
             });
         },
     },
+    components : {
+        Alert,
+    }
 }
 </script>
 
