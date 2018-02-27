@@ -149,6 +149,8 @@ class PostController extends Controller
             'subtitle' => $request->subtitle,
             'content' => $request->content,
             'slug' => $slug,
+            'opacity' => $request->opacity,
+            'is_fullscreen' => $request->is_fullscreen,
         ]);
         $post->headImage()->associate((int)$request->head_image_id)->save();
         $subcategories = [];

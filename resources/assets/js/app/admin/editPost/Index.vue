@@ -14,6 +14,20 @@
                                 @close="showImagesModal = false"></images-modal>
                         </div>
                         <div class="row">
+                            <div class="col-md-2">
+                                <lh-switch id="isFullscreenSwitch" v-model="isFullscreen">Fullscreen</lh-switch>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <slider
+                                ref="slider"
+                                v-model="post.data.opacity"
+                                :min="Number(0)"
+                                :max="Number(1)"
+                                :interval="Number(0.01)">
+                            </slider>
+                        </div>
+                        <div class="row">
                             <img v-if="headImage.data.thumbnail"
                                 :src="headImage.data.thumbnail"
                                 @click="showHeadImagesModal = true"
@@ -66,6 +80,8 @@ import Subcategory from '../../../models/Subcategory.js';
 import ImagesModal from './ImagesModal.vue';
 import HeadImagesModal from './HeadImagesModal.vue';
 import Editor from '../Ckeditor.vue';
+import Switch from '../../Switch.vue';
+import Slider from 'vue-slider-component';
 
 export default {
     props : {
@@ -80,14 +96,16 @@ export default {
             chosenCategories : [],
             showImagesModal : false,
             showHeadImagesModal : false,
-            post : new Post({ id: this.id }),
+            post : new Post({ id: this.id, opacity: 0.3 }),
             headImage : new HeadImage(),
+            isFullscreen : false,
         }
     },
     mounted() {
         this.load();
         this.post.show().then(post => {
             this.post = post;
+            this.isFullscreen = Boolean(this.post.data.is_fullscreen);
             if(this.post.headImage) {
                 this.headImage = this.post.headImage;
             }
@@ -114,10 +132,17 @@ export default {
         CKEDITOR.instances.editor1.destroy();
         next();
     },
+    watch : {
+        'isFullscreen' : function(value) {
+            this.post.data.is_fullscreen = value;
+        },
+    },
     components : {
         ImagesModal : ImagesModal,
         HeadImagesModal : HeadImagesModal,
         Editor : Editor,
+        LhSwitch : Switch,
+        Slider : Slider,
     }
 }
 </script>
