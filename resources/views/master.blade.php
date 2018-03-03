@@ -25,7 +25,7 @@
         @endauth
         @include('layouts.nav')
 
-        <router-view class="container"></router-view>
+        <router-view class="container" :key="$route.fullPath"></router-view>
     </div>
 
     <!-- Scripts -->

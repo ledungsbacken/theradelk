@@ -28,13 +28,12 @@ import Paging from '../Paging.vue';
 import Count from '../Count.vue';
 
 export default {
-    props : {
-        category : {
-            type : [String, Number]
-        },
-    },
+    // props : {
+    //
+    // },
     data() {
         return {
+            category : this.$route.params.category,
             posts : {},
             counts : [5, 10, 30],
             listData : {

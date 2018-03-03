@@ -70,6 +70,7 @@ window.Vue = require('vue');
  */
 
 // Vue.component('example-component', require('./components/ExampleComponent.vue'));
+Vue.component('nav-categories', require('./app/Categories.vue'));
 
 const app = new Vue({
     router

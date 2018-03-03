@@ -13,7 +13,7 @@
             <!-- Branding Image -->
             <router-link class="navbar-brand" to="/">{{ config('app.name', 'Laravel') }}</router-link>
         </div>
-
+        <nav-categories></nav-categories>
         <div class="collapse navbar-collapse" id="app-navbar-collapse">
             <!-- Left Side Of Navbar -->
             <ul class="nav navbar-nav">
