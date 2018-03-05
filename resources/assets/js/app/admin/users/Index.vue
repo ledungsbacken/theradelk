@@ -7,7 +7,7 @@
 
                     <div class="panel-body">
                         <div class="row">
-                            <router-link to="/admin/create/user">
+                            <router-link to="/create/user">
                                 <button class="btn btn-sm btn-success col-md-2 col-md-offset-1">New user</button>
                             </router-link>
                         </div>
@@ -35,7 +35,7 @@
                                         <span v-if="user.roles.length == 0">None</span>
                                     </td>
                                     <td>
-                                        <router-link :to="'/admin/user/' + user.data.id">
+                                        <router-link :to="'/user/' + user.data.id">
                                                 <button class="btn btn-sm btn-warning">
                                                     Edit
                                                 </button>

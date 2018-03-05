@@ -75,7 +75,7 @@ export default {
             this.user.store().then(user => {
                 user.setRoles({ 'roles' : this.chosenRoles }).then(response => {
                     this.user = response;
-                    this.$router.push('/admin/user');
+                    this.$router.push('/user');
                 });
             });
         },

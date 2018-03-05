@@ -9,7 +9,7 @@
                 @click="readonly = false">
                     Edit
             </button>
-            <router-link :to="'/admin/category/' + category.data.id"
+            <router-link :to="'/category/' + category.data.id"
                 v-if="readonly"
                 @click="readonly = false">
                     <i class="btn btn-sm btn-success fa fa-arrow-right"></i>

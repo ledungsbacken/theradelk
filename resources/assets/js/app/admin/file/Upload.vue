@@ -36,7 +36,7 @@ export default {
         upload(files) {
             return this.image.store(files).then(response => {
                 this.image = new HeadImage(response.data);
-                this.$router.push('/admin/create/post');
+                this.$router.push('/create/post');
             });
         }
     },

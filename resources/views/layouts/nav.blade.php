@@ -11,14 +11,14 @@
             </button>
 
             <!-- Branding Image -->
-            <router-link class="navbar-brand" to="/">{{ config('app.name', 'Laravel') }}</router-link>
+            <a class="navbar-brand" href="/">{{ config('app.name', 'Laravel') }}</a>
         </div>
-        <nav-categories></nav-categories>
+        <!-- <nav-categories></nav-categories> -->
         <div class="collapse navbar-collapse" id="app-navbar-collapse">
             <!-- Left Side Of Navbar -->
             <ul class="nav navbar-nav">
                 &nbsp;
-                <li><router-link to="/post">Posts</router-link></li>
+                <li><a href="/post">Posts</a></li>
                 <li><a href="/login">Login</a></li>
             </ul>
         </div>

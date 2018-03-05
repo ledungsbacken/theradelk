@@ -111,7 +111,7 @@ export default {
             this.post.data.subcategories = this.chosenCategories;
             this.post.store().then(post => {
                 this.post = post;
-                this.$router.push('/admin/post');
+                this.$router.push('/post');
             });
         },
     },

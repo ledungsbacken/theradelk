@@ -15,6 +15,23 @@
 //     return view('welcome');
 // });
 
+Route::get('/', function() {
+    return view('index');
+});
+
+Route::resource('/post', 'Web\PostController', [
+    'only' => [
+        'index',
+        'show',
+    ]
+]);
+
+
+Route::get('/admin', function() {
+    return view('vue');
+});
+
+
 Auth::routes();
 
 Route::get('/register', function() {
@@ -32,10 +49,6 @@ Route::get('/logout', function() {
     return redirect('/');
 })->name('logout');
 
-
-Route::get('/', function() {
-    return view('master');
-});
 
 Route::get('images/{filename}', function ($filename)
 {

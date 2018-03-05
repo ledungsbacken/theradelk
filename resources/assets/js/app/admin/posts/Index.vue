@@ -64,24 +64,24 @@
                                     </td>
                                     <td>
                                         <span v-for="subcategory in post.subcategories" style="display:block;">
-                                            <router-link :to="'/post/category/' + subcategory.category.data.slug">
+                                            <a :href="'/post/category/' + subcategory.category.data.slug">
                                                 {{subcategory.category.data.name}}
-                                            </router-link>
+                                            </a>
                                             /
-                                            <router-link :to="'/post/category/' + subcategory.category.data.slug + '/' + subcategory.data.slug">
+                                            <a :href="'/post/category/' + subcategory.category.data.slug + '/' + subcategory.data.slug">
                                                 {{ subcategory.data.name }}
-                                            </router-link>
+                                            </a>
                                         </span>
                                     </td>
                                     <td>
-                                        <router-link :to="'/admin/post/'+post.data.id"
+                                        <router-link :to="'/post/'+post.data.id"
                                             class="btn btn-sm btn-primary"
                                             v-if="post.data.user_id == currentUser.data.id || isAdmin">
                                             Edit
                                         </router-link>
-                                        <router-link :to="'/post/'+post.data.slug" class="btn btn-sm btn-success">
+                                        <a :href="'/post/'+post.data.slug" class="btn btn-sm btn-success">
                                             View
-                                        </router-link>
+                                        </a>
                                         <button class="btn btn-sm btn-danger"
                                             v-if="!post.data.deleted_at"
                                             @click="destroy(post)">

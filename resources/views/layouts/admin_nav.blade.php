@@ -11,21 +11,21 @@
             </button>
 
             <!-- Branding Image -->
-            <router-link class="navbar-brand" to="/admin">Admin</router-link>
+            <a class="navbar-brand" href="/admin">Admin</a>
         </div>
 
         <div class="collapse navbar-collapse" id="app-navbar-collapse">
             <!-- Left Side Of Navbar -->
             <ul class="nav navbar-nav">
                 &nbsp;
-                <li><router-link to="/admin/post">Posts</router-link></li>
-                <li><router-link to="/admin/create/post">Create Post</router-link></li>
-                <li><router-link to="/admin/file/upload">Upload Head Images</router-link></li>
+                <li><a href="/admin#/post">Posts</a></li>
+                <li><a href="/admin#/create/post">Create Post</a></li>
+                <li><a href="/admin#/file/upload">Upload Head Images</a></li>
                 @can('view', App\User::class)
-                    <li><router-link to="/admin/user">Users</router-link></li>
+                    <li><a href="/admin#/user">Users</a></li>
                 @endcan
                 @if(App\User::find(Auth::user()->id)->hasPermission('full'))
-                    <li><router-link to="/admin/category">Categories</router-link></li>
+                    <li><a href="/admin#/category">Categories</a></li>
                 @endif
             </ul>
 
@@ -42,7 +42,7 @@
                         </a>
 
                         <ul class="dropdown-menu" role="menu">
-                            <li><router-link to="/admin/profile">Profile</router-link></li>
+                            <li><a href="/admin#/profile">Profile</a></li>
                             <li>
                                 <a href="{{ route('logout') }}"
                                     onclick="event.preventDefault();

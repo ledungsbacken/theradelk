@@ -23,29 +23,29 @@ use Illuminate\Http\Request;
 // });
 
 
-Route::resource('/post', 'PostController', [
+Route::resource('/post', 'Api\PostController', [
     'only' => [
         'index',
         'show',
     ]
 ]);
-Route::get('/post/slug/{slug}', 'PostController@showBySlug');
-Route::post('/post/{id}/add/view', 'PostController@addView');
+Route::get('/post/slug/{slug}', 'Api\PostController@showBySlug');
+Route::post('/post/{id}/add/view', 'Api\PostController@addView');
 
-Route::resource('/category', 'categoryController', [
+Route::resource('/category', 'Api\CategoryController', [
     'only' => [
         'index',
         'show',
     ]
 ]);
 
-Route::resource('/subcategory', 'SubcategoryController', [
+Route::resource('/subcategory', 'Api\SubcategoryController', [
     'only' => [
         'index',
     ]
 ]);
 
-Route::resource('/user', 'UserController', [
+Route::resource('/user', 'Api\UserController', [
     'only' => [
         'index',
         'show',
@@ -55,60 +55,60 @@ Route::resource('/user', 'UserController', [
 
 // Only logged in users here
 Route::group(['middleware' => ['auth:api']], function () {
-    Route::get('/user/status', 'UserController@isLoggedIn');
-    Route::resource('/user', 'UserController', [
+    Route::get('/user/status', 'Api\UserController@isLoggedIn');
+    Route::resource('/user', 'Api\UserController', [
         'only' => [
             'store',
             'update',
         ]
     ]);
-    Route::get('/user/log', 'UserController@loggedInLog');
-    Route::get('/user/current', 'UserController@getCurrent');
-    Route::put('/user/{id}/role', 'UserController@syncRoles');
-    Route::put('/user/{id}/password/reset', 'UserController@resetPassword');
+    Route::get('/user/log', 'Api\UserController@loggedInLog');
+    Route::get('/user/current', 'Api\UserController@getCurrent');
+    Route::put('/user/{id}/role', 'Api\UserController@syncRoles');
+    Route::put('/user/{id}/password/reset', 'Api\UserController@resetPassword');
 
 
-    Route::get('/role', 'UserController@indexRoles');
+    Route::get('/role', 'Api\UserController@indexRoles');
 
 
-    Route::resource('/post', 'PostController', [
+    Route::resource('/post', 'Api\PostController', [
         'only' => [
             'store',
             'update',
             'destroy',
         ]
     ]);
-    Route::get('/posts/admin', 'PostController@indexAdmin');
-    Route::put('/post/{id}/restore', 'PostController@restoreDestroyed');
-    Route::put('/post/{id}/file', 'PostController@storeFile');
-    Route::put('/post/{id}/publish', 'PostController@setPublished');
-    Route::put('/post/{id}/hidden', 'PostController@setHidden');
-    Route::delete('/post/{id}/delete/hard', 'PostController@hardDelete');
+    Route::get('/posts/admin', 'Api\PostController@indexAdmin');
+    Route::put('/post/{id}/restore', 'Api\PostController@restoreDestroyed');
+    Route::put('/post/{id}/file', 'Api\PostController@storeFile');
+    Route::put('/post/{id}/publish', 'Api\PostController@setPublished');
+    Route::put('/post/{id}/hidden', 'Api\PostController@setHidden');
+    Route::delete('/post/{id}/delete/hard', 'Api\PostController@hardDelete');
 
-    Route::resource('/category', 'categoryController', [
+    Route::resource('/category', 'Api\CategoryController', [
         'only' => [
             'store',
             'update',
         ]
     ]);
-    Route::get('/category/{id}/subcategory', 'SubcategoryController@indexByCategory');
+    Route::get('/category/{id}/subcategory', 'Api\SubcategoryController@indexByCategory');
 
-    Route::resource('/subcategory', 'SubcategoryController', [
+    Route::resource('/subcategory', 'Api\SubcategoryController', [
         'only' => [
             'store',
             'update',
         ]
     ]);
 
-    Route::post('/image/upload', 'ImageController@upload');
-    Route::resource('/image', 'ImageController', [
+    Route::post('/image/upload', 'Api\ImageController@upload');
+    Route::resource('/image', 'Api\ImageController', [
         'only' => [
             'index',
         ]
     ]);
 
-    Route::post('/headimage/upload', 'HeadImageController@upload');
-    Route::resource('/headimage', 'HeadImageController', [
+    Route::post('/headimage/upload', 'Api\HeadImageController@upload');
+    Route::resource('/headimage', 'Api\HeadImageController', [
         'only' => [
             'index',
         ]
