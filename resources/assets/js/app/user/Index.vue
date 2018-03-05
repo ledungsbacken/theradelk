@@ -10,28 +10,13 @@
                             <img v-if="user.data.picture" :src="user.data.picture" />
                             <div>Name: {{ user.data.name }}</div>
                             <div>Email: {{ user.data.email }}</div>
-                            <div>About: {{ user.data.about }}</div>
+                            <div>About: <span v-html="user.data.about"></span></div>
                             <div>Number of posts: {{ user.posts_count }}</div>
                         </div>
                         <div class="panel-heading"><h4>Posts</h4></div>
                         <div>
                             <div v-for="post in posts">
-                                <div>Title: {{ post.data.title }}</div>
-                                <div>Author: {{ post.user.data.name }}</div>
-                                <div>Views: {{ post.data.views }}</div>
-                                <div>Posted: {{ post.dateToString(post.data.created_at) }}</div>
-                                <div><router-link :to="'/post/'+post.data.slug">Link</router-link></div>
-                                <div v-for="subcategory in post.subcategories">
-                                    Category:
-                                    <router-link :to="'/post/category/' + subcategory.category.data.slug">
-                                        {{subcategory.category.data.name}}
-                                    </router-link>
-                                    /
-                                    <router-link :to="'/post/category/' + subcategory.category.data.slug + '/' + subcategory.data.slug">
-                                        {{ subcategory.data.name }}
-                                    </router-link>
-                                </div>
-                                <br />
+                                <post :post="post"></post>
                             </div>
                             <paging v-model="listData.current_page" class="paging" style="float:left;" :total="listData.total"></paging>
                             <count :counts="counts" class="paging" style="float:right;" v-model="listData.per_page"></count>
@@ -46,6 +31,7 @@
 <script>
 import User from '../../models/User.js';
 import Post from '../../models/Post.js';
+import PostComponent from '../posts/Post.vue';
 import Paging from '../Paging.vue';
 import Count from '../Count.vue';
 
@@ -97,6 +83,7 @@ export default {
         },
     },
     components : {
+        post : PostComponent,
         paging : Paging,
         count : Count,
     }

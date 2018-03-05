@@ -7,11 +7,7 @@
 
                     <div class="panel-body">
                         <div v-for="post in posts">
-                            <div>Title: {{ post.data.title }}</div>
-                            <div>Author: {{ post.user.data.name }}</div>
-                            <div><router-link :to="'/post/'+post.data.slug">Link</router-link></div>
-                            <div v-for="subcategory in post.subcategories">Category: {{subcategory.category.data.name}}/{{ subcategory.data.name }}</div>
-                            <br />
+                            <post :post="post"></post>
                         </div>
                         <paging v-model="listData.current_page" class="paging" style="float:left;" :total="listData.total"></paging>
                         <count :counts="counts" class="paging" style="float:right;" v-model="listData.per_page"></count>
@@ -24,6 +20,7 @@
 
 <script>
 import Post from '../../models/Post.js';
+import PostComponent from '../posts/Post.vue';
 import Paging from '../Paging.vue';
 import Count from '../Count.vue';
 
@@ -67,6 +64,7 @@ export default {
         },
     },
     components : {
+        post : PostComponent,
         paging : Paging,
         count : Count,
     }

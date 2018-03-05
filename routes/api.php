@@ -32,13 +32,32 @@ Route::resource('/post', 'PostController', [
 Route::get('/post/slug/{slug}', 'PostController@showBySlug');
 Route::post('/post/{id}/add/view', 'PostController@addView');
 
+Route::resource('/category', 'categoryController', [
+    'only' => [
+        'index',
+        'show',
+    ]
+]);
+
+Route::resource('/subcategory', 'SubcategoryController', [
+    'only' => [
+        'index',
+    ]
+]);
+
+Route::resource('/user', 'UserController', [
+    'only' => [
+        'index',
+        'show',
+    ]
+]);
+
+
 // Only logged in users here
 Route::group(['middleware' => ['auth:api']], function () {
     Route::get('/user/status', 'UserController@isLoggedIn');
     Route::resource('/user', 'UserController', [
         'only' => [
-            'index',
-            'show',
             'store',
             'update',
         ]
@@ -68,8 +87,6 @@ Route::group(['middleware' => ['auth:api']], function () {
 
     Route::resource('/category', 'categoryController', [
         'only' => [
-            'index',
-            'show',
             'store',
             'update',
         ]
@@ -78,7 +95,6 @@ Route::group(['middleware' => ['auth:api']], function () {
 
     Route::resource('/subcategory', 'SubcategoryController', [
         'only' => [
-            'index',
             'store',
             'update',
         ]
