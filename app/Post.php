@@ -47,7 +47,9 @@ class Post extends Model
     }
 
     public function viewsCountRelation() {
-        return $this->hasOne(View::class)->selectRaw('post_id, count(id) as count')->groupBy('post_id');
+        return $this->hasOne(View::class)->selectRaw('post_id, count(id) as count')->groupBy('post_id')->withDefault([
+            'count' => 0,
+        ]);
     }
 
     public function subcategories() {
