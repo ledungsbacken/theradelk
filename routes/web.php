@@ -11,25 +11,26 @@
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
+// Route::get('/', function() {
+//     return view('index');
 // });
 
-Route::get('/', function() {
-    return view('index');
+Route::get('/', 'Web\PostController@index');
+Route::get('/post/{slug}', 'Web\PostController@show');
+
+Route::get('/post', function() {
+    return Redirect('/');
 });
 
-Route::resource('/post', 'Web\PostController', [
-    'only' => [
-        'index',
-        'show',
-    ]
-]);
+Route::get('/category/{category}', 'Web\PostController@indexByCategory');
+Route::get('/category/{category}/{subcategory}', 'Web\PostController@indexBySubcategory');
+
+Route::get('/user/{userId}', 'Web\PostController@indexByUser');
 
 
 Route::get('/admin', function() {
     return view('vue');
-});
+})->middleware('auth');
 
 
 Auth::routes();
