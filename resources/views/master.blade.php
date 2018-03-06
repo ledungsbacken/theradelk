@@ -24,6 +24,7 @@
             @include('layouts.admin_nav')
         @endauth
         @include('layouts.nav')
+        @include('layouts.categories')
         <div class="container">
             @yield('content')
         </div>
