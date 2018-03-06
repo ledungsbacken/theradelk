@@ -106,10 +106,10 @@ class HeadImageController extends Controller
         $phone = $phonePath;
 
         $image = HeadImage::create([
-            'thumbnail' => $thumbnail,
-            'desktop' => $desktop,
-            'tablet' => $tablet,
-            'phone' => $phone,
+            'thumbnail' => '/'.$thumbnail,
+            'desktop' => '/'.$desktop,
+            'tablet' => '/'.$tablet,
+            'phone' => '/'.$phone,
         ]);
         $image->user()->associate(Auth::id())->save();
         return $image;

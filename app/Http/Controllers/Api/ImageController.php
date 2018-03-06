@@ -36,7 +36,7 @@ class ImageController extends Controller
         $path = $request->file('file')->store('images', 'public');
         $url = $path;
         $image = Image::create([
-            'url' => $url,
+            'url' => '/'.$url,
         ]);
         $image->user()->associate(Auth::id())->save();
         return $image;

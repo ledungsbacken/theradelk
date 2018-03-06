@@ -61,7 +61,7 @@ Route::get('/logout', function() {
 })->name('logout');
 
 
-Route::get('/images/{filename}', function ($filename)
+Route::get('images/{filename}', function ($filename)
 {
     $path = storage_path('app/public/images/' . $filename);
 
