@@ -27,6 +27,16 @@ Route::get('/category/{category}/{subcategory}', 'Web\PostController@indexBySubc
 
 Route::get('/user/{userId}', 'Web\PostController@indexByUser');
 
+Route::get('/theme/set/{theme}', function($theme) {
+    if($theme == 'light') {
+        session(['theme' => 'light']);
+    } else if($theme == 'dark') {
+        session(['theme' => 'dark']);
+    }
+    Session::save();
+    return redirect()->back();
+});
+
 
 Route::get('/admin', function() {
     return view('vue');

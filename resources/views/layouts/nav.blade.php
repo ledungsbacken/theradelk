@@ -20,6 +20,11 @@
                 &nbsp;
                 <li><a href="/post">Posts</a></li>
                 <li><a href="/login">Login</a></li>
+                @if(!session('theme') || session('theme') == 'light')
+                    <li><a href="/theme/set/dark">Dark</a></li>
+                @elseif(session('theme') == 'dark')
+                    <li><a href="/theme/set/light">Light</a></li>
+                @endif
             </ul>
         </div>
     </div>

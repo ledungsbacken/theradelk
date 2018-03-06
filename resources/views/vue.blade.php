@@ -11,7 +11,7 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Styles -->
-    <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+    <link href="{{ mix('css/vue.css') }}" rel="stylesheet">
     <script>
         window.Laravel = <?php echo json_encode([
             'currentUser' => Auth::check() ? App\User::with(['roles'])->find(Auth::user()->id) : null,

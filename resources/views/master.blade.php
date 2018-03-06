@@ -12,6 +12,11 @@
 
     <!-- Styles -->
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+    @if(!session('theme') || session('theme') == 'light')
+        <link href="{{ mix('css/light.css') }}" rel="stylesheet">
+    @elseif(session('theme') == 'dark')
+        <link href="{{ mix('css/dark.css') }}" rel="stylesheet">
+    @endif
 </head>
 <body>
     <div id="app">
