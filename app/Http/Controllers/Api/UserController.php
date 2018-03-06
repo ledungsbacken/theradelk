@@ -65,15 +65,15 @@ class UserController extends Controller
     }
 
     public function update(Request $request, $id) {
-        if(Auth::user()->cant('update', User::class)) { return response()->json('Forbidden', 403); }
         $user = User::find((int)$id);
+        if(Auth::user()->cant('update', $user)) { return response()->json('Forbidden', 403); }
         $user->update($request->all());
         return $user->load('roles');
     }
 
     public function resetPassword(Request $request, $id) {
-        if(Auth::user()->cant('update', User::class)) { return response()->json('Forbidden', 403); }
         $user = User::find((int)$id);
+        if(Auth::user()->cant('update', $user)) { return response()->json('Forbidden', 403); }
         if($user->hasPermission('full')) { return response()->json('Forbidden', 403); }
         $password = $request->params['newPassword'];
         $passwordConfirm = $request->params['newPasswordConfirm'];
@@ -104,8 +104,8 @@ class UserController extends Controller
     }
 
     public function destroy($id) {
-        if(Auth::user()->cant('delete', User::class)) { return response()->json('Forbidden', 403); }
         $user = User::find((int)$id);
+        if(Auth::user()->cant('delete', $user)) { return response()->json('Forbidden', 403); }
         $user->delete();
         return $user;
     }
