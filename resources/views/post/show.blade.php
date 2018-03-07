@@ -1,6 +1,7 @@
 @extends('master')
+<?php $title = $post->title ?>
 @push('meta')
-    
+
 @endpush
 @section('content')
     @if($post->is_fullscreen)
