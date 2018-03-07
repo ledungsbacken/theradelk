@@ -22,6 +22,7 @@ class PostController extends Controller
     public function index(Request $request) {
         $posts = Post::with(['subcategories.category', 'user', 'headImage', 'viewsCountRelation']);
         $posts->where('published', '=', '1');
+        $posts->where('hidden', '=', '0');
         $posts->orderBy('id', 'DESC');
 
         $posts = $posts->paginate((int)$request['count']);
@@ -40,6 +41,7 @@ class PostController extends Controller
             return $query->where('slug', '=', $categorySlug);
         });
         $posts->where('published', '=', '1');
+        $posts->where('hidden', '=', '0');
         $posts->orderBy('id', 'DESC');
 
         $posts = $posts->paginate((int)$request['count']);
@@ -61,6 +63,7 @@ class PostController extends Controller
             ]);
         });
         $posts->where('published', '=', '1');
+        $posts->where('hidden', '=', '0');
         $posts->orderBy('id', 'DESC');
 
         $posts = $posts->paginate((int)$request['count']);

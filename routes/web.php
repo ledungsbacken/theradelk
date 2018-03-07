@@ -25,7 +25,7 @@ Route::get('/post', function() {
 Route::get('/category/{category}', 'Web\PostController@indexByCategory');
 Route::get('/category/{category}/{subcategory}', 'Web\PostController@indexBySubcategory');
 
-Route::get('/user/{userId}', 'Web\PostController@indexByUser');
+Route::get('/user/{userId}', 'Web\UserController@show');
 
 Route::get('/theme/set/{theme}', function($theme) {
     if($theme == 'light') {

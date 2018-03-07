@@ -42,6 +42,6 @@ class UserController extends Controller
                 ['published', '1'],
             ]);
         }])->find((int)$id);
-        return $user;
+        return View('user.show')->with('user', $user);
     }
 }

@@ -55,4 +55,19 @@ class Post extends Model
     public function subcategories() {
         return $this->belongsToMany(Subcategory::class, 'post_subcategory', 'post_id', 'subcategory_id');
     }
+
+    /**
+     * @param Request $request
+     * @return Post
+     */
+    public static function indexByUser($userId, $count = 0) {
+        $posts = Post::with(['subcategories.category', 'user', 'headImage', 'viewsCountRelation']);
+        $posts->where('published', '=', '1');
+        $posts->where('user_id', '=', (int)$userId);
+        $posts->orderBy('id', 'DESC');
+
+        $posts = $posts->paginate((int)$count);
+
+        return $posts;
+    }
 }
