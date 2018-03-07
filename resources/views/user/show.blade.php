@@ -6,8 +6,8 @@
                 <div class="panel-heading">Posts</div>
 
                 <div class="panel-body">
-                    {{-- @image(['url' => $user->picture])
-                    @endimage --}}
+                    @image(['url' => $user->picture])
+                    @endimage
                     <div>Name: {{ $user->name }}</div>
                     <div>Email: {{ $user->email }}</div>
                     <div>About: {!! $user->about !!}</div>

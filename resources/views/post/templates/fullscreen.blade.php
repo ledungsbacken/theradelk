@@ -4,7 +4,8 @@
             <div class="panel-heading">Fullscreen</div>
 
             <div class="panel-body">
-                <img src="{{ $post->headImage->desktop }}" />
+                @image(['url' => $post->headImage->desktop])
+                @endimage
                 <div>{!! $post->content !!}</div>
                 <div>Title: {{ $post->title }}</div>
                 <div>Author: {{ $post->user->name }}</div>
