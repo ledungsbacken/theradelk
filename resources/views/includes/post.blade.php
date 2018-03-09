@@ -1,5 +1,5 @@
 <article class="col">
-        <img src="{{ $post->head_image->phone }}" alt="">
+        <img src="{{ $post->headImage->phone }}" alt="">
         <header>
     <a href="/post/{{ $post->slug }}" class="posts">
             <h2>{{ $post->title }}</h2>
