@@ -1,0 +1,133 @@
+#smallPage{
+	position: relative;
+
+	#coverImage{
+		@media screen and (max-width: 665px){
+		height:460px;
+			header{
+				width:280px;
+				top:16%;
+				h1{
+					font-size:2em !important;
+				}
+				p{
+					font-size:1.5em;
+				}
+			}
+		}
+		@media screen and (min-width:666px) and (max-width:899px){
+			header{
+				top:25%;
+				width:650px;
+				h1{
+					font-size:3.5em;
+				}
+				p{
+					font-size:1.3em;
+				}
+			}
+		}
+		@media screen and (max-width:900px){
+			img{
+				max-width:130%;
+				width:2000px;
+			}
+		}
+		@media screen and (min-width: 900px){
+			header{
+				top:24%;
+				width:940px;
+				h1{
+					font-size:4em;
+					line-height: 1.3em;
+				}
+				p{
+					font-size:2em;
+				}
+			}
+		}
+		@media screen and (min-width: 1300px) and (max-width:1920px){
+			img{
+				max-width:103%;
+				width:2000px;
+			}
+		}
+	}
+	#middleContent{
+		padding: 50px 0;
+		overflow: hidden;
+		margin:auto;
+		display: -webkit-flex;
+	    display: flex;
+	    -webkit-flex-direction: row;
+	    flex-direction: row;
+
+		@media screen and (min-width:1420px){
+			width:1130px;			
+		}
+		@media screen and (max-width:1419px){
+			width:85%;
+		}
+	}
+	#postText_aside{
+		background-color: #fff;
+		overflow: hidden;
+
+
+		#postText{
+			float:left;
+			flex:1;
+			max-width:670px;
+
+
+			#author_section_created_views{
+				overflow: hidden;
+				margin-bottom: 15px;
+				#author{
+					float:left;
+					#authorImage{
+						width:40px;
+						border-radius:100%;
+						display: inline-block;
+						margin-right: 10px;
+					}
+					#authorName{
+						display: inline-block;
+						vertical-align: top;
+						margin-top: 10px;
+						font-family: $standardFont;
+					}
+				}
+				#created,
+				#views{
+					display: inline-block;
+					float:right;
+					margin-left:27px;
+					margin-top: 6px;
+					.fa{
+						margin-right: 10px;
+						font-size:1.5em;
+					}
+					*{
+						display: inline-block;
+					}
+					div{
+						font-family: $standardFont;
+					}
+				}
+			}
+		}
+		aside{
+			float:right;
+			-webkit-flex: 0 0 328px;
+		    flex: 0 0 328px;
+		    margin-left: 40px;
+			#ad{
+				width: 100%;
+				img{
+					width:100%;
+				}
+			}
+		}
+	}
+}

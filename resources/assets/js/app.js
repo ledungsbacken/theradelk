@@ -30,3 +30,7 @@ require('./bootstrap');
 // const app = new Vue({
 //     el: '#app'
 // });
+
+$( "#mobile" ).click(function() {
+  $( "#mobile_nav" ).slideToggle( "slow", function() {});
+});

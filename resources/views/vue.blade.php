@@ -12,6 +12,7 @@
 
     <!-- Styles -->
     <link href="{{ mix('css/vue.css') }}" rel="stylesheet">
+    <link href="{{ mix('css/app.css') }}" rel="stylesheet">
     <script>
         window.Laravel = <?php echo json_encode([
             'currentUser' => Auth::check() ? App\User::with(['roles'])->find(Auth::user()->id) : null,
@@ -23,14 +24,13 @@
         @auth
             @include('layouts.admin_nav')
         @endauth
-        @include('layouts.nav')
 
         <router-view class="container" :key="$route.fullPath"></router-view>
     </div>
 
     <!-- Scripts -->
     @auth
-        <script src="//cdn.ckeditor.com/4.6.2/full/ckeditor.js"></script>
+        <script src="ckeditor/ckeditor.js"></script>
     @endauth
     <script src="{{ mix('js/vue.js') }}"></script>
 </body>

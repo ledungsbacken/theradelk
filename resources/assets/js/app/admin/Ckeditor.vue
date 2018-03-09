@@ -37,12 +37,13 @@ export default {
                         'BulletedList',
                         'Image',
                         'Source',
-                        'Styles',
+                        'Format',
                         'Link',
                         'Unlink'
                     ]
                 ],
-                height: 300
+                extraPlugins: 'autogrow',
+                toolbarLocation: 'bottom',
             }
         }
     },

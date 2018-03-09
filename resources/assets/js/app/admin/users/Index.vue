@@ -47,7 +47,7 @@
                                         <button class="btn btn-sm btn-danger" @click="stripRoles(user)">
                                             Strip roles
                                         </button>
-                                        <router-link :to="'/user/' + user.data.id">
+                                        <router-link :to="'/home/user/' + user.data.id">
                                             <button class="btn btn-sm btn-success">
                                                 <i class="fa fa-arrow-right"></i>
                                             </button>

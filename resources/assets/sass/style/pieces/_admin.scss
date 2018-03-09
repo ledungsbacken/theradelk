@@ -1,0 +1,90 @@
+nav.navbar{
+	.container{
+		width:100%;
+	}
+}
+ul.nav{
+	*{display: inline-block;}
+}
+
+
+
+.wrapper{
+}
+
+#cke_editor1{
+	width:100% !important;
+	margin:auto;
+	box-sizing:border-box;
+	border:none !important;
+}
+#cke_editor1{
+	margin:0 !important;
+}
+.ckeditor{
+	margin-top: -10px;
+}
+
+#coverImage{
+	textarea{
+		width: 940px;
+		border:none;
+		background-color: transparent;
+		outline:none;
+		font-family: 'Montserrat', sans-serif;
+		&:first-of-type{
+			font-weight: 800;
+			font-size: 4em !important;
+			color: #fff;
+			text-align: center;
+			line-height: 1.3em;
+		}
+		&:last-of-type{
+			text-align: center;
+    		color: #fff;
+    		font-family: 'Abel', sans-serif;
+    		font-size: 2em;
+    		font-style: italic;
+    		margin-top: 50px;
+		}
+	}
+}
+
+#admin{
+	bottom: 0;
+	position: fixed;
+	z-index: 999;
+	#centerAdmin{
+		padding:30px;
+		background-color: #ddd;
+		position: relative;
+		.fa{
+			top:0;
+			position: absolute;
+			right:0;
+			font-size:2em;
+			padding:10px;
+		}
+	}
+}
+
+#menu_togglers{
+	position: fixed;
+	top:100px;
+	margin-left: 20px;
+	z-index: 999;
+	text-align: center;
+	li{
+		margin-top: 30px;
+		list-style-type: none;
+			&:hover{
+				color:darkred;
+				transition: color .1s;
+			}
+		.fa{
+			font-size:3em;
+			cursor:pointer;
+				transition: color .1s;
+		}
+	}
+}

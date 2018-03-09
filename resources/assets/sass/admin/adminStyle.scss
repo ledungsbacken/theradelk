@@ -1,0 +1,115 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:800|Open+Sans:400,600');
+
+h1,h2,h3,p,ul,ol,body{
+  margin:0 !important;
+}
+
+p + img {
+  padding: 0;
+}
+
+img + p {
+  padding-top: 50px;
+}
+ul,ol + h1{
+  padding:30px 0;
+}
+
+h1 + p > img + p {
+  padding-top: 30px;
+}
+
+p + h1 {
+  padding-top: 30px !important;
+  padding-bottom:22px;
+}
+h1 + p {
+  padding-top: 0px !important;
+  padding-top: 15px;
+}
+
+h1 + p > img {
+  padding-top: 20px;
+}
+h2 + p{
+  padding-top: 14px;
+}
+h2 + img {
+  padding-top: 20px;
+}
+
+p{
+    margin: 0;
+    padding-bottom: 30px;
+    line-height: 1.6em;
+    font-family: 'Open Sans', sans-serif;
+    font-size:1.1em;
+    font-weight: 400;
+    color: #333 !important;
+    p:last-of-type {
+      margin-bottom: 0; 
+    }
+}
+ol,ul{
+}
+h1, h2, h3 {
+    color: #333;
+    font-weight: 800;
+    font-family: 'Montserrat', sans-serif;
+}
+
+a{
+    text-decoration: underline;
+    color: #16a085; 
+}
+
+em {
+    font-style: italic;
+    font-family: 'Open Sans', sans-serif;
+}
+ol{
+    padding: 0;
+    padding: 10px 0;
+    counter-reset: li;
+    li{
+      position: relative;
+      padding: 17px 0 25px 55px;
+      line-height: 1.6em;
+      list-style: none;
+      font-family: 'Open Sans', sans-serif;
+      font-size: 1em;
+
+      &:before{
+        position: absolute;
+        display: inline-block;
+        width: 40px;
+        height: 40px;
+        margin-top: -7px;
+        font-size: 1.1em;
+        line-height: 38px;
+        color: #fff;
+        text-align: center;
+        content: counter(li);
+        counter-increment: li;
+        top: 1em;
+        left: 0;
+        background-color: #649173;
+        font-family: 'Open Sans', sans-serif;
+        border-radius: 100%;
+      }
+    }
+}
+strong {
+    font-weight: 600;
+}
+
+blockquote {
+    border-left: solid 3px #333;
+    p{
+      padding-left: 20px;
+      font-style: italic;
+      color: #333;
+    }
+}
+h1 {
+  font-size: 2em; }

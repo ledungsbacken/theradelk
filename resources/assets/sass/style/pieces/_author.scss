@@ -1,0 +1,27 @@
+#author{
+	background-color: #fff;
+	border:solid 5px #649173;
+	border-top:none;
+	overflow: hidden;
+	padding:40px 7%;
+
+	#authorImage{
+		float:left;
+		margin-right: 44px;
+		img{
+			border-radius:100%;
+		}
+	}
+	#authorInfo{
+		margin-top: 10px;
+		p{
+			line-height: 1.5em;
+		}
+	}
+}
+#latest{
+	h1{
+		font-family: 'Montserrat', sans-serif;
+		font-size:3em;
+	}
+}

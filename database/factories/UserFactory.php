@@ -24,7 +24,6 @@ $factory->define(App\User::class, function (Faker $faker) {
     return [
         'name' => $faker->name,
         'email' => $faker->unique()->safeEmail,
-        'picture' => 'https://cataas.com/cat',
         'about' => $faker->paragraph,
         'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', // secret
         'remember_token' => str_random(10),
@@ -63,9 +62,5 @@ $factory->define(App\Subcategory::class, function(Faker $faker) {
 
 $factory->define(App\HeadImage::class, function(Faker $faker) {
     return [
-        'thumbnail' => 'https://cataas.com/cat',
-        'desktop' => 'https://cataas.com/cat',
-        'tablet' => 'https://cataas.com/cat',
-        'phone' => 'https://cataas.com/cat',
     ];
 });

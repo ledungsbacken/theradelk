@@ -1,0 +1,59 @@
+#ckeditor{
+  p + img {
+    padding: 0; }
+
+  img + p {
+    margin-top: 50px; }
+
+  p + p > img {
+    margin-top: 50px; }
+
+  h1 + p > img + p {
+    margin-top: 30px; }
+
+  p + h1 {
+    padding-top: 30px;
+    padding-bottom: 15px; }
+
+  h1 + p > img {
+    margin-top: 20px; }
+
+  h2 + img {
+    margin-top: 20px; }
+
+  p {
+    font-size: 1.1em;
+    margin: 0;
+    margin-bottom: 30px;
+    line-height: 1.6em;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    color: #333 !important; }
+    p:last-of-type {
+      margin-bottom: 0; }
+
+  h1, h2, h3 {
+    color: #333;
+    font-weight: 800; }
+
+  a {
+    text-decoration: underline;
+    color: #16a085; }
+
+  em {
+    font-style: italic;
+    font-family: 'Open Sans', sans-serif; }
+
+  strong {
+    font-weight: 600; }
+
+  blockquote {
+    border-left: solid 3px #333; }
+    blockquote p {
+      margin-left: 20px;
+      font-style: italic;
+      color: #333; }
+
+  h1 {
+    font-size: 2em; }
+}

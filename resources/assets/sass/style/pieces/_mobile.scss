@@ -1,0 +1,33 @@
+@media screen and (max-width:1200px){
+	#mobile_nav{
+		overflow: hidden;
+		padding:20px;
+		display:none;
+		ul{
+			display: block;
+			text-align: right;
+			padding-bottom: 33px;
+			&:last-of-type{
+				padding-bottom: 0;
+				li{
+					display: inline-block;
+
+				}
+			}
+			li{
+				display: block;
+				font-size:1.2em;
+				text-transform: uppercase;
+				margin-bottom: 10px;
+			}
+			a{
+				color:#000;
+			}
+		}
+	}
+}
+@media screen and (min-width:801px){
+	#mobile_nav{
+		display:none;
+	}
+}

@@ -3,16 +3,26 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
     @stack('meta')
 
-    <!-- CSRF Token -->
+    @auth
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-90622404-4"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-90622404-4');
+    </script>
+    @endauth
+
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <!-- Styles -->
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
     @if(!session('theme') || session('theme') == 'light')
         <link href="{{ mix('css/light.css') }}" rel="stylesheet">
@@ -21,16 +31,11 @@
     @endif
 </head>
 <body>
-    <div id="app">
         @auth
             @include('layouts.admin_nav')
         @endauth
-        @include('layouts.nav')
-        @include('layouts.categories')
-        <div class="container">
+            @include('layouts.topper')
             @yield('content')
-        </div>
-    </div>
 
     <script src="{{ mix('js/app.js') }}"></script>
 </body>
