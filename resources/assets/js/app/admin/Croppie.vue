@@ -5,7 +5,7 @@
         <!-- <button @click="rotate(-90)">Rotate Left</button>
         <button @click="rotate(90)">Rotate Right</button>
         <button @click="crop()">Crop Via Callback</button> -->
-        <button @click="crop(viewport)">Crop {{ viewport.width }}x{{ viewport.height }}</button>
+        <button class="btn btn-sm btn-success" @click="crop(viewport)">Crop {{ viewport.width }}x{{ viewport.height }}</button>
         <!-- <button @click="crop(sizes.tablet)">Crop {{ sizes.tablet.width }}x{{ sizes.tablet.height }}</button>
         <button @click="crop(sizes.phone)">Crop {{ sizes.phone.width }}x{{ sizes.phone.height }}</button>
         <button @click="crop(sizes.thumbnail)">Crop {{ sizes.thumbnail.width }}x{{ sizes.thumbnail.height }}</button> -->

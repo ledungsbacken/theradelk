@@ -10,15 +10,15 @@
                             v-if="show"
                             :show="show"
                             @close="show = false"></images-modal>
-                        <button @click="show = true">Images</button>
+                        <button class="btn btn-sm btn-info" @click="show = true">Images</button>
                         <br />
-                        <input type="text" v-model="url" /> <button @click="bind">Bind</button>
+                        <input type="text" v-model="url" style="width:40%;" /> <button class="btn btn-sm btn-primary" @click="bind">Bind</button>
                         <croppie :url="url" :viewport="sizes.thumbnail" @cropped="cropThumbnail"></croppie>
                         <croppie :url="url" :viewport="sizes.desktop" @cropped="cropDesktop"></croppie>
                         <croppie :url="url" :viewport="sizes.tablet" @cropped="cropTablet"></croppie>
                         <croppie :url="url" :viewport="sizes.phone" @cropped="cropPhone"></croppie>
                         <!-- <file-input @submit="upload"></file-input> -->
-                        <button @click="upload">Upload</button>
+                        <button class="btn btn-sm btn-success" @click="upload">Upload</button>
                     </div>
                 </div>
             </div>
@@ -42,7 +42,7 @@ export default {
             tablet : '',
             phone : '',
             show : false,
-            url : '/images/znuhcvSE2wbhMVyaLWsFGC3yq8yNfbr1Dpm4Vb67.png',
+            url : '',
             sizes : {
                 thumbnail : {
                     width: 480,
@@ -64,7 +64,7 @@ export default {
         }
     },
     mounted() {
-        
+
     },
     methods : {
         upload(files = {}) {
