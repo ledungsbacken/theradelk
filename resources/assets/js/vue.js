@@ -24,7 +24,10 @@ import routes from './routes.js';
 
 import User from './models/User.js';
 
+import VueCroppie from 'vue-croppie';
+
 Vue.use(VueRouter);
+Vue.use(VueCroppie);
 
 /**
  * Setup frontend router

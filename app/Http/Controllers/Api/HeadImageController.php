@@ -34,8 +34,8 @@ class HeadImageController extends Controller
 
         $sizes = [
             'thumbnail' => [
-                'width' => 1920,
-                'height' => 1080,
+                'width' => 480,
+                'height' => 270,
                 'bytes' => 6000000,
             ],
             'desktop' => [
@@ -44,13 +44,13 @@ class HeadImageController extends Controller
                 'bytes' => 6000000,
             ],
             'tablet' => [
-                'width' => 1920,
-                'height' => 1080,
+                'width' => 900,
+                'height' => 1000,
                 'bytes' => 6000000,
             ],
             'phone' => [
-                'width' => 1920,
-                'height' => 1080,
+                'width' => 548,
+                'height' => 650,
                 'bytes' => 6000000,
             ],
         ];
