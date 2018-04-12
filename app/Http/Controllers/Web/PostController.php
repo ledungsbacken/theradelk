@@ -104,7 +104,15 @@ class PostController extends Controller
                 return response()->json('Not Found', 404);
             }
         }
+        $relatedPosts = Post::with(['user', 'headImage']);
+        if($post->subcategories->count() == 0) {
+                $relatedPosts->whereHas('subcategories', function($query) use ($post) {
+                        return $query->where('category_id', '=', $post->subcategories[0]->category_id);
+                });
+        }
 
-        return view('post.show')->with('post', $post->load('viewsCountRelation'));
+        $relatedPosts = $relatedPosts->limit(2)->get();
+
+        return view('post.show', ['post' => $post->load('viewsCountRelation'), 'relatedPosts' => $relatedPosts]);
     }
 }

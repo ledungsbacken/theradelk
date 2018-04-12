@@ -7,6 +7,7 @@
                 @image(['url' => $post->headImage->desktop])
                 @endimage
                 <div>{!! $post->content !!}</div>
+                <div>Id: {{ $post->id }}</div>
                 <div>Title: {{ $post->title }}</div>
                 <div>Author: {{ $post->user->name }}</div>
                 <div>Slug: {{ $post->slug }}</div>
@@ -25,6 +26,14 @@
                     </div>
                 @endforeach
                 <br />
+                <div>
+                    <div>Related:</div>
+                    @foreach ($relatedPosts as $related)
+                    <div>
+                        {{ $related->id }}
+                    </div>
+                    @endforeach
+                </div>
             </div>
         </div>
     </div>
