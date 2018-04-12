@@ -9,6 +9,11 @@
             </div>
             <div class="row">
                 <div class="col-md-3" style="width:300px;" v-for="image in images">
+                    <button
+                        class="btn btn-sm btn-danger fa fa-trash"
+                        style="position:absolute; top:2px; right:18px;"
+                        @click="destroy(image)">
+                    </button>
                     <img :src="image.data.url" width="100%" />
                     <input type="text" readonly :id="'image_'+image.data.id" :value="image.data.url" style="width:80%;" />
                     <button @click="copyLink(image.data.id)" class="btn btn-success btn-sm" style="width:18%;">Copy</button>
@@ -23,11 +28,11 @@
 </template>
 
 <script>
-import Image from '../../../models/Image.js';
-import Modal from '../../Modal.vue';
-import FileInput from '../FileInput.vue';
-import Paging from '../../Paging.vue';
-import Count from '../../Count.vue';
+import Image from '../../models/Image.js';
+import Modal from '../Modal.vue';
+import FileInput from './FileInput.vue';
+import Paging from '../Paging.vue';
+import Count from '../Count.vue';
 
 export default {
     props : {
@@ -71,6 +76,11 @@ export default {
                     this.images.pop();
                 }
                 this.images.unshift(this.image);
+            });
+        },
+        destroy(image) {
+            return image.destroy().then(response => {
+                this.load();
             });
         },
         copyLink(id) {

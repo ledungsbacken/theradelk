@@ -30,7 +30,7 @@
 import HeadImage from '../../../models/HeadImage.js';
 import FilesModal from './FilesModal.vue';
 import FileInput from '../PostImagesInput.vue';
-import ImagesModal from './ImagesModal.vue';
+import ImagesModal from '../ImagesModal.vue';
 import Croppie from '../Croppie.vue';
 
 export default {

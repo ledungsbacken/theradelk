@@ -104,6 +104,7 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::resource('/image', 'Api\ImageController', [
         'only' => [
             'index',
+            'destroy',
         ]
     ]);
 

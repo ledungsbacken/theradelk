@@ -22,10 +22,6 @@ class ImageController extends Controller
         return $images;
     }
 
-    public function show($id) {
-
-    }
-
     public function upload(Request $request) {
         // Return 403 if not enough permissions
         if(Auth::user()->cant('create', Post::class)) { return response()->json('Forbidden', 403); }
@@ -39,6 +35,15 @@ class ImageController extends Controller
             'url' => '/'.$url,
         ]);
         $image->user()->associate(Auth::id())->save();
+        return $image;
+    }
+
+    public function destroy(Request $request, $id) {
+        // Return 403 if not enough permissions
+        if(Auth::user()->cant('create', Post::class)) { return response()->json('Forbidden', 403); }
+        $image = Image::find((int)$id);
+        unlink(storage_path('app/public'.$image->url));
+        $image->delete();
         return $image;
     }
 }
