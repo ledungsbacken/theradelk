@@ -79,6 +79,7 @@ export default {
             });
         },
         destroy(image) {
+            if(confirm('Are you sure you want to remove this picture?\nIf this picture is used in any posts it will show a broken image link.\nThere is no going back!'))
             return image.destroy().then(response => {
                 this.load();
             });
