@@ -79,6 +79,7 @@ Route::group(['middleware' => ['auth:api']], function () {
         ]
     ]);
     Route::get('/posts/admin', 'Api\PostController@indexAdmin');
+    Route::get('/posts/category', 'Api\PostController@indexByCategory');
     Route::put('/post/{id}/restore', 'Api\PostController@restoreDestroyed');
     Route::put('/post/{id}/file', 'Api\PostController@storeFile');
     Route::put('/post/{id}/publish', 'Api\PostController@setPublished');
@@ -95,6 +96,15 @@ Route::group(['middleware' => ['auth:api']], function () {
 
     Route::resource('/subcategory', 'Api\SubcategoryController', [
         'only' => [
+            'store',
+            'update',
+        ]
+    ]);
+
+    Route::resource('/scenery', 'Api\SceneryController', [
+        'only' => [
+            'index',
+            'show',
             'store',
             'update',
         ]

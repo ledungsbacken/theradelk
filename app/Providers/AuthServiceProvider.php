@@ -10,6 +10,8 @@ use App\User;
 use App\Policies\UserPolicy;
 use App\Post;
 use App\Policies\PostPolicy;
+use App\Scenery;
+use App\Policies\SceneryPolicy;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -21,6 +23,7 @@ class AuthServiceProvider extends ServiceProvider
     protected $policies = [
         User::class => UserPolicy::class,
         Post::class => PostPolicy::class,
+        Scenery::class => SceneryPolicy::class,
     ];
 
     /**

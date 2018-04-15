@@ -11,6 +11,7 @@ use App\Role;
 use App\Post;
 use App\Category;
 use App\View;
+use App\Scenery;
 
 class PostController extends Controller
 {
@@ -27,7 +28,9 @@ class PostController extends Controller
 
         $posts = $posts->paginate((int)$request['count']);
 
-        return View('post.index')->with('posts', $posts);
+        $scenery = Scenery::whereNull('category_id')->first();
+
+        return View('post.index', ['posts' => $posts, 'scenery' => $scenery]);
     }
 
     /**
@@ -46,7 +49,9 @@ class PostController extends Controller
 
         $posts = $posts->paginate((int)$request['count']);
 
-        return View('post.index')->with('posts', $posts);
+        $scenery = Scenery::where('category_id', '=', $category->id)->first();
+
+        return View('post.index', ['posts' => $posts, 'scenery' => $scenery]);
     }
 
     /**

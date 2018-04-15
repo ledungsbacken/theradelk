@@ -55,6 +55,29 @@ class PostController extends Controller
      * @param Request $request
      * @return Post
      */
+    public function indexByCategory(Request $request) {
+        $posts = Post::with(['subcategories.category', 'user', 'headImage', 'viewsCountRelation']);
+
+        if($request['category_id']) {
+            $categoryId = $request['category_id'];
+            $posts->whereHas('subcategories.category', function($query) use ($categoryId) {
+                return $query->where('id', '=', $categoryId);
+            });
+        }
+
+        $posts->where('hidden', '=', '0');
+        $posts->where('published', '=', '1');
+        $posts->orderBy('id', 'DESC');
+
+        $posts = $posts->get();
+
+        return $posts;
+    }
+
+    /**
+     * @param Request $request
+     * @return Post
+     */
     public function indexAdmin(Request $request) {
         $posts = Post::with(['subcategories.category', 'user', 'headImage', 'viewsCountRelation']);
         if(Auth::user()->can('indexAll', Post::class)) {

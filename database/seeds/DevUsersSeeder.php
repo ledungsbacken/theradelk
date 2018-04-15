@@ -6,6 +6,7 @@ use App\Post;
 use App\Category;
 use App\Subcategory;
 use App\View;
+use App\Scenery;
 
 use Illuminate\Database\Seeder;
 
@@ -36,10 +37,14 @@ class DevUsersSeeder extends Seeder
     public function run()
     {
         $devUsers = $this->devUsers;
-        Category::create(['slug' => 'it', 'name' => 'IT']);
-        Category::create(['slug' => 'sci-fi', 'name' => 'Sci-fi']);
-        Category::create(['slug' => 'entertainment', 'name' => 'Entertainment']);
-        Category::create(['slug' => 'tech', 'name' => 'Tech']);
+        $category = Category::create(['slug' => 'it', 'name' => 'IT']);
+        Scenery::create(['category_id' => $category->id]);
+        $category = Category::create(['slug' => 'sci-fi', 'name' => 'Sci-fi']);
+        Scenery::create(['category_id' => $category->id]);
+        $category = Category::create(['slug' => 'entertainment', 'name' => 'Entertainment']);
+        Scenery::create(['category_id' => $category->id]);
+        $category = Category::create(['slug' => 'tech', 'name' => 'Tech']);
+        Scenery::create(['category_id' => $category->id]);
         Subcategory::create(['slug' => 'pc', 'name' => 'PC', 'category_id' => 1]);
         Subcategory::create(['slug' => 'starwars', 'name' => 'Starwars', 'category_id' => 2]);
         Subcategory::create(['slug' => 'movies', 'name' => 'Movies', 'category_id' => 3]);

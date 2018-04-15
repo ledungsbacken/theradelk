@@ -27,6 +27,7 @@
                 @if(App\User::find(Auth::user()->id)->hasPermission('full'))
                     <li><a href="/admin#/category">Categories</a></li>
                 @endif
+                    <li><a href="/admin#/settings">Settings</a></li>
             </ul>
 
             <!-- Right Side Of Navbar -->

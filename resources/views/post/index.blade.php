@@ -6,6 +6,9 @@
                 <div class="panel-heading">Posts</div>
 
                 <div class="panel-body">
+                    <div>{{ $scenery->firstPost->id }}</div>
+                    <div>{{ $scenery->secondPost->id }}</div>
+                    <div>{{ $scenery->thirdPost->id }}</div>
                     @each('includes.post', $posts, 'post')
                 </div>
             </div>
