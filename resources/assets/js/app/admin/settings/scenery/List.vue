@@ -2,7 +2,7 @@
     <div>
         <div class="col-md-6">
             <div class="panel panel-default">
-                <div class="panel-heading">Sceneries</div>
+                <div class="panel-heading">Categories</div>
                 <div class="panel-body">
                     <ul class="list-group">
                         <li
