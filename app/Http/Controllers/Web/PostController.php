@@ -116,6 +116,9 @@ class PostController extends Controller
                 });
         }
 
+        $relatedPosts->where('published', '=', '1');
+        $relatedPosts->where('hidden', '=', '0');
+
         $relatedPosts = $relatedPosts->inRandomOrder()->limit(2)->get();
 
         return view('post.show', ['post' => $post->load('viewsCountRelation'), 'relatedPosts' => $relatedPosts]);
