@@ -121,6 +121,14 @@ class PostController extends Controller
 
         $relatedPosts = $relatedPosts->inRandomOrder()->limit(2)->get();
 
-        return view('post.show', ['post' => $post->load('viewsCountRelation'), 'relatedPosts' => $relatedPosts]);
+        $count = file_get_contents('https://graph.facebook.com/?id='.$request->fullUrl());
+
+        return view('post.show',
+            [
+                'post' => $post->load('viewsCountRelation'),
+                'relatedPosts' => $relatedPosts,
+                'sharesCount' => $count,
+            ]
+        );
     }
 }

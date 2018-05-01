@@ -15,7 +15,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Blade::component('components.image', 'image');
-        Blade::component('components.shareCount', 'shareCount');
     }
 
     /**
