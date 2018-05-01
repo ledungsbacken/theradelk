@@ -1,7 +1,7 @@
 <div>Title: {{ $post->title }}</div>
 <div>Author: <a href="/user/{{ $post->user->id }}">{{ $post->user->name }}</a></div>
 <div>Views: {{ $post->viewsCountRelation->count }}</div>
-<div>Posted: {{ dateToHumanDiff($post->created_at) }}</div>
+<div>Posted: {{ dateToHumanDiff($post->published) }}</div>
 <div><a href="/post/{{ $post->slug }}">Link</a></div>
 @foreach($post->subcategories as $subcategory)
     <div>

@@ -11,7 +11,7 @@
                 <div>Author: {{ $post->user->name }}</div>
                 <div>Slug: {{ $post->slug }}</div>
                 <div>Views: {{ $post->viewsCountRelation->count }}</div>
-                <div>Posted: {{ dateToHumanDiff($post->created_at) }}</div>
+                <div>Posted: {{ dateToHumanDiff($post->published) }}</div>
                 @foreach($post->subcategories as $subcategory)
                     <div>
                         Category:

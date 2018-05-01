@@ -40,7 +40,7 @@ $factory->define(App\Post::class, function(Faker $faker) {
         'content' => $faker->paragraph,
         'slug' => str_replace([' ', 'å', 'ä', 'ö', 'Å', 'Ä', 'Ö'], ['-', 'a', 'a', 'o', 'A', 'A', 'O'], strtolower($title)),
         'hidden' => $faker->boolean,
-        'published' => $faker->boolean,
+        'published' => $faker->dateTime,
     ];
 });
 

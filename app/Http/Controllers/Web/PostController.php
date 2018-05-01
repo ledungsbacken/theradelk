@@ -24,9 +24,9 @@ class PostController extends Controller
      */
     public function index(Request $request) {
         $posts = Post::with(['subcategories.category', 'user', 'headImage', 'viewsCountRelation']);
-        $posts->where('published', '=', '1');
+        $posts->whereNotNull('published');
         $posts->where('hidden', '=', '0');
-        $posts->orderBy('id', 'DESC');
+        $posts->orderBy('published', 'DESC');
 
         $posts = $posts->paginate($this->count);
 
@@ -47,9 +47,9 @@ class PostController extends Controller
         $posts->whereHas('subcategories.category', function($query) use ($categorySlug) {
             return $query->where('slug', '=', $categorySlug);
         });
-        $posts->where('published', '=', '1');
+        $posts->whereNotNull('published');
         $posts->where('hidden', '=', '0');
-        $posts->orderBy('id', 'DESC');
+        $posts->orderBy('published', 'DESC');
 
         $posts = $posts->paginate($this->count);
 
@@ -71,9 +71,9 @@ class PostController extends Controller
                 ['category_id', '=', $category->id],
             ]);
         });
-        $posts->where('published', '=', '1');
+        $posts->whereNotNull('published');
         $posts->where('hidden', '=', '0');
-        $posts->orderBy('id', 'DESC');
+        $posts->orderBy('published', 'DESC');
 
         $posts = $posts->paginate($this->count);
 
@@ -88,7 +88,7 @@ class PostController extends Controller
      */
     public function show(Request $request, $slug) {
         $post = Post::with(['subcategories.category', 'user', 'headImage'])->where('slug', '=', $slug)->firstOrFail();
-        if($post->published == 1) {
+        if($post->published) {
             View::create([
                 'post_id' => $post->id,
             ]);
@@ -107,7 +107,7 @@ class PostController extends Controller
                 });
         }
 
-        $relatedPosts->where('published', '=', '1');
+        $relatedPosts->whereNotNull('published');
         $relatedPosts->where('hidden', '=', '0');
 
         $relatedPosts = $relatedPosts->inRandomOrder()->limit(2)->get();

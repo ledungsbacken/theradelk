@@ -43,7 +43,7 @@ class PostController extends Controller
         } else {
             $posts->where('hidden', '=', '0');
         }
-        $posts->where('published', '=', '1');
+        $posts->whereNotNull('published');
         $posts->orderBy('id', 'DESC');
 
         $posts = $posts->paginate((int)$request['count']);
@@ -66,7 +66,7 @@ class PostController extends Controller
         }
 
         $posts->where('hidden', '=', '0');
-        $posts->where('published', '=', '1');
+        $posts->whereNotNull('published');
         $posts->orderBy('id', 'DESC');
 
         $posts = $posts->get();
@@ -113,7 +113,7 @@ class PostController extends Controller
      */
     public function showBySlug(Request $request, $slug) {
         $post = Post::with(['subcategories.category', 'user', 'headImage'])->where('slug', '=', $slug)->firstOrFail();
-        if($post->published == 1) {
+        if($post->published) {
             if($request->add_view) {
                 View::create([
                     'post_id' => $post->id,
@@ -199,7 +199,7 @@ class PostController extends Controller
         $published = (int)$request->published;
         if($published == 0 || $published == 1) {
             $post->update([
-                'published' => $published
+                'published' => $published == 1 ? date('Y-m-d H:i:s') : null
             ]);
             if($post->published == 1) {
                 $user = User::with('roles')->find($post->user_id);
