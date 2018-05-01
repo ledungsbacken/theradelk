@@ -12,6 +12,7 @@
                         <div>{{ $scenery->thirdPost->id }}</div>
                     @endif
                     @each('includes.post', $posts, 'post')
+                    {{ $posts->links() }}
                 </div>
             </div>
         </div>

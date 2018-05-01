@@ -16,6 +16,8 @@ use App\Scenery;
 class PostController extends Controller
 {
 
+    private $count = 6;
+
     /**
      * @param Request $request
      * @return Post
@@ -26,7 +28,7 @@ class PostController extends Controller
         $posts->where('hidden', '=', '0');
         $posts->orderBy('id', 'DESC');
 
-        $posts = $posts->paginate((int)$request['count']);
+        $posts = $posts->paginate($this->count);
 
         $scenery = Scenery::whereNull('category_id')->first();
 
@@ -38,6 +40,8 @@ class PostController extends Controller
      * @return Post
      */
     public function indexByCategory(Request $request, $categorySlug) {
+        $this->count = 12;
+
         $posts = Post::with(['subcategories.category', 'user', 'headImage', 'viewsCountRelation']);
         $category = Category::where('slug', '=', $categorySlug)->first();
         $posts->whereHas('subcategories.category', function($query) use ($categorySlug) {
@@ -47,7 +51,7 @@ class PostController extends Controller
         $posts->where('hidden', '=', '0');
         $posts->orderBy('id', 'DESC');
 
-        $posts = $posts->paginate((int)$request['count']);
+        $posts = $posts->paginate($this->count);
 
         $scenery = Scenery::where('category_id', '=', $category->id)->first();
 
@@ -71,24 +75,11 @@ class PostController extends Controller
         $posts->where('hidden', '=', '0');
         $posts->orderBy('id', 'DESC');
 
-        $posts = $posts->paginate((int)$request['count']);
+        $posts = $posts->paginate($this->count);
 
-        return View('post.index')->with('posts', $posts);
-    }
+        $scenery = Scenery::where('category_id', '=', $category->id)->first();
 
-    /**
-     * @param Request $request
-     * @return Post
-     */
-    public function indexByUser(Request $request, $userId) {
-        $posts = Post::with(['subcategories.category', 'user', 'headImage', 'viewsCountRelation']);
-        $posts->where('published', '=', '1');
-        $posts->where('user_id', '=', (int)$userId);
-        $posts->orderBy('id', 'DESC');
-
-        $posts = $posts->paginate((int)$request['count']);
-
-        return View('post.index')->with('posts', $posts);
+        return View('post.index', ['posts' => $posts, 'scenery' => $scenery]);
     }
 
     /**
