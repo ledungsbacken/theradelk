@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use Auth;
 
+use App\User;
+
 class ViewController extends Controller
 {
     /**
@@ -26,5 +28,16 @@ class ViewController extends Controller
     public function master()
     {
         return view('master');
+    }
+
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function about()
+    {
+        $users = User::get();
+        return View('info.about', ['users' => $users]);
     }
 }

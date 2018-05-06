@@ -27,6 +27,8 @@ Route::get('/category/{category}/{subcategory}', 'Web\PostController@indexBySubc
 
 Route::get('/user/{userId}', 'Web\UserController@show');
 
+Route::get('/about', 'ViewController@about');
+
 Route::get('/theme/set/{theme}', function($theme) {
     if($theme == 'light') {
         session(['theme' => 'light']);
