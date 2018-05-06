@@ -7,7 +7,7 @@
                 @image(['url' => $post->headImage->desktop])
                 @endimage
 
-                <share-count linkedin="{{ file_get_contents('https://www.linkedin.com/countserv/count/share?url=http://theradelk.test/post/quia-esse&format=json') }}"></share-count>
+                <share-count></share-count>
                 <div>{!! $post->content !!}</div>
                 <div>Id: {{ $post->id }}</div>
                 <div>Title: {{ $post->title }}</div>
