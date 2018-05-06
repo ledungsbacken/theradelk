@@ -22,6 +22,8 @@ Route::get('/post', function() {
     return Redirect('/');
 });
 
+Route::get('/search', 'Web\PostController@search');
+
 Route::get('/category/{category}', 'Web\PostController@indexByCategory');
 Route::get('/category/{category}/{subcategory}', 'Web\PostController@indexBySubcategory');
 

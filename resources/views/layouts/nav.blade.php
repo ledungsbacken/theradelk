@@ -26,6 +26,11 @@
                     <li><a href="/theme/set/light">Light</a></li>
                 @endif
             </ul>
+
+            <!-- Right Side Of Navbar -->
+            <ul class="nav navbar-nav navbar-right">
+                <li><search string="{{ app('request')->q ? app('request')->q : '' }}"></search></li>
+            </ul>
         </div>
     </div>
 </nav>

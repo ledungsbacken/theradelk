@@ -83,6 +83,31 @@ class PostController extends Controller
     }
 
     /**
+     * @param Request $request
+     * @return Post
+     */
+    public function search(Request $request) {
+        if(!$request->q) {
+            return Redirect('/');
+        }
+        $search = explode(' ', $request->q);
+        $posts = Post::with(['subcategories.category', 'user', 'headImage', 'viewsCountRelation']);
+        $posts->whereNotNull('published');
+        foreach($search as $word) {
+            $posts->where(function($query) use ($word) {
+                $query->orWhere('title', 'LIKE', '%'.$word.'%');
+                $query->orWhere('subtitle', 'LIKE', '%'.$word.'%');
+                $query->orWhere('content', 'LIKE', '%'.$word.'%');
+            });
+        }
+        $posts->orderBy('published', 'DESC');
+
+        $posts = $posts->paginate($this->count);
+
+        return View('post.search', ['posts' => $posts]);
+    }
+
+    /**
      * @param $id
      * @return Post
      */
