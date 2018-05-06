@@ -23,7 +23,6 @@
         @auth
             @include('layouts.admin_nav')
         @endauth
-        @include('layouts.nav')
 
         <router-view class="container" :key="$route.fullPath"></router-view>
     </div>
