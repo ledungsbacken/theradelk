@@ -13,6 +13,8 @@
                     <div>Country: {{ $user->country }}</div>
                     <div>About: {!! $user->about !!}</div>
                     <div>Number of posts: {{ $user->posts_count }}</div>
+                    <div class="panel-heading"><h4>Social links</h4></div>
+                    @each('includes.country', $user->socialLinks, 'socialLink')
                     <div class="panel-heading"><h4>Posts</h4></div>
                     @each('includes.post', App\Post::indexByUser($user->id), 'post')
                 </div>
