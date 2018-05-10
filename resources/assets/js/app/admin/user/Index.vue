@@ -32,6 +32,14 @@
                             </div>
                         </div>
                         <div class="form-group row">
+                            <label for="email" class="col-md-1 col-md-offset-2 col-form-label" style="top:4px;">
+                                Land:
+                            </label>
+                            <div class="col-md-6">
+                                <input type="text" id="land" v-model="user.data.land" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
                             <div class="col-md-6 col-md-offset-4">
                                 <button
                                     class="btn btn-sm btn-primary"
