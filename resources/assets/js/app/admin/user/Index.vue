@@ -32,6 +32,15 @@
                             </div>
                         </div>
                         <div class="form-group row">
+                            <div class="col-md-6 col-md-offset-4">
+                                <button
+                                    class="btn btn-sm btn-primary"
+                                    @click="showSocialLinksModal = true">
+                                        Manage social links
+                                </button>
+                            </div>
+                        </div>
+                        <div class="form-group row">
                             <label for="editor1" class="col-md-1 col-md-offset-2 col-form-label" style="top:4px;">
                                 About:
                             </label>
@@ -66,12 +75,18 @@
                 </div>
             </div>
         </div>
+        <social-links-modal v-if="showSocialLinksModal"
+                :show="showSocialLinksModal"
+                :user="user"
+                @close="showSocialLinksModal = false">
+        </social-links-modal>
     </div>
 </template>
 
 <script>
 import User from '../../../models/User.js';
 import Role from '../../../models/Role.js';
+import SocialLinksModal from '../SocialLinksModal.vue';
 import Alert from '../../Alert.vue';
 import Editor from '../Ckeditor.vue';
 
@@ -88,6 +103,7 @@ export default {
             roles : [],
             chosenRoles : [],
             availableRoles : [],
+            showSocialLinksModal : false,
             alert : {
                 show : false,
                 data : {
@@ -165,6 +181,7 @@ export default {
         next();
     },
     components : {
+        SocialLinksModal,
         Alert,
         Editor : Editor,
     }

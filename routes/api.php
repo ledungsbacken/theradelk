@@ -110,6 +110,22 @@ Route::group(['middleware' => ['auth:api']], function () {
         ]
     ]);
 
+    Route::resource('/sociallink', 'Api\SocialLinkController', [
+        'only' => [
+            'index',
+            'show',
+            'store',
+            'update',
+            'destroy',
+        ]
+    ]);
+
+    Route::resource('/sociallinktype', 'Api\SocialLinkTypeController', [
+        'only' => [
+            'index',
+        ]
+    ]);
+
     Route::post('/image/upload', 'Api\ImageController@upload');
     Route::resource('/image', 'Api\ImageController', [
         'only' => [

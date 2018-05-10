@@ -7,6 +7,8 @@ use App\Category;
 use App\Subcategory;
 use App\View;
 use App\Scenery;
+use App\SocialLink;
+use App\SocialLinkType;
 
 use Illuminate\Database\Seeder;
 
@@ -64,11 +66,17 @@ class DevUsersSeeder extends Seeder
                 ]
             );
 
+            $links = factory(SocialLink::class, rand(1, 4))->create(
+                [
+                    'user_id' => $user->id,
+                    'type_id' => function() { return SocialLinkType::all()->random()->id; },
+                ]
+            );
+
             // Create posts and link to user
             $posts = factory(Post::class, self::N_POSTS_PER_USER)->create([]);
             $posts->each(function($post) use ($user) {
                 Post::where('id', $post->id)->update(['user_id' => $user->id]);
-                // $subcategory = factory(Subcategory::class)->create();
                 DB::table('post_subcategory')->insert([
                     'post_id' => $post->id,
                     'subcategory_id' => rand(1, 4),

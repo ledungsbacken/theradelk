@@ -6,6 +6,8 @@ use App\Post;
 use App\Category;
 use App\Subcategory;
 use App\HeadImage;
+use App\SocialLink;
+use App\SocialLinkType;
 
 use Faker\Generator as Faker;
 
@@ -67,5 +69,11 @@ $factory->define(App\HeadImage::class, function(Faker $faker) {
         'desktop' => 'https://cataas.com/cat',
         'tablet' => 'https://cataas.com/cat',
         'phone' => 'https://cataas.com/cat',
+    ];
+});
+
+$factory->define(App\SocialLink::class, function(Faker $faker) {
+    return [
+        'url' => $faker->url,
     ];
 });

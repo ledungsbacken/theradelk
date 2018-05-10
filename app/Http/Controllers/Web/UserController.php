@@ -17,7 +17,7 @@ class UserController extends Controller
 {
     public function index(Request $request) {
         if(Auth::user()->cant('view', User::class)) { return response()->json('Forbidden', 403); }
-        $users = User::with('roles')->withCount('posts')->get();
+        $users = User::with('roles', 'socialLinks')->withCount('posts')->get();
         return $users;
     }
 
@@ -37,10 +37,8 @@ class UserController extends Controller
     }
 
     public function show($id) {
-        $user = User::with('roles')->withCount(['posts' => function($query) {
-            return $query->where([
-                ['published', '1'],
-            ]);
+        $user = User::with('roles', 'socialLinks')->withCount(['posts' => function($query) {
+            return $query->whereNotNull('published');
         }])->find((int)$id);
         return View('user.show')->with('user', $user);
     }

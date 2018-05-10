@@ -62,12 +62,11 @@ class Post extends Model
      */
     public static function indexByUser($userId, $count = 0) {
         $posts = Post::with(['subcategories.category', 'user', 'headImage', 'viewsCountRelation']);
-        $posts->where('published', '=', '1');
+        $posts->whereNotNull('published');
         $posts->where('user_id', '=', (int)$userId);
         $posts->orderBy('id', 'DESC');
 
         $posts = $posts->paginate((int)$count);
-
         return $posts;
     }
 }
