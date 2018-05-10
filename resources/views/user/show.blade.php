@@ -10,7 +10,7 @@
                     @endimage
                     <div>Name: {{ $user->name }}</div>
                     <div>Email: {{ $user->email }}</div>
-                    <div>Land: {{ $user->land }}</div>
+                    <div>Country: {{ $user->country }}</div>
                     <div>About: {!! $user->about !!}</div>
                     <div>Number of posts: {{ $user->posts_count }}</div>
                     <div class="panel-heading"><h4>Posts</h4></div>
