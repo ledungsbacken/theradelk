@@ -1,0 +1,1 @@
+<li><a href="{{ $socialLink->url }}" target="_blank"><i class="{{ $socialLink->type->icon }}"></i></a></li>

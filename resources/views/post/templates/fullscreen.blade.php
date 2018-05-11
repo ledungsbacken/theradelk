@@ -1,30 +1,23 @@
+<div id="progressBar"></div>
 <div id="postPage_second">
+    <h1 id="largePageHeader">
+        <a href="https://theradelk.com">theRadElk</a>
+    </h1>
     <div id="postPage" class="wrapper">
         <div id="coverImage">
             <div id="filter" style="background-color: rgba(44, 62, 80, {{ $post->opacity }});"></div>
             <header>
                 <h1>{{ $post->title }}</h1>
                 <p id="subheader">{{ $post->subtitle }}</p>
-
-                <div id="author_section_created_views">
-                    <div id="author">
+                <div id="image_name_views">
+                    <div id="authorImage_name">
                         <img src="{{ $post->user->picture }}" id="authorImage" />
-                        <div id="authorName">
-                            {{ $post->user->name }}
-                        </div>
+                        <p id="author_category">by <a href="../user/{{ $post->user->id }}"><strong>{{ $post->user->name }}</strong></a> about {{ dateToHumanDiff($post->published) }} in <strong>@foreach($post->subcategories as $subcategory) <a href="/category/{{ $subcategory->category->slug }}/{{ $subcategory->slug }}">{{ $subcategory->name }}</a> @endforeach</strong></p>
                     </div>
-                    <div id="created">
-                        <i class="fa fa-calendar"></i>
-                        <div id="date">
-                            {{ dateToHumanDiff($post->created_at) }}
-                        </div>
-                    </div>
-                    <div id="views">
+                    <p id="views">
                         <i class="fa fa-eye"></i>
-                        <div id="counter">
-                            {{ $post->viewsCountRelation->count }}
-                        </div>
-                    </div>
+                        {{ $post->viewsCountRelation->count }}
+                    </p>
                 </div>
             </header>
             <picture>
@@ -34,25 +27,75 @@
                 <img src="{{ $post->headImage->phone }}" id="postImage">
             </picture>
         </div>
-        <main id="postText_aside">
-            <div id="middleContent">
-                <section id="postText">
-                    <div v-html="post.data.content" id="ckeditor"></div>
-                </section>
-                <aside>
-                    <div id="ad">
-                        <img src="https://cointelegraph.com/storage/uploads/view/4977ffd81bf014e27bfc08325e15b20e.png" alt="">
-                    </div>
-                </aside>
-            </div>
-        </main>
+        <div id="progressMarker">
+            <main id="postText-FullPage">
+                {!! $post->content !!}
+            </main>
+        </div>
+    </div>
+    <div id="continue">
+        <ul>
+            <li>
+                <h2>popular right now</h2>
+                @foreach ($relatedPosts as $related)
+                <article class="fullscreenRelated">
+                    <a href="{{ $related->slug }}">
+                        <img src="{{ $related->headImage->thumbnail }}" alt="">
+                        <h3>{{ $related->title }}</h3>
+                        <p>by {{ $related->user->name }}</p>
+                    </a>
+                </article>
+                @endforeach
+            </li>
+            <li>
+                <h2>you might also like..</h2>
+                @foreach ($relatedPosts as $related)
+                <article class="fullscreenRelated">
+                    <a href="{{ $related->slug }}">
+                        <img src="{{ $related->headImage->thumbnail }}" alt="">
+                        <h3>{{ $related->title }}</h3>
+                        <p>by {{ $related->user->name }}</p>
+                    </a>
+                </article>
+                @endforeach
+            </li>
+        </ul>
+    </div>
+    <div id="comment">
+        <div id="disqus_thread"></div>
+        <script>
+
+        /**
+        *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+        *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+        /*
+        var disqus_config = function () {
+        this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        };
+        */
+        (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+        s.src = 'https://theradelk-com.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+        })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
     </div>
 </div>
 <style>
+    body{
+        background-color: #fff !important;
+    }
+    #topper_padding{
+        padding-bottom: 0;
+    }
     #postPage_second{
         margin-top: 0;
     }
-    #topcolWrap{
+    #topcolWrap,
+    #topper_padding{
         display:none;
     }
     .navbar-static-top{

@@ -79,6 +79,7 @@ Route::group(['middleware' => ['auth:api']], function () {
         ]
     ]);
     Route::get('/posts/admin', 'Api\PostController@indexAdmin');
+    Route::get('/posts/category', 'Api\PostController@indexByCategory');
     Route::put('/post/{id}/restore', 'Api\PostController@restoreDestroyed');
     Route::put('/post/{id}/file', 'Api\PostController@storeFile');
     Route::put('/post/{id}/publish', 'Api\PostController@setPublished');
@@ -100,10 +101,36 @@ Route::group(['middleware' => ['auth:api']], function () {
         ]
     ]);
 
+    Route::resource('/scenery', 'Api\SceneryController', [
+        'only' => [
+            'index',
+            'show',
+            'store',
+            'update',
+        ]
+    ]);
+
+    Route::resource('/sociallink', 'Api\SocialLinkController', [
+        'only' => [
+            'index',
+            'show',
+            'store',
+            'update',
+            'destroy',
+        ]
+    ]);
+
+    Route::resource('/sociallinktype', 'Api\SocialLinkTypeController', [
+        'only' => [
+            'index',
+        ]
+    ]);
+
     Route::post('/image/upload', 'Api\ImageController@upload');
     Route::resource('/image', 'Api\ImageController', [
         'only' => [
             'index',
+            'destroy',
         ]
     ]);
 

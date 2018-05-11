@@ -9,6 +9,7 @@ export default class User extends Model {
             'name'       : args.name,
             'email'      : args.email,
             'picture'    : args.picture,
+            'country'    : args.country,
             'about'      : args.about,
             'created_at' : args.created_at,
             'updated_at' : args.updated_at,

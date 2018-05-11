@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Auth;
 
 use App\Category;
+use App\Scenery;
 
 class CategoryController extends Controller
 {
@@ -15,7 +16,11 @@ class CategoryController extends Controller
      * @return Category
      */
     public function index(Request $request) {
-        $categories = Category::orderBy('name', 'ASC')->get();
+        $categories = Category::orderBy('name', 'ASC');
+        if($request->get('sceneries')) {
+            $categories->with('scenery');
+        }
+        $categories = $categories->get();
         return $categories;
     }
 
@@ -24,7 +29,7 @@ class CategoryController extends Controller
      * @return Post
      */
     public function show(Request $request, $id) {
-        $category = Category::findOrFail((int)$id);
+        $category = Category::with('scenery')->findOrFail((int)$id);
         return $category;
     }
 
@@ -38,6 +43,11 @@ class CategoryController extends Controller
 
         $request->slug = str_replace([' ', 'å', 'ä', 'ö', 'Å', 'Ä', 'Ö'], ['-', 'a', 'a', 'o', 'A', 'A', 'O'], strtolower($request->name));
         $category = Category::create($request->all());
+
+        Scenery::create([
+            'category_id' => $category->id,
+        ]);
+
         return $category;
     }
 

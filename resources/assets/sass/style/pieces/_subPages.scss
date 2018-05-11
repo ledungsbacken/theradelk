@@ -1,0 +1,245 @@
+#about-us{
+	.wrapper{
+		width:1164px !important;
+	}
+
+	h1{
+		@media screen and (max-width:800px){
+			font-size:2.5em;
+		}
+		@media screen and (min-width:801px){
+			font-size:4em;
+		}
+		color:#e74c3c;
+		font-weight:800;
+		padding-bottom: 15px;
+	}
+	.authorInfor{
+		overflow: hidden;
+		padding-top: 10px;
+		.fas,.fab, span, p{
+			color:#7f8c8d;
+		}
+		.location,
+		.socials{
+			display: inline-block;
+			.fas,
+			.fab{
+				float:left;
+			}
+			p{
+				float:left;
+				margin-top: -6px;
+				margin-left: 10px;
+				&:first-letter{
+					text-transform: uppercase;
+				}
+			}
+		}
+		.location{
+			float:left;
+		}
+	}
+	section{
+		overflow: hidden;
+		&:last-of-type{
+			margin-bottom: 10%;
+		}
+		p{
+			font-family: 'Montserrat', sans-serif;
+			font-weight:400;
+			font-size:1.1em;
+			line-height: 1.7em;
+			margin-bottom: 30px;
+		}
+		h3{
+			font-family: 'Poppins', sans-serif;
+			font-weight:400;
+			&:hover{
+				color:#e74c3c !important;
+			}
+		}
+		span{
+			font-family: 'Montserrat', sans-serif;
+		}
+		&:after{
+			content: "";
+		    display: block;
+		    height: 8px;
+		    background-color: #e74c3c;
+		    width:40%;
+		    margin-top: 4%;
+		}
+		&:last-of-type{
+			&:after{
+				display:none;
+			}
+		}
+	}
+}
+
+.subpage{
+	min-height:600px;
+
+	@media screen and (max-width:600px){
+		h1{
+			font-size:1.5em !important;
+		}
+	}
+}
+
+#about-us{
+	@media screen and (max-width:1300px){
+		max-width:91%;
+		margin:auto;
+	}
+	@media screen and (min-width:1301px){
+		width:1164px !important;
+		padding: 100px 0;
+		margin:auto;
+	}
+	@media screen and (max-width: 1300px){
+		width:100%;
+		padding: 10% 0;
+	}
+}
+#authors{
+	@media screen and (min-width:950px){
+		display:flex;
+	}
+	flex-direction:row;
+	flex-wrap:wrap;
+	box-sizing:border-box;
+	overflow: hidden;
+	margin-left: -8px;
+	margin-right: -8px;
+}
+.author{
+	flex: 1 0 24.3%;
+	box-sizing:border-box;
+	padding:10px;
+	display: inline-block;
+	float:left;
+	position: relative;
+
+	&:hover{
+		header{
+			h3{
+				color:#e74c3c !important;
+			}
+		}
+	}
+
+	@media screen and (max-width: 499px){
+		.image_social{
+			width:100%;
+			max-height:190px;
+			height:190px;
+		}
+		img{
+			position: absolute;
+			width: 100%;
+			top:-100%;
+			bottom: -100%;
+		    z-index: -99;
+		    margin: auto;
+		}
+	}
+
+	@media screen and (max-width:500px){
+		width:100% !important;
+		float:none;
+		img{
+			width: 100%;
+		}
+		.socials{
+			display:none;
+		}
+	}
+	@media screen and (min-width: 501px) and (max-width:949px){
+		width:50% !important;
+		
+		.image_social{
+			width:100%;
+			max-height:220px;
+			height:220px;
+		}
+		img{
+			position: absolute;
+			width: 100%;
+			top:-100%;
+			bottom: -100%;
+		    z-index: -99;
+		    margin: auto;
+		}
+		.socials{
+			display:none;
+		}
+	}
+	@media screen and (min-width: 950px){
+		img{
+			width: 100% !important;
+		}
+		.filter{
+			&:after{
+				content: "";
+			    position: absolute;
+			    display: block;
+			    background: rgba(0, 0, 0, 0.03) -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(30%, transparent), color-stop(80%, rgba(0, 0, 0, 0.75)));
+			    background: rgba(0, 0, 0, 0.03) linear-gradient(transparent, transparent 30%, rgba(0, 0, 0, 0.75) 80%);
+			    z-index:99;
+			    height:100%;
+			    width:100%;
+			    bottom: 0;
+			}
+		}
+	}
+	.authLink{
+		position: absolute;
+		width: 100%;
+		height:100%;
+		overflow: hidden;
+		top:0;
+		bottom: 0;
+		z-index:999;
+	}
+	.image_social{
+		position: relative;
+		max-height:250px !important;
+		overflow: hidden;
+	}
+	img{
+		z-index:-1;
+	}
+	header{
+		margin-top: 15px;
+	}
+	.socials{
+		position: absolute;
+		bottom: 0;
+		padding:10px;
+		text-align: center;
+		width: 100%;
+		z-index: 9999;
+		box-sizing:border-box;
+		a{
+			color:#fff;
+			&:hover{
+				color:#E74C3C !important;
+			}
+		}
+		li{
+			padding: 4px 7px;
+			margin-left: -4px;
+			.fas,.fab{
+				font-size:1.2em;
+			}
+		}
+	}
+	h3{
+		color:#16a085;
+		font-weight:600;
+		margin-top: 15px;
+		transition:.3s;
+	}
+}

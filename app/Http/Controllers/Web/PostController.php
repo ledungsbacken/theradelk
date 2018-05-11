@@ -11,9 +11,12 @@ use App\Role;
 use App\Post;
 use App\Category;
 use App\View;
+use App\Scenery;
 
 class PostController extends Controller
 {
+
+    private $count = 9;
 
     /**
      * @param Request $request
@@ -21,13 +24,15 @@ class PostController extends Controller
      */
     public function index(Request $request) {
         $posts = Post::with(['subcategories.category', 'user', 'headImage', 'viewsCountRelation']);
-        $posts->where('published', '=', '1');
+        $posts->whereNotNull('published');
         $posts->where('hidden', '=', '0');
-        $posts->orderBy('id', 'DESC');
+        $posts->orderBy('published', 'DESC');
 
-        $posts = $posts->paginate((int)$request['count']);
+        $posts = $posts->paginate($this->count);
 
-        return View('post.index')->with('posts', $posts);
+        $scenery = Scenery::whereNull('category_id')->first();
+
+        return View('post.index', ['posts' => $posts, 'scenery' => $scenery]);
     }
 
     /**
@@ -35,18 +40,22 @@ class PostController extends Controller
      * @return Post
      */
     public function indexByCategory(Request $request, $categorySlug) {
+        $this->count = 12;
+
         $posts = Post::with(['subcategories.category', 'user', 'headImage', 'viewsCountRelation']);
         $category = Category::where('slug', '=', $categorySlug)->first();
         $posts->whereHas('subcategories.category', function($query) use ($categorySlug) {
             return $query->where('slug', '=', $categorySlug);
         });
-        $posts->where('published', '=', '1');
+        $posts->whereNotNull('published');
         $posts->where('hidden', '=', '0');
-        $posts->orderBy('id', 'DESC');
+        $posts->orderBy('published', 'DESC');
 
-        $posts = $posts->paginate((int)$request['count']);
+        $posts = $posts->paginate($this->count);
 
-        return View('post.index')->with('posts', $posts);
+        $scenery = Scenery::where('category_id', '=', $category->id)->first();
+
+        return View('post.index', ['posts' => $posts, 'scenery' => $scenery]);
     }
 
     /**
@@ -62,28 +71,40 @@ class PostController extends Controller
                 ['category_id', '=', $category->id],
             ]);
         });
-        $posts->where('published', '=', '1');
+        $posts->whereNotNull('published');
         $posts->where('hidden', '=', '0');
-        $posts->orderBy('id', 'DESC');
+        $posts->orderBy('published', 'DESC');
 
-        $posts = $posts->paginate((int)$request['count']);
+        $posts = $posts->paginate($this->count);
 
-        return View('post.index')->with('posts', $posts);
+        $scenery = Scenery::where('category_id', '=', $category->id)->first();
+
+        return View('post.index', ['posts' => $posts, 'scenery' => $scenery]);
     }
 
     /**
      * @param Request $request
      * @return Post
      */
-    public function indexByUser(Request $request, $userId) {
+    public function search(Request $request) {
+        if(!$request->q) {
+            return Redirect('/');
+        }
+        $search = explode(' ', $request->q);
         $posts = Post::with(['subcategories.category', 'user', 'headImage', 'viewsCountRelation']);
-        $posts->where('published', '=', '1');
-        $posts->where('user_id', '=', (int)$userId);
-        $posts->orderBy('id', 'DESC');
+        $posts->whereNotNull('published');
+        foreach($search as $word) {
+            $posts->where(function($query) use ($word) {
+                $query->orWhere('title', 'LIKE', '%'.$word.'%');
+                $query->orWhere('subtitle', 'LIKE', '%'.$word.'%');
+                $query->orWhere('content', 'LIKE', '%'.$word.'%');
+            });
+        }
+        $posts->orderBy('published', 'DESC');
 
-        $posts = $posts->paginate((int)$request['count']);
+        $posts = $posts->paginate($this->count);
 
-        return View('post.index')->with('posts', $posts);
+        return View('post.search', ['posts' => $posts]);
     }
 
     /**
@@ -92,7 +113,7 @@ class PostController extends Controller
      */
     public function show(Request $request, $slug) {
         $post = Post::with(['subcategories.category', 'user', 'headImage'])->where('slug', '=', $slug)->firstOrFail();
-        if($post->published == 1) {
+        if($post->published) {
             View::create([
                 'post_id' => $post->id,
             ]);
@@ -104,7 +125,26 @@ class PostController extends Controller
                 return response()->json('Not Found', 404);
             }
         }
+        $relatedPosts = Post::with(['user', 'headImage']);
+        if($post->subcategories->count() > 0) {
+                $relatedPosts->whereHas('subcategories', function($query) use ($post) {
+                        return $query->where('category_id', '=', $post->subcategories[0]->category_id);
+                });
+        }
 
-        return view('post.show')->with('post', $post->load('viewsCountRelation'));
+        $relatedPosts->whereNotNull('published');
+        $relatedPosts->where('hidden', '=', '0');
+
+        $relatedPosts = $relatedPosts->inRandomOrder()->limit(2)->get();
+
+        $count = file_get_contents('https://graph.facebook.com/?id='.$request->fullUrl());
+
+        return view('post.show',
+            [
+                'post' => $post->load('viewsCountRelation'),
+                'relatedPosts' => $relatedPosts,
+                'sharesCount' => $count,
+            ]
+        );
     }
 }

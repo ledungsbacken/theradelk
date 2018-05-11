@@ -1,54 +1,74 @@
+
+#progressBar{
+	height: 5px;
+    background-color: #009ACF;
+    width: 0px;
+    z-index: 1000;
+    position: fixed;
+    top: 55px;
+    left: 0;
+}
+#progressMarker{
+	overflow: hidden;
+}
+
+
 #topcolWrap{
 	border:solid 5px #649173;
-	border-bottom:none;
-	margin-top: 140px;
-
-	@media screen and (min-width:1400px){
-		margin-top: 140px;
-	}
+	border-left:none;
+	border-right:none;
 }
+#mobile_nav{
+	background-color: #fff;
+}
+#topper_padding{
+	padding-bottom: 8px;
+	background-image: url("https://www.danielljungqvist.se/images/covers/image/vnRz9Qs6Slxyf0UYToeEDp4CX.png");
+	background-repeat:no-repeat;
+	overflow: hidden;
+	height:108px;
+	background-size: 100% auto;
 
-
-#scrollTopper{
-	position: fixed;
-	z-index:999;
-	top:0;
-	box-sizing:border-box;
-	background-color: #649173;
-	width:100%;
-	padding: 0 50px;
-	display:none;
-	span{
-		font-family: 'Montserrat', sans-serif;
-		font-weight:400;
+	@media screen and (max-width:460px){
+		background-size: auto 100%;
 	}
-	h2{
+	h1{
 		font-family: 'Knewave', cursive;
+		font-weight:400;
+		font-size:4em;
 		color:#fff;
-		display: inline-block;
-		padding:12px;
-		font-size:1.5em;
-	}
-	ul{
-		display: inline-block;
-		vertical-align: top;
-		padding: 15px 0;
-		*{
-			color:#fff;
+		opacity:.4;
+		font-style:italic;
+		padding-left: 4%;
+		float:left;
+
+		&:hover{
+			opacity: 1;
+		}
+
+		@media screen and (max-width: 920px){
+			font-size:3em;
+			text-align: center;
+			float:none;
+			padding-left: 0;
 		}
 	}
-	#categories{
+	p{
 		float:right;
-		margin-top: 3px;
-		li{
-			text-transform: uppercase;
-			float:left;
-			margin-right: 20px;
-			font-size:1.2em;
+		color:#fff;
+		width:400px;
+		font-style:italic;
+		padding-right: 4%;
+		margin-top: 19px;
+		opacity: .4;
+		@media screen and (max-width: 920px){
+			display:none;
+		}
+		&:hover{
+			opacity:1;
 		}
 	}
 }
-
 
 #topper{
 	background: #649173;  /* fallback for old browsers */  /* Chrome 10-25, Safari 5.1-6 */
@@ -91,7 +111,8 @@
 	@media screen and (max-width:1199px){
 		#logo{
 			position: absolute;
-			max-width:100px;
+			max-width:125px;
+			margin-top: -65px !important;
 		}
 	}
 
@@ -189,12 +210,111 @@
 	@media screen and (min-width:1500px){
 		#logo{
 			width:150px !important;
-			margin-top: -90px;
+			margin-top: -84px;
 		}
 
 		ul{
 			li{
 				font-size:1.1em;
+			}
+		}
+	}
+}
+
+#largePageHeader{
+	position: absolute;
+	top:0;
+	left:0;
+	right:0;
+	z-index: 99;
+	padding:15px 25px;
+	a{
+
+	font-family: 'Knewave', cursive;
+	color:#fff;
+	font-size:1em;
+	}
+}
+
+#scrollFollow_nav{
+	background: #649173;  /* fallback for old browsers */  /* Chrome 10-25, Safari 5.1-6 */
+    background: -webkit-linear-gradient(right, #90c1a0, #649173);
+    background: -o-linear-gradient(right, #90c1a0, #649173);
+    background: linear-gradient(to left, #90c1a0, #649173); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+	position: fixed;
+	top:0;
+	background-color: #fff;
+	left:0;
+	right:0;
+	overflow: hidden;
+	padding: 0 20px;
+	z-index: 999999999;
+	display:none;
+
+	h1,nav{
+		display: inline-block;
+	}
+
+	h1{
+		padding:7px;
+		float:left;
+		a{
+			font-family: 'Knewave', cursive;
+			font-size:.8em;
+			color:#fff;
+		}
+	}
+
+	@media screen and (max-width:800px){
+		#categories,
+		#social{
+			display:none;
+		}
+		#scrollFollowToggle{
+			display:block !important;
+			float:right;
+			font-size:2em;
+			padding:10px;
+			color:#fff;
+		}
+	}
+
+	#scrollFollowToggle{
+		display:none;
+	}
+
+	#categories{
+		float:left;
+		margin-left: 15px;
+	}
+	#social{
+		float:right;
+		ul{
+			float:right;
+		}
+		h3{
+			float:left;
+			font-size:1em;
+			margin-left:15px;
+			padding:5px;
+			color:#fff;
+		}
+	}
+	nav{
+		margin-top: 13px;
+		display: inline-block;
+		box-sizing:border-box;
+		a{
+			color:#fff;
+			text-transform: uppercase;
+			font-family: 'Abel', sans-serif;
+			font-size:1.3em;
+			margin-top: 3px;
+			padding: 0 10px;
+			display: inline-block;
+			&:hover{
+				color:#ddd;
 			}
 		}
 	}

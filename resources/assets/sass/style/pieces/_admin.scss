@@ -25,16 +25,23 @@ ul.nav{
 	margin-top: -10px;
 }
 
-#coverImage{
+#coverImage,
+#picture_text{
 	textarea{
 		width: 940px;
 		border:none;
 		background-color: transparent;
 		outline:none;
+	}
+}
+
+#coverImage{
+	textarea{
+		outline:none;
 		font-family: 'Montserrat', sans-serif;
 		&:first-of-type{
 			font-weight: 800;
-			font-size: 4em !important;
+			font-size: 3.7em !important;
 			color: #fff;
 			text-align: center;
 			line-height: 1.3em;
@@ -49,7 +56,24 @@ ul.nav{
 		}
 	}
 }
-
+#picture_text{
+	textarea{
+		width: 100%;
+		&:first-of-type{
+			font-family: 'Poppins', sans-serif;
+		    font-size: 2.8em;
+		    font-weight: 700;
+		    line-height: 1.3em;
+		    color: #8DBE9D;
+		}
+		&:last-of-type{
+			font-style: italic;
+		    color: #95a5a6;
+		    font-size: 1.4em;
+		    padding: 13px 0;
+		}
+	}
+}
 #admin{
 	bottom: 0;
 	position: fixed;
@@ -70,7 +94,7 @@ ul.nav{
 
 #menu_togglers{
 	position: fixed;
-	top:100px;
+	top:16em;
 	margin-left: 20px;
 	z-index: 999;
 	text-align: center;

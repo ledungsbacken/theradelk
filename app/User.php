@@ -9,6 +9,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Role;
 use App\Post;
 use App\LoggedInLog;
+use App\SocialLink;
+use App\SocialLinkType;
 
 class User extends Authenticatable
 {
@@ -24,6 +26,7 @@ class User extends Authenticatable
         'email',
         'password',
         'picture',
+        'country',
         'about',
     ];
 
@@ -43,6 +46,10 @@ class User extends Authenticatable
 
     public function posts() {
         return $this->hasMany(Post::class);
+    }
+
+    public function socialLinks() {
+        return $this->hasMany(SocialLink::class);
     }
 
     public function hasPermission($permission)

@@ -39,10 +39,11 @@ export default {
                         'Source',
                         'Format',
                         'Link',
-                        'Unlink'
+                        'Unlink',
+                        'Youtube',
                     ]
                 ],
-                extraPlugins: 'autogrow',
+                extraPlugins: 'youtube,autogrow',
                 toolbarLocation: 'bottom',
             }
         }

@@ -24,7 +24,7 @@ class CreatePostsTable extends Migration
             $table->float('opacity')->default(0.3);
             $table->boolean('is_fullscreen')->default(0);
             $table->boolean('hidden')->default(0);
-            $table->boolean('published')->default(0);
+            $table->timestamp('published')->nullable();
             $table->softDeletes();
             $table->timestamps();
 

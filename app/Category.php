@@ -27,4 +27,9 @@ class Category extends Model
     {
         return $this->HasMany(Subcategory::class);
     }
+
+    public function scenery()
+    {
+        return $this->HasOne(Scenery::class);
+    }
 }

@@ -17,7 +17,7 @@ class UserController extends Controller
 {
     public function index(Request $request) {
         if(Auth::user()->cant('view', User::class)) { return response()->json('Forbidden', 403); }
-        $users = User::with('roles')->withCount('posts')->get();
+        $users = User::with('roles', 'socialLinks')->withCount('posts')->get();
         return $users;
     }
 
@@ -37,10 +37,8 @@ class UserController extends Controller
     }
 
     public function show($id) {
-        $user = User::with('roles')->withCount(['posts' => function($query) {
-            return $query->where([
-                ['published', '1'],
-            ]);
+        $user = User::with('roles', 'socialLinks')->withCount(['posts' => function($query) {
+            return $query->whereNotNull('published');
         }])->find((int)$id);
         return $user;
     }
@@ -85,7 +83,7 @@ class UserController extends Controller
     }
 
     public function syncRoles(Request $request, $id) {
-        $user = User::with('roles')->find((int)$id);
+        $user = User::with('roles', 'socialLinks')->find((int)$id);
         $superAdmin = null;
         $user->roles->each(function($role) use (&$superAdmin) {
             if($role->name == 'super_admin') {
@@ -118,7 +116,7 @@ class UserController extends Controller
     public function getCurrent() {
         $return = null;
         if(Auth::check()) {
-            $return = User::with('roles')->find(Auth::user()->id);
+            $return = User::with('roles', 'socialLinks')->find(Auth::user()->id);
         }
         return $return;
     }

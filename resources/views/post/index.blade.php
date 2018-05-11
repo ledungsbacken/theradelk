@@ -1,41 +1,73 @@
 @extends('master')
 @section('content')
-    <div class="wrapper">
-        <section id="collage" style="border:solid 5px #649173;border-top:none;">
-            <a href="http://theradelk.test/#/post/play-pok%C3%A9mon-for-free-on-your-windows-computer-or-android-device" class="item">
-                <div class="hoverLayer">
-                    <img src="http://danielljungqvist.se/images/big/image/vMEHZVXTbd.jpg" alt="">
-                </div>
-                    <div class="underLay">
-                        <header>
-                            <h2>Corey Taylor says Slipknot's next album is gonna by 'heavy'</h2>
-                            <span>by <strong>Daniel Ljungqvist</strong> in <strong>Music</strong></span>
-                        </header>
+    <div id="startPage">
+        @if($scenery->firstPost && $scenery->secondPost && $scenery->thirdPost)
+        <section id="collage">
+            <div class="item large">
+                <a href="/post/{{ $scenery->firstPost->slug }}" class="stories"></a>
+                    <div class="hoverLayer">
+                        <picture>
+                            <source media="(max-width:800px)" srcset="{{ $scenery->firstPost->headImage->phone }}">
+                            <source media="(min-width:801px)" srcset="{{ $scenery->firstPost->headImage->tablet }}">
+                            <img src="{{ $scenery->firstPost->headImage->phone }}" alt="">
+                        </picture>
+                        <div class="underLay">
+                            <header>
+                                <h2>{{ $scenery->firstPost->title }}</h2>
+                                <span>
+                                    {{ $scenery->firstPost->subtitle }}
+                                </span>
+                                <p>
+                                    by 
+                                    <strong>
+                                        <a href="/user/{{ $scenery->firstPost->user->id }}">{{ $scenery->firstPost->user->name }}</a>
+                                    </strong>
+                                </p>
+                            </header>
+                        </div>
                     </div>
-            </a>
-            <a href="http://theradelk.test/#/post/save-those-great-snaps-of-yours-for-usage-outside-of-snapchat" class="item">
+            </div>
+            <div class="item small">
+                <a href="/post/{{ $scenery->secondPost->slug }}" class="stories"></a>
                 <div class="hoverLayer">
-                    <img src="http://danielljungqvist.se/images/big/image/gTMpQzeJsP.jpg" alt="">
-                </div>
-                    <header>
-                        <h2>Download images and videos from you AirDroid to your Computer</h2>
-                        <span>by <strong>Daniel Ljungqvist</strong> in <strong>Tech</strong></span>
-                    </header>
-            </a>
-            <a href="http://theradelk.test/#/post/spacex-has-now-launched-the-world's-biggest-rocket-to-space-with-a-car-in-it" class="item">
-                <div class="hoverLayer">
-                    <img src="https://danielljungqvist.se/images/big/image/RiAPrmS8jp.jpg" alt="">
+                    <picture>
+                        <source media="(max-width:800px)" srcset="{{ $scenery->secondPost->headImage->phone }}">
+                        <source media="(min-width:801px)" srcset="{{ $scenery->secondPost->headImage->tablet }}">
+                        <img src="{{ $scenery->secondPost->headImage->phone }}" alt="">
+                    </picture>
                 </div>
                 <header>
-                    <h2>Red Dead Redemption 2 to be released 26th of October</h2>
-                    <span>by <strong>Daniel Ljungqvist</strong> in <strong>Tech</strong></span>
+                    <h2>{{ $scenery->secondPost->title }}</h2>
+                    <p>by <strong>{{ $scenery->secondPost->user->name }}</strong></p>
                 </header>
-            </a>
+            </div>
+            <div class="item small">
+                <a href="/post/{{ $scenery->thirdPost->slug }}" class="stories"></a>
+                <div class="hoverLayer">
+                    <picture>
+                        <source media="(max-width:800px)" srcset="{{ $scenery->thirdPost->headImage->phone }}">
+                        <source media="(min-width:801px)" srcset="{{ $scenery->thirdPost->headImage->tablet }}">
+                        <img src="{{ $scenery->thirdPost->headImage->phone }}" alt="">
+                    </picture>
+                </div>
+                <header>
+                    <h2>{{ $scenery->thirdPost->title }}</h2>
+                    <p>by <strong>{{ $scenery->thirdPost->user->name }}</strong>
+                            </p>
+                </header>
+            </div>
         </section>
+        @endif
         <section id="latest">
+            <header>
+                <h1 id="subtitle">
+                    Recent
+                </h1>
+            </header>
             <main>
                 @each('includes.post', $posts, 'post')
             </main>
+            {{ $posts->links() }}
         </section>
     </div>
 @endsection

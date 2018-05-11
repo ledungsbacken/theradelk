@@ -37,7 +37,9 @@ h2 + p{
 h2 + img {
   padding-top: 20px;
 }
-
+    h2{
+      margin-top: 35px !important;
+    }
 p{
     margin: 0;
     padding-bottom: 30px;
@@ -45,7 +47,6 @@ p{
     font-family: 'Open Sans', sans-serif;
     font-size:1.1em;
     font-weight: 400;
-    color: #333 !important;
     p:last-of-type {
       margin-bottom: 0; 
     }
@@ -53,7 +54,6 @@ p{
 ol,ul{
 }
 h1, h2, h3 {
-    color: #333;
     font-weight: 800;
     font-family: 'Montserrat', sans-serif;
 }
@@ -67,6 +67,9 @@ em {
     font-style: italic;
     font-family: 'Open Sans', sans-serif;
 }
+ul,ol li{
+  font-size:1.1em;
+}
 ol{
     padding: 0;
     padding: 10px 0;
@@ -77,7 +80,6 @@ ol{
       line-height: 1.6em;
       list-style: none;
       font-family: 'Open Sans', sans-serif;
-      font-size: 1em;
 
       &:before{
         position: absolute;
@@ -100,16 +102,24 @@ ol{
     }
 }
 strong {
-    font-weight: 600;
+    font-weight: 800;
 }
 
 blockquote {
     border-left: solid 3px #333;
+    margin:0 30px;
+    margin-bottom: 30px;
     p{
       padding-left: 20px;
       font-style: italic;
       color: #333;
+      padding-bottom: 0;
     }
 }
 h1 {
   font-size: 2em; }
+
+h3{
+  padding-top: 10px;
+  padding-bottom: 19px;
+}

@@ -1,26 +1,36 @@
 <article class="col">
-        <img src="{{ $post->headImage->phone }}" alt="">
-        <header>
+    <div class="hoverColors">
     <a href="/post/{{ $post->slug }}" class="posts">
+        <img src="{{ $post->headImage->thumbnail }}" alt="">
+        <header>
             <h2>{{ $post->title }}</h2>
-    </a>
             <p>{{ $post->subtitle }}</p>
-            <ul class="inline">
-                <li>
-                    by  <strong>
-                            <a href="/user/{{ $post->user->id }}">
-                                {{ $post->user->name }}
-                            </a>
-                        </strong> in 
-                    @foreach($post->subcategories as $subcategory)
-                        <strong>
-                            <a href="/category/{{ $subcategory->category->slug }}/{{ $subcategory->slug }}">
-                                {{ $subcategory->name }}
-                            </a>
-                        </strong>
-                    @endforeach</li>
-                <li>{{ dateToHumanDiff($post->created_at) }}</li>
-            </ul>
-        </header>
-   
+        </div>
+    </a>
+    <ul class="inline" id="laptop">
+        <li>
+            by  <strong>
+                    <a href="/user/{{ $post->user->id }}">
+                        {{ $post->user->name }}
+                    </a>
+                </strong> in 
+            @foreach($post->subcategories as $subcategory)
+                <strong>
+                    <a href="/category/{{ $subcategory->category->slug }}/{{ $subcategory->slug }}">
+                        {{ $subcategory->name }}
+                    </a>
+                </strong>
+            @endforeach</li>
+        <li>{{ dateToHumanDiff($post->published) }}</li>
+    </ul>
+    <ul class="inline" id="mobile">
+        <li>
+            <strong>
+                    <a href="/user/{{ $post->user->id }}">
+                        {{ $post->user->name }}
+                    </a>
+            </strong>
+        <li>{{ dateToHumanDiff($post->published) }}</li>
+    </ul>
+    </header>
 </article>

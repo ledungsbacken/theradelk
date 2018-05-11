@@ -22,10 +22,16 @@ Route::get('/post', function() {
     return Redirect('/');
 });
 
+Route::get('/search', 'Web\PostController@search');
+
 Route::get('/category/{category}', 'Web\PostController@indexByCategory');
 Route::get('/category/{category}/{subcategory}', 'Web\PostController@indexBySubcategory');
 
 Route::get('/user/{userId}', 'Web\UserController@show');
+
+Route::get('/about', 'ViewController@about');
+Route::get('/join-us', 'ViewController@join');
+Route::get('/contact', 'ViewController@contact');
 
 Route::get('/theme/set/{theme}', function($theme) {
     if($theme == 'light') {

@@ -12,6 +12,7 @@
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
+                <li><a href="/admin#/settings">Settings</a></li>
                 <li><a href="/admin#/file/upload">Upload Head Images</a></li>
             @can('view', App\User::class)
                 <li><a href="/admin#/user">Users</a></li>

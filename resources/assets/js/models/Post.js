@@ -46,6 +46,18 @@ export default class Post extends Model {
     /**
      * @return $promise
     */
+    static indexByCategory(args = {}) {
+        return super._createAxios('posts/category')
+            .get(null, {params : args})
+            .then((response) => {
+                response.data = Post.collect(response.data);
+                return response.data;
+            });
+    }
+
+    /**
+     * @return $promise
+    */
     static indexAdmin(args = {}) {
         return super._createAxios('posts/admin')
             .get(null, {params : args})

@@ -1,7 +1,6 @@
 #coverImage{
 	overflow: hidden;
 	position: relative;
-	border:solid 5px #649173;
 	border-top:none;
 	height:750px;
 	z-index:50;
@@ -67,6 +66,7 @@
 			font-weight:800;
 			color:#fff;
 			text-align: center;
+			line-height: 1.4em;
 		}
 		#subheader{
 			text-align: center;
@@ -84,5 +84,23 @@
 		bottom:-100%;
 		z-index:-99;
 		margin: auto;
+	}
+
+	#author_section_created_views{
+
+		@media screen and (max-width:665px){
+			width:90%;
+			margin-top: 30px;
+		}
+		@media screen and (max-width: 570px){
+			#author,
+			#created,
+			#views{
+				display: block;
+				box-sizing:border-box;
+				text-align: center;
+				width:100%;
+			}
+		}
 	}
 }

@@ -1,0 +1,124 @@
+body{
+	background-color: #fff;
+}
+.regular{
+	p{
+		color:#2c3e50;
+	}
+}
+.col{
+	a{
+		header{
+			h2{
+				color:#2c3e50;
+			}
+			p{
+				color: #333;
+			}
+		}
+	}
+}
+#about-us{
+	.author{
+		h3{
+			color:#2c3e50;
+		}
+	}
+}
+#image_desc{
+	nav ul{
+		li{
+			*{color:#2c3e50;}
+		}
+	}
+}
+
+#authorImage{
+	border:solid 3px #7CAC8C;
+}
+#smallPage,
+#createFullscreen{
+	#image_name_views{
+		strong, a{
+			color:#7f8c8d;
+			&:hover{
+				color:#7CAC8C;
+			}
+		}
+		p{
+			color:#2c3e50;
+		}
+	}
+
+	main{
+		#postText{
+			p,h1,h2,h3{
+				color:#333;
+			}
+		}
+	}
+	#share{
+		a{
+			color:#2c3e50;
+			&:hover{
+				color:#7CAC8C;
+			}
+		}
+	}
+	h1{
+		color:#7CAC8C;
+	}
+	#subtitle{
+		color:#2c3e50;
+	}
+	#postText{
+		p,h1,h2,h3{
+			color:#fff;
+		}
+	}
+	aside{
+		h2{
+			color:#7CAC8C;
+		}
+		#newsletter{
+			p{
+				color:#333;
+			}
+		}
+		#relatedPosts{
+			article{
+				h3{
+					color:#7f8c8d;
+				}
+				&:hover{
+					h3{
+						color:#7CAC8C;
+					}
+				}
+			}
+			h3{
+				color:#bdc3c7;
+			}
+		}
+	}
+}
+
+#postPage_second{
+	#image_name_views{
+		p{
+			color:#fff;
+		}
+		strong, a{
+			color:#ecf0f1;
+			&:hover{
+				color:#7CAC8C;
+			}
+		}
+		#views{
+			color:#fff;
+		}
+	}
+	h1,h2,h3{
+		color:#333;
+	}
+}
