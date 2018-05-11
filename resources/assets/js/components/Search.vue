@@ -1,7 +1,7 @@
 <template>
     <div>
         <input type="text" id="search" placeholder="Search" v-model="search" @keydown.enter="doSearch()" required />
-        <button class="btn btn-sm btn-primary fa fa-search"  @click="doSearch()"></button>
+        <button class="btn btn-sm btn-primary fa fa-search" @click="doSearch()"></button>
     </div>
 </template>
 

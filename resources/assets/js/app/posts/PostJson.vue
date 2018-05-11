@@ -20,12 +20,18 @@
 </template>
 
 <script>
+import Post from '../../models/Post.js';
+
 export default {
     props : {
-        post : {
-            type : Object,
+        postjson : {
             required : true,
         },
+    },
+    data() {
+        return {
+            post : new Post(JSON.parse(this.postjson)),
+        }
     },
 }
 </script>

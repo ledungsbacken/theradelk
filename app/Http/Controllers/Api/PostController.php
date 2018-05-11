@@ -44,9 +44,36 @@ class PostController extends Controller
             $posts->where('hidden', '=', '0');
         }
         $posts->whereNotNull('published');
+        if(isset($request['sortBy']) && isset($request['sortOrder'])) {
+            $posts->orderBy($request['sortBy'], $request['sortOrder']);
+        } else {
+            $posts->orderBy('id', 'DESC');
+        }
+        $request['page'] = $request['page'] + (((int)$request['count'] * 3) / (int)$request['count']);
+        $posts = $posts->paginate((int)$request['count']);
+
+        return $posts;
+    }
+
+    /**
+     * @param Request $request
+     * @return Post
+     */
+    public function indexByCategory(Request $request) {
+        $posts = Post::with(['subcategories.category', 'user', 'headImage', 'viewsCountRelation']);
+
+        if($request['category_id']) {
+            $categoryId = $request['category_id'];
+            $posts->whereHas('subcategories.category', function($query) use ($categoryId) {
+                return $query->where('id', '=', $categoryId);
+            });
+        }
+
+        $posts->where('hidden', '=', '0');
+        $posts->whereNotNull('published');
         $posts->orderBy('id', 'DESC');
 
-        $posts = $posts->paginate((int)$request['count']);
+        $posts = $posts->get();
 
         return $posts;
     }

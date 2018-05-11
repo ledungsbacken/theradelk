@@ -33,7 +33,7 @@
                         </div>
                         <div class="form-group row">
                             <label for="email" class="col-md-1 col-md-offset-2 col-form-label" style="top:4px;">
-                                country:
+                                Country:
                             </label>
                             <div class="col-md-6">
                                 <input type="text" id="country" v-model="user.data.country" class="form-control" />

@@ -37,13 +37,10 @@ class ViewController extends Controller
      */
     public function about()
     {
-        $users = User::get();
+
+        $users = User::whereHas('posts', function($query) {
+            return $query->whereNotNull('published');
+        })->get();
         return View('info.about', ['users' => $users]);
-    }
-    public function join(){
-        return View('info.join-us');
-    }
-    public function contact(){
-        return View('info.contact');
     }
 }
