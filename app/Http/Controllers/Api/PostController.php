@@ -59,7 +59,6 @@ class PostController extends Controller
      * @param Request $request
      * @return Post
      */
-
     public function indexByCategory(Request $request) {
         $posts = Post::with(['subcategories.category', 'user', 'headImage', 'viewsCountRelation']);
 

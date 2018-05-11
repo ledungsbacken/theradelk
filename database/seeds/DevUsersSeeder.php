@@ -15,7 +15,7 @@ use Illuminate\Database\Seeder;
 class DevUsersSeeder extends Seeder
 {
 
-    const N_POSTS_PER_USER = 10;
+    const N_POSTS_PER_USER = 100;
 
     private $devUsers = [
         [

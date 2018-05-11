@@ -26,17 +26,6 @@ export default {
         window.addEventListener('scroll', this.handleScroll);
     },
     methods : {
-        load() {
-            Post.index({
-                'page' : this.page,
-                'count' : this.count,
-                'skip' : this.skip,
-            }).then(posts => {
-                this.posts = posts.data;
-                this.page++;
-                this.isOver = false;
-            });
-        },
         handleScroll() {
             let scroll = this.getScrollPercent();
             if(scroll >= this.scrollPercentTrigger && this.page <= 8 && !this.isOver) {
