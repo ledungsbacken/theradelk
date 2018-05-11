@@ -1,6 +1,5 @@
 <template>
     <div>
-        <div>Id: {{ post.data.id }}</div>
         <div>Title: {{ post.data.title }}</div>
         <div>Author: {{ post.user.data.name }}</div>
         <div>Views: {{ post.data.views }}</div>
@@ -21,12 +20,18 @@
 </template>
 
 <script>
+import Post from '../../models/Post.js';
+
 export default {
     props : {
-        post : {
-            type : Object,
+        postjson : {
             required : true,
         },
+    },
+    data() {
+        return {
+            post : new Post(JSON.parse(this.postjson)),
+        }
     },
 }
 </script>

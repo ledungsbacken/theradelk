@@ -39,6 +39,23 @@ class PostController extends Controller
      * @param Request $request
      * @return Post
      */
+    public function indexLatest(Request $request) {
+        $this->count = 9;
+
+        $posts = Post::with(['subcategories.category', 'user', 'headImage', 'viewsCountRelation']);
+        $posts->whereNotNull('published');
+        $posts->where('hidden', '=', '0');
+        $posts->orderBy('published', 'DESC');
+
+        $posts = $posts->paginate($this->count);
+
+        return View('post.latest', ['posts' => $posts]);
+    }
+
+    /**
+     * @param Request $request
+     * @return Post
+     */
     public function indexByCategory(Request $request, $categorySlug) {
         $this->count = 12;
 

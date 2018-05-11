@@ -44,8 +44,12 @@ class PostController extends Controller
             $posts->where('hidden', '=', '0');
         }
         $posts->whereNotNull('published');
-        $posts->orderBy('id', 'DESC');
-
+        if(isset($request['sortBy']) && isset($request['sortOrder'])) {
+            $posts->orderBy($request['sortBy'], $request['sortOrder']);
+        } else {
+            $posts->orderBy('id', 'DESC');
+        }
+        $request['page'] = $request['page'] + (((int)$request['count'] * 3) / (int)$request['count']);
         $posts = $posts->paginate((int)$request['count']);
 
         return $posts;

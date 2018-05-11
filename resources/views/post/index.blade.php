@@ -6,6 +6,7 @@
                 <div class="panel-heading">Posts</div>
 
                 <div class="panel-body">
+                    <a href="/latest">Latest</a>
                     @if($scenery->firstPost && $scenery->secondPost && $scenery->thirdPost)
                         <div>{{ $scenery->firstPost->id }}</div>
                         <div>{{ $scenery->secondPost->id }}</div>

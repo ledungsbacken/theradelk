@@ -24,6 +24,8 @@ Route::get('/post', function() {
 
 Route::get('/search', 'Web\PostController@search');
 
+Route::get('/latest', 'Web\PostController@indexLatest');
+
 Route::get('/category/{category}', 'Web\PostController@indexByCategory');
 Route::get('/category/{category}/{subcategory}', 'Web\PostController@indexBySubcategory');
 
