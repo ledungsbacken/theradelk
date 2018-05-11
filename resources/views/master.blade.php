@@ -44,12 +44,14 @@
     @endif
 </head>
 <body>
+    <div id="app">
         @auth
             @include('layouts.admin_nav')
         @endauth
             @include('layouts.topper')
             @yield('content')
             @include('layouts.footer')
+    </div>
     <script src="{{ mix('js/app.js') }}"></script>
     <script src="{{ mix('js/code.js') }}"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
