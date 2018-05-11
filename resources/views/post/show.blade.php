@@ -20,5 +20,5 @@
 @endsection
 
 @push('script')
-    <script src="{{ mix('js/code.js') }}"></script>
+    <script src="{{ mix('js/scrollProgress.js') }}"></script>
 @endpush

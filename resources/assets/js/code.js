@@ -55,21 +55,6 @@ $(document).scroll(function() {
   });
   }
 
-  var scrollwin = $(window).scrollTop();
-  var articleheight = $('#progressMarker').height() - $(window).height();
-  var windowWidth = $(window).width();
-
-  if(scrollwin >= $('#progressMarker').offset().top){
-      if(scrollwin <= ($('#progressMarker').offset().top + articleheight)){
-          $('#progressBar').css('width', ((scrollwin - $('#progressMarker').offset().top) / articleheight) * 100 + "%"  );
-      } else {
-          $('#progressBar').css('width',"100%");
-      }
-  }
-  else{
-      $('#progressBar').css('width',"0%");
-  }
-
 });
 $( "#mobile" ).click(function() {
   $( "#mobile_nav" ).slideToggle( "fast", function() {});
