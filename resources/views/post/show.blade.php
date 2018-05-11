@@ -18,3 +18,7 @@
         @include('post.templates.normal')
     @endif
 @endsection
+
+@push('script')
+    <script src="{{ mix('js/code.js') }}"></script>
+@endpush

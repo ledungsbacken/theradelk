@@ -1,4 +1,3 @@
-<div>
 <div id="progressBar"></div>
 <div id="smallPage">
     <div id="progressMarker">
@@ -77,64 +76,33 @@
                         {!! $post->content !!}
                     </section>
                 </main>
-                </div>
-                <aside>
-                    <div id="newsletter">
-                        <h2>Join the newsletter</h2>
-                        <p>
-                            We send out newsletters on a regular basis
-                            where we include the very latest of theradelk.
-                            Subscribe and stay tuned to the elk's nest!
-                        </p>
-                        <form action="">
-                            <input type="text">
-                            <button type="submit">Go!</button>
-                        </form>
-                    </div>
-                    <section id="relatedPosts">
-                        <h2>You might also like..</h2>
-                        @foreach ($relatedPosts as $related)
-                        <article>
-                            <a href="{{ $related->slug }}">
-                                <img src="{{ $related->headImage->thumbnail }}" alt="">
-                                <h3>{{ $related->title }}</h3>
-                                <p>{{ dateToHumanDiff($related->created_at) }} ago by {{ $related->user->name }}</p>
-                            </a>
-                        </article>
-                        @endforeach
-                    </section>
-                </aside>
             </div>
-        </div>
-    </div>
-    <div id="endContent">
-    <div class="wrapper">
-        <div id="comment">
-            <div id="disqus_thread"></div>
-            <script>
-
-            /**
-            *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-            *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
-            /*
-            var disqus_config = function () {
-            this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
-            this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-            };
-            */
-            (function() { // DON'T EDIT BELOW THIS LINE
-            var d = document, s = d.createElement('script');
-            s.src = 'https://theradelk-com.disqus.com/embed.js';
-            s.setAttribute('data-timestamp', +new Date());
-            (d.head || d.body).appendChild(s);
-            })();
-            </script>
-            <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+            <aside>
+                <div id="newsletter">
+                    <h2>Join the newsletter</h2>
+                    <p>
+                        We send out newsletters on a regular basis
+                        where we include the very latest of theradelk.
+                        Subscribe and stay tuned to the elk's nest!
+                    </p>
+                    <form action="">
+                        <input type="text">
+                        <button type="submit">Go!</button>
+                    </form>
+                </div>
+                <section id="relatedPosts">
+                    <h2>You might also like..</h2>
+                    @foreach ($relatedPosts as $related)
+                    <article>
+                        <a href="{{ $related->slug }}">
+                            <img src="{{ $related->headImage->thumbnail }}" alt="">
+                            <h3>{{ $related->title }}</h3>
+                            <p>{{ dateToHumanDiff($related->created_at) }} ago by {{ $related->user->name }}</p>
+                        </a>
+                    </article>
+                    @endforeach
+                </section>
+            </aside>
         </div>
     </div>
 </div>
-<style>
-    body{
-        background-color: #fff;
-    }
-</style>

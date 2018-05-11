@@ -64,7 +64,7 @@ $(document).scroll(function() {
     'margin-top' : '0'
   });
   }
-  
+
   var scrollwin = $(window).scrollTop();
   var articleheight = $('#progressMarker').height() - $(window).height();
   var windowWidth = $(window).width();
@@ -79,7 +79,7 @@ $(document).scroll(function() {
   else{
       $('#progressBar').css('width',"0%");
   }
-  
+
 });
 $( "#mobile" ).click(function() {
   $( "#mobile_nav" ).slideToggle( "fast", function() {});
