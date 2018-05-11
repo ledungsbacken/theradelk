@@ -1,6 +1,5 @@
 <template>
     <div>
-        <div>Id: {{ post.data.id }}</div>
         <div>Title: {{ post.data.title }}</div>
         <div>Author: {{ post.user.data.name }}</div>
         <div>Views: {{ post.data.views }}</div>
