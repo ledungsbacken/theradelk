@@ -33,16 +33,6 @@ $(document).ready(function() {
         }
     })
 
-    $(window).scroll(function(){
-        if($(document).scrollTop() > 250) {
-            var newPos = $(document).scrollTop() + 190 ;
-            $('#sharelarge').css( {top:newPos});
-        }
-        else {
-            $('#sharelarge').css( {top:540});
-        }
-    })
-
 });
 $(document).scroll(function() {
   var y = $(this).scrollTop();
