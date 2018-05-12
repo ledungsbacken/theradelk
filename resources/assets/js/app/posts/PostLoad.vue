@@ -1,8 +1,6 @@
 <template>
     <div>
-        <div v-for="p in page">
-            <post-loader :page="p" @done="isOver = false"></post-loader>
-        </div>
+        <post-loader v-for="p in page" :key="p.id" :page="p" @done="isOver = false"></post-loader>
     </div>
 </template>
 
