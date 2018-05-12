@@ -12,7 +12,12 @@
             @store="store()"
             v-show="!post.data.is_fullscreen">
         </normal-post>
-        <!-- <fullscreen-post :post="post" v-show="post.data.is_fullscreen"></fullscreen-post> -->
+        <fullscreen-post
+            :post="post"
+            @post="post = $event"
+            @store="store()"
+            v-show="post.data.is_fullscreen">
+        </fullscreen-post>
     </div>
 </template>
 
@@ -36,7 +41,7 @@ export default {
         }
     },
     mounted() {
-
+        this.post.data.subcategories = [];
     },
     methods : {
         debug(data) {
