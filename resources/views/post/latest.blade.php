@@ -10,6 +10,7 @@
         <main id="scrollLoader">
             @each('includes.post', $posts, 'post')
             <post-loader v-for="p in page" :key="p.id" :page="p" @done="isOver = false"></post-loader>
+            <div v-if="page = loadLimit"><button @click="loadMore()">Load more</button></div>
         </main>
     </section>
 </div>

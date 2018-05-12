@@ -7,6 +7,7 @@ const scrollLoader = new Vue({
             count : 4,
             skip : 12,
             scrollPercentTrigger : 80,
+            loadLimit : 8,
             isOver : false,
         }
     },
@@ -16,8 +17,7 @@ const scrollLoader = new Vue({
     methods : {
         handleScroll() {
             let scroll = this.getScrollPercent();
-            if(scroll >= this.scrollPercentTrigger && this.page <= 8 && !this.isOver) {
-                // Load more posts
+            if(scroll >= this.scrollPercentTrigger && this.page <= this.loadLimit && !this.isOver) {
                 this.isOver = true;
                 this.page++;
             }
@@ -28,6 +28,10 @@ const scrollLoader = new Vue({
                 st = 'scrollTop',
                 sh = 'scrollHeight';
             return Math.round((h[st]||b[st]) / ((h[sh]||b[sh]) - h.clientHeight) * 100);
+        },
+        loadMore() {
+            this.loadLimit = this.loadLimit + this.loadLimit;
+            this.handleScroll();
         },
     },
     components : {
