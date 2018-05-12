@@ -7,10 +7,14 @@
                 Recent
             </h1>
         </header>
-        <main>
+        <main id="scrollLoader">
             @each('includes.post', $posts, 'post')
-            <postload></postload>
+            <post-loader v-for="p in page" :key="p.id" :page="p" @done="isOver = false"></post-loader>
         </main>
     </section>
 </div>
 @endsection
+
+@push('script')
+    <script src="{{ mix('js/scrollLoader.js') }}"></script>
+@endpush

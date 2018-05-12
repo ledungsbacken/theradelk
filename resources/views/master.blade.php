@@ -44,7 +44,7 @@
     @endif
 </head>
 <body>
-    <div id="app">
+    <div>
         @auth
             @include('layouts.admin_nav')
         @endauth

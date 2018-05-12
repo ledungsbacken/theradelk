@@ -14,6 +14,7 @@ let mix = require('laravel-mix');
 mix.js('resources/assets/js/app.js', 'public/js')
    .js('resources/assets/js/vue.js', 'public/js')
    .js('resources/assets/js/code.js', 'public/js')
+   .js('resources/assets/js/scrollLoader.js', 'public/js')
    .js('resources/assets/js/scrollProgress.js', 'public/js')
    .sass('resources/assets/sass/app.scss', 'public/css')
    .sass('resources/assets/sass/light.scss', 'public/css')

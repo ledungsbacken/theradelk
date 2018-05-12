@@ -50,8 +50,8 @@ window.Vue = require('vue');
 Vue.component('share-count', require('./components/ShareCount.vue'));
 Vue.component('search', require('./components/Search.vue'));
 
-Vue.component('postjson', require('./app/posts/PostJson.vue'));
-Vue.component('postload', require('./app/posts/PostLoad.vue'));
+// Vue.component('postjson', require('./app/posts/PostJson.vue'));
+// Vue.component('postload', require('./app/posts/PostLoad.vue'));
 // Vue.component('nav-categories', require('./app/Categories.vue'));
 
 const app = new Vue({
