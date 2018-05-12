@@ -22,7 +22,7 @@
                                 v-model="mutablePost.data.subtitle"
                                 placeholder="Subtitle" />
 
-                            <editor id="editor2" v-model="mutablePost.data.content"></editor>
+                            <editor id="editor1" v-model="mutablePost.data.content"></editor>
                             <input type="button" class="btn btn-success" @click="store()" value="Create" />
                         </div>
                     </div>
