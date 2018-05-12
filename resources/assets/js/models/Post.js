@@ -26,7 +26,7 @@ export default class Post extends Model {
 
         this.subcategories = Subcategory.collect(args.subcategories);
         this.user = new User(args.user);
-        this.headImage = args.head_image ? new HeadImage(args.head_image) : undefined;
+        this.headImage = args.head_image ? new HeadImage(args.head_image) : new HeadImage();
 
         this.http.defaults.baseURL += 'post/';
     }
