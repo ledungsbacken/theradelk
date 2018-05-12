@@ -67,7 +67,6 @@
             <main>
                 @each('includes.post', $posts, 'post')
             </main>
-            {{ $posts->links() }}
         </section>
     </div>
 @endsection
