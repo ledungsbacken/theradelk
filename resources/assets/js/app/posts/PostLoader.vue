@@ -1,6 +1,6 @@
 <template>
     <main>
-        <post v-for="post in posts" :key="post.id" :post="post"></post>
+        <post v-for="post in posts" :key="post.data.id" :post="post"></post>
     </main>
 </template>
 
@@ -21,7 +21,7 @@ export default {
             count : 3,
         }
     },
-    mounted() {
+    mounted() {console.log('eqw');
         this.load();
     },
     methods : {
