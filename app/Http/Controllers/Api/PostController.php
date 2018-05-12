@@ -154,7 +154,7 @@ class PostController extends Controller
             $title = $request->title ?: '';
             $subtitle = $request->subtitle ?: '';
             $content = $request->content ?: '';
-            $slug = $request->title ? getSlug($request->title) : '';
+            $slug = $request->title ? getSlug($request->title) : getSlug(uniqid(rand(1, 100)));
 
             $post = Post::create([
                 'title' => $title,
@@ -171,6 +171,7 @@ class PostController extends Controller
             foreach($request->get('subcategories') as $subcategory) {
                 $post->subcategories()->attach($subcategory['data']['id']);
             }
+            DB::commit();
         } catch(\Exception $e) {
             DB::rollBack();
             throw $e;
