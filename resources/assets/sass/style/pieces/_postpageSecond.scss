@@ -2,7 +2,6 @@
 	border:none !important;
 }
 	#postPage_second{
-		
 
 		#image_name_views{
 			margin-top: 30px;
@@ -43,6 +42,9 @@
 	}
 
 	#topcolWrap{
+		display:none;
+	}
+	#topper_padding{
 		display:none;
 	}
 	#coverImage{
@@ -201,7 +203,6 @@
 				width:100%;
 			}
 		}
-
 
 		.ckeditor{
 			margin-top: 0;

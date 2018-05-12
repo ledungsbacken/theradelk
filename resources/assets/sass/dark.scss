@@ -55,13 +55,15 @@ body{
 	}
 }
 #postPage_second{
-	p{
-		color:#ddd;
-	}
 	h1,h2,h3{
 		color:#ddd;
 	}
-	background-color: #121212;
+	li, p{
+		color:#fff;
+	}
+	blockquote{
+		border-left: solid 3px #fff;
+	}
 }
 
 #smallPage{

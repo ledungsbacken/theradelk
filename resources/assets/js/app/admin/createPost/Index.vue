@@ -124,26 +124,26 @@
                             </div>
                         </header>
                         <div id="share">
-                    <div id="buttons">
-                        <ul class="inline">
-                            <li>
-                                <a href=""><i class="fas fa-chevron-up"></i></a>
-                            </li>
-                            <li>
-                                <a href=""><i class="fab fa-facebook"></i></a>
-                            </li>
-                            <li>
-                                <a href=""><i class="fab fa-twitter"></i></a>
-                            </li>
-                            <li>
-                                <a href=""><i class="fab fa-reddit"></i></a>
-                            </li>
-                            <li>
-                                <a href=""><i class="fab fa-linkedin"></i></a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+                            <div id="buttons">
+                                <ul class="inline">
+                                    <li>
+                                        <a href=""><i class="fas fa-chevron-up"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href=""><i class="fab fa-facebook"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href=""><i class="fab fa-twitter"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href=""><i class="fab fa-reddit"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href=""><i class="fab fa-linkedin"></i></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
                         <picture>
                             <img  v-if="headImage.data.desktop" id="postImage" :src="headImage.data.desktop" @click="showHeadImagesModal = true ">
                         </picture>

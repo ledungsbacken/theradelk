@@ -12,7 +12,7 @@
                 <div id="image_name_views">
                     <div id="authorImage_name">
                         <img src="{{ $post->user->picture }}" id="authorImage" />
-                        <p id="author_category">by <a href="../user/{{ $post->user->id }}"><strong>{{ $post->user->name }}</strong></a> about {{ dateToHumanDiff($post->published) }} in <strong>@foreach($post->subcategories as $subcategory) <a href="/category/{{ $subcategory->category->slug }}/{{ $subcategory->slug }}">{{ $subcategory->name }}</a> @endforeach</strong></p>
+                        <p id="author_category">by <a href="../user/{{ $post->user->id }}"><strong>{{ $post->user->name }}</strong></a> about {{ dateToHumanDiff($post->published) }} in <strong>@foreach($post->subcategories as $subcategory) <a href="/category/{{ $subcategory->category->slug }}">{{ $subcategory->category->name }}</a> @endforeach</strong></p>
                     </div>
                     <p id="views">
                         <i class="fa fa-eye"></i>
@@ -62,3 +62,9 @@
         </ul>
     </div>
 </div>
+<style>
+    #topper_padding,
+    #topcolWrap{
+        display:none;
+    }
+</style>

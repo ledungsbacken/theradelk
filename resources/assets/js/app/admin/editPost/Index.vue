@@ -51,59 +51,59 @@
                 </div>
             </div>
         </div>
-        <normal-post :post="post" v-if="post.data.is_fullscreen">
+        <div :post="post" v-if="post.data.is_fullscreen">
             <body style="background-color: #fff;">
                  <div id="postPage_second">
                     <div class="wrapper" id="postPage">
-                            <div id="topcolWrap">
-                                <div id="topper">
-                                    <nav id="categories">
-                                        <ul class="inline">
-                                            <li>
-                                                <a href="/#/home">latest</a>
-                                            </li>
-                                            <li v-for="category in categories">
-                                                <router-link :to="'/post/category/'+category.data.slug">{{ category.data.name }}</router-link>
-                                            </li>
-                                        </ul>
-                                    </nav>
-                                    <img src="logo.png" id="logo" alt="">
-                                    <nav id="core" class="inline">
-                                        <ul>
-                                            <li>about</li>
-                                            <li>contact</li>
-                                            <li>join us</li>
-                                        </ul>
-                                        <ul>
-                                            <li><i class="fa fa-facebook"></i></li>
-                                            <li><i class="fa fa-twitter"></i></li>
-                                            <li><i class="fa fa-instagram"></i></li>
-                                            <li><i class="fa fa-snapchat"></i></li>
-                                        </ul>
-                                    </nav>
-                                    <i class="fa fa-bars" id="mobile"></i>
-                                </div>
+                        <div id="topcolWrap">
+                            <div id="topper">
+                                <nav id="categories">
+                                    <ul class="inline">
+                                        <li>
+                                            <a href="/#/home">latest</a>
+                                        </li>
+                                        <li v-for="category in categories">
+                                            <router-link :to="'/post/category/'+category.data.slug">{{ category.data.name }}</router-link>
+                                        </li>
+                                    </ul>
+                                </nav>
+                                <img src="logo.png" id="logo" alt="">
+                                <nav id="core" class="inline">
+                                    <ul>
+                                        <li>about</li>
+                                        <li>contact</li>
+                                        <li>join us</li>
+                                    </ul>
+                                    <ul>
+                                        <li><i class="fa fa-facebook"></i></li>
+                                        <li><i class="fa fa-twitter"></i></li>
+                                        <li><i class="fa fa-instagram"></i></li>
+                                        <li><i class="fa fa-snapchat"></i></li>
+                                    </ul>
+                                </nav>
+                                <i class="fa fa-bars" id="mobile"></i>
                             </div>
-                            <div id="coverImage">
-                                <div id="filter" :style="'background-color: rgba(44, 62, 80,' +post.data.opacity+');'"></div>
-                                <header>
-                                    <textarea v-model="post.data.title" rows="3" spellcheck="false" placeholder="replace w/ title">{{ post.data.title }}</textarea>
-                                    <textarea v-model="post.data.subtitle" rows="1" spellcheck="false" placeholder="replace w/ title">{{ post.data.subtitle }}</textarea>
-                                </header>
-                                <picture>
-                                    <img v-if="headImage.data.desktop"
-                                    :src="headImage.data.desktop"
-                                    @click="showHeadImagesModal = true" id="postImage"/>
-                                </picture>
-                            </div>
-                            <main id="postText-FullPage">
-                                <editor id="editor1" v-model="post.data.content"></editor>
-                            </main>
+                        </div>
+                        <div id="coverImage">
+                            <div id="filter" :style="'background-color: rgba(44, 62, 80,' +post.data.opacity+');'"></div>
+                            <header>
+                                <textarea v-model="post.data.title" rows="3" spellcheck="false" placeholder="replace w/ title">{{ post.data.title }}</textarea>
+                                <textarea v-model="post.data.subtitle" rows="1" spellcheck="false" placeholder="replace w/ title">{{ post.data.subtitle }}</textarea>
+                            </header>
+                            <picture>
+                                <img v-if="headImage.data.desktop"
+                                :src="headImage.data.desktop"
+                                @click="showHeadImagesModal = true" id="postImage"/>
+                            </picture>
+                        </div>
+                        <main id="postText-FullPage">
+                            <editor id="editor1" v-model="post.data.content"></editor>
+                        </main>
                     </div>
                 </div>
             </body>
-        </normal-post>
-        <fullscreen-post :post="post" v-if="!post.data.is_fullscreen">
+        </div>
+        <div :post="post" v-if="!post.data.is_fullscreen">
             <div id="topper_padding">
                 <h1>COME'N'GEEK</h1>
                 <p>
@@ -135,14 +135,12 @@
                             <li>contact</li>
                             <li>join us</li>
                         </ul>
-                        <ul id="switch">
-                        </ul>
                         <ul id="social">
-                        <li><a href="https://www.facebook.com/theradelk/"><i class="fa fa-facebook"></i></a></li>
-                        <li><a href="https://twitter.com/theradelk"><i class="fa fa-twitter"></i></a></li>
-                        <li><a href="https://www.instagram.com/theradelk"><i class="fa fa-instagram"></i></a></li>
-                        <li><a href="https://www.snapchat.com/theradelk"><i class="fa fa-snapchat"></i></a></li>
-                        <li><a href="https://www.snapchat.com/theradelk"><i class="fa fa-linkedin"></i></a></li>
+                            <li><a href="https://www.facebook.com/theradelk/"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="https://twitter.com/theradelk"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="https://www.instagram.com/theradelk"><i class="fa fa-instagram"></i></a></li>
+                            <li><a href="https://www.snapchat.com/theradelk"><i class="fa fa-snapchat"></i></a></li>
+                            <li><a href="https://www.snapchat.com/theradelk"><i class="fa fa-linkedin"></i></a></li>
                         </ul>
                     </nav>
                 </div>
@@ -174,18 +172,19 @@
                         <header>
                             <textarea v-model="post.data.title" rows="1" oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"' placeholder="Title">{{ post.data.title }}</textarea>
                             <textarea v-model="post.data.subtitle" rows="1" placeholder="Subtitle">{{ post.data.subtitle }}</textarea>
-                            <div id="author_created_section">
-                                <img :src="user.data.picture" id="authorImage" /><p>by <strong>{{ user.data.name }}</strong> about <strong>1 second ago</strong> in Tech</p>
-                                <p>
+                            <div id="image_name_views">
+                                <img :src="user.data.picture" id="authorImage" />
+                                <p id="author_category">by <strong>{{ user.data.name }}</strong> about <strong>1 second ago</strong> in Tech</p>
+                                <p id="views">
                                     <i class="fa fa-eye"></i>
-                                    222
+                                    332
                                 </p>
                             </div>
                         </header>
                         <picture>
                             <img  v-if="headImage.data.desktop" id="postImage" :src="headImage.data.desktop" @click="showHeadImagesModal = true ">
                         </picture>
-                        <editor id="editor1" v-model="post.data.content" :config="config"></editor>
+                        <editor id="editor1" v-model="post.data.content"></editor>
                     </div>
                     <aside>
                         <div id="share">
@@ -226,7 +225,7 @@
                     </aside>
                 </div>
             </div>
-        </fullscreen-post>
+        </div>
     </div>
 </template>
 <script>

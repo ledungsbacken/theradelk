@@ -37,9 +37,9 @@ h2 + p{
 h2 + img {
   padding-top: 20px;
 }
-    h2{
-      margin-top: 35px !important;
-    }
+h2{
+  margin-top: 35px !important;
+}
 p{
     margin: 0;
     padding-bottom: 30px;
@@ -52,6 +52,14 @@ p{
     }
 }
 ol,ul{
+  li{
+    font-family: 'Open Sans', sans-serif;
+  }
+}
+ul{
+  li{
+    list-style-type: none;
+  }
 }
 h1, h2, h3 {
     font-weight: 800;
@@ -106,13 +114,11 @@ strong {
 }
 
 blockquote {
-    border-left: solid 3px #333;
     margin:0 30px;
     margin-bottom: 30px;
     p{
       padding-left: 20px;
       font-style: italic;
-      color: #333;
       padding-bottom: 0;
     }
 }

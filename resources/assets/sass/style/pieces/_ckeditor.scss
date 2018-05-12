@@ -48,11 +48,10 @@
     font-weight: 600; }
 
   blockquote {
-    border-left: solid 3px #333; }
+    border-left: solid 3px; }
     blockquote p {
       margin-left: 20px;
-      font-style: italic;
-      color: #333; }
+      font-style: italic; }
 
   h1 {
     font-size: 2em; }

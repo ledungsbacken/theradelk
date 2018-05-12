@@ -29,7 +29,7 @@
     </div>
     <section id="latest">
         <div class="wrapper">
-            <main>
+            <main id="authPage">
                 @each('includes.post', App\Post::indexByUser($user->id), 'post')
             </main>
         </div>
