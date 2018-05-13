@@ -22,6 +22,8 @@
                                 v-model="mutablePost.data.subtitle"
                                 placeholder="Subtitle" />
 
+                            <div>Author: {{ user.data.name }}</div>
+
                             <editor id="editor2" v-model="mutablePost.data.content"></editor>
                             <input type="button" class="btn btn-success" @click="store()" value="Create" />
                         </div>
@@ -38,6 +40,10 @@ import Editor from '../Ckeditor.vue';
 export default {
     props : {
         post : {
+            type : Object,
+            required : true,
+        },
+        user : {
             type : Object,
             required : true,
         },

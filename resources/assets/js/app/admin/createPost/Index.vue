@@ -8,36 +8,33 @@
         </options>
         <normal-post
             :post="post"
+            :user="user"
             @post="post = $event"
             @store="store()"
-            v-show="!post.data.is_fullscreen">
+            v-if="!post.data.is_fullscreen">
         </normal-post>
         <fullscreen-post
             :post="post"
+            :user="user"
             @post="post = $event"
             @store="store()"
-            v-show="post.data.is_fullscreen">
+            v-if="post.data.is_fullscreen">
         </fullscreen-post>
     </div>
 </template>
 
 <script>
 import Post from '../../../models/Post.js';
-import HeadImage from '../../../models/HeadImage.js';
-import Subcategory from '../../../models/Subcategory.js';
+import User from '../../../models/User.js';
 import Options from './Options.vue';
 import NormalPost from './Normal.vue';
 import FullscreenPost from './Fullscreen.vue';
-import ImagesModal from '../ImagesModal.vue';
-import HeadImagesModal from './HeadImagesModal.vue';
-import Editor from '../Ckeditor.vue';
-import Switch from '../../Switch.vue';
-import Slider from 'vue-slider-component';
 
 export default {
     data() {
         return {
             post : new Post(),
+            user : User.getCurrent(),
         }
     },
     mounted() {
