@@ -18,11 +18,11 @@
 </template>
 
 <script>
-import HeadImage from '../../../models/HeadImage.js';
-import Modal from '../../Modal.vue';
-import FileInput from '../FileInput.vue';
-import Paging from '../../Paging.vue';
-import Count from '../../Count.vue';
+import HeadImage from '../../models/HeadImage.js';
+import Modal from '../Modal.vue';
+import FileInput from './FileInput.vue';
+import Paging from '../Paging.vue';
+import Count from '../Count.vue';
 
 export default {
     props : {

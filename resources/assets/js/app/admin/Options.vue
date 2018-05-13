@@ -23,8 +23,9 @@
 
         <button
             class="form-control"
-            v-if="!headImage.data.thumbnail"
-            @click="showHeadImagesModal = true">Choose head image</button>
+            @click="showHeadImagesModal = true">
+                Choose head image
+        </button>
         <head-images-modal
             v-model="headImage"
             v-if="showHeadImagesModal"
@@ -45,11 +46,11 @@
 </template>
 
 <script>
-import Subcategory from '../../../models/Subcategory.js';
-import HeadImage from '../../../models/HeadImage.js';
-import ImagesModal from '../ImagesModal.vue';
+import Subcategory from '../../models/Subcategory.js';
+import HeadImage from '../../models/HeadImage.js';
+import ImagesModal from './ImagesModal.vue';
 import HeadImagesModal from './HeadImagesModal.vue';
-import Switch from '../../Switch.vue';
+import Switch from '../Switch.vue';
 import Slider from 'vue-slider-component';
 
 export default {

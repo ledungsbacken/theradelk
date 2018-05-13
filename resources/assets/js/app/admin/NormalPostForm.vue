@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Create fullscreen post</div>
+                    <div class="panel-heading">Create normal post</div>
 
                     <div class="panel-body">
                         <div class="row">
@@ -24,7 +24,7 @@
 
                             <div>Author: {{ user.data.name }}</div>
 
-                            <editor id="editor2" v-model="mutablePost.data.content"></editor>
+                            <editor id="editor1" v-model="mutablePost.data.content"></editor>
                             <input type="button" class="btn btn-success" @click="store()" value="Create" />
                         </div>
                     </div>
@@ -35,7 +35,7 @@
 </template>
 
 <script>
-import Editor from '../Ckeditor.vue';
+import Editor from './Ckeditor.vue';
 
 export default {
     props : {

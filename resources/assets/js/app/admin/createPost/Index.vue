@@ -26,9 +26,9 @@
 <script>
 import Post from '../../../models/Post.js';
 import User from '../../../models/User.js';
-import Options from './Options.vue';
-import NormalPost from './Normal.vue';
-import FullscreenPost from './Fullscreen.vue';
+import Options from '../Options.vue';
+import NormalPost from '../NormalPostForm.vue';
+import FullscreenPost from '../FullscreenPostForm.vue';
 
 export default {
     data() {

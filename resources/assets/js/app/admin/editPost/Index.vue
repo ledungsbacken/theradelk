@@ -78,7 +78,7 @@ import Post from '../../../models/Post.js';
 import HeadImage from '../../../models/HeadImage.js';
 import Subcategory from '../../../models/Subcategory.js';
 import ImagesModal from '../ImagesModal.vue';
-import HeadImagesModal from './HeadImagesModal.vue';
+import HeadImagesModal from '../HeadImagesModal.vue';
 import Editor from '../Ckeditor.vue';
 import Switch from '../../Switch.vue';
 import Slider from 'vue-slider-component';
