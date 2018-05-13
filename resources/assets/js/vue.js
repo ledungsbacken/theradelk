@@ -17,6 +17,8 @@ import Vue from 'vue';
 //https://router.vuejs.org/en/essentials/getting-started.html
 import VueRouter from 'vue-router';
 
+import VueSweetalert2 from 'vue-sweetalert2';
+
 /**
  * Load in all frontend routes.
  */
@@ -27,6 +29,7 @@ import User from './models/User.js';
 import VueCroppie from 'vue-croppie';
 
 Vue.use(VueRouter);
+Vue.use(VueSweetalert2);
 Vue.use(VueCroppie);
 
 /**
