@@ -189,7 +189,7 @@ class PostController extends Controller
      * @return Post
      */
     public function update(Request $request, $id) {
-        $validatedData = $request->validate([
+        $request->validate([
             'title' => 'max:255',
             'subtitle' => 'max:255',
         ]);

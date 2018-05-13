@@ -25,7 +25,7 @@
                             <div>Author: {{ user.data.name }}</div>
 
                             <editor id="editor1" v-model="mutablePost.data.content"></editor>
-                            <input type="button" class="btn btn-success" @click="store()" value="Create" />
+                            <input type="button" class="btn btn-success" @click="save()" value="Create" />
                         </div>
                     </div>
                 </div>
@@ -35,7 +35,7 @@
 </template>
 
 <script>
-import Editor from '../Ckeditor.vue';
+import Editor from './Ckeditor.vue';
 
 export default {
     props : {
@@ -57,12 +57,14 @@ export default {
 
     },
     methods : {
-        store() {
-            this.$emit('store');
+        save() {
+            this.$emit('save');
         },
     },
     watch : {
-
+        'post' : function(value) {
+            this.mutablePost = this.post;
+        },
     },
     components : {
         Editor : Editor,
