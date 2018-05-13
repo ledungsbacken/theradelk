@@ -24,7 +24,7 @@
 
                             <div>Author: {{ user.data.name }}</div>
 
-                            <editor id="editor2" v-model="mutablePost.data.content"></editor>
+                            <editor id="editor1" v-model="mutablePost.data.content"></editor>
                             <input type="button" class="btn btn-success" @click="save()" value="Create" />
                         </div>
                     </div>
