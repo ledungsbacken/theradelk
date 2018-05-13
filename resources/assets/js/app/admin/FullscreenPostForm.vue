@@ -25,7 +25,7 @@
                             <div>Author: {{ user.data.name }}</div>
 
                             <editor id="editor2" v-model="mutablePost.data.content"></editor>
-                            <input type="button" class="btn btn-success" @click="store()" value="Create" />
+                            <input type="button" class="btn btn-success" @click="save()" value="Create" />
                         </div>
                     </div>
                 </div>
@@ -57,8 +57,8 @@ export default {
 
     },
     methods : {
-        store() {
-            this.$emit('store');
+        save() {
+            this.$emit('save');
         },
     },
     watch : {

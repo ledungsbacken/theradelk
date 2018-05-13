@@ -14,7 +14,7 @@
         </lh-switch>
         <slider
             ref="slider"
-            v-model="opacity"
+            v-model="mutableOpacity"
             @input="$emit('opacity', $event)"
             :min="Number(0)"
             :max="Number(1)"
@@ -55,26 +55,33 @@ import Slider from 'vue-slider-component';
 
 export default {
     props : {
-        // headImage : {
-        //     type : Object,
-        //     required : true,
-        // },
+        categories : {
+            type : Array,
+            required : true,
+        },
+        opacity : {
+            type : Number,
+            required : true,
+        },
+        fullscreen : {
+            type : Boolean,
+            required : true,
+        },
     },
     data() {
         return {
             content : '',
             subcategories : {},
-            chosenCategories : [],
+            chosenCategories : this.categories,
             showImagesModal : false,
             showHeadImagesModal : false,
             headImage : new HeadImage(),
-            isFullscreen : false,
-            opacity : 0,
+            isFullscreen : this.fullscreen,
+            mutableOpacity : this.opacity,
         }
     },
     mounted() {
         this.load();
-        this.opacity = 0.3;
     },
     methods : {
         debug(data) {
