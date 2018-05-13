@@ -85,6 +85,15 @@ export default class Model {
         }, function (error) {
             let status = error.response.status;
             switch (true) {
+                case /400/.test(status):
+                    let message = '';
+                    for(let i in error.response.data) {
+                        for(let j in error.response.data[i]) {
+                            message += error.response.data[i][j]+'\n';
+                        }
+                    }
+                    alert(message);
+                    break;
                 case /401/.test(status):
                     alert(error);
                     window.location = '/';
@@ -99,13 +108,6 @@ export default class Model {
                     alert(error+'\n'+error.response.data);
                     break;
                 case /422/.test(status):
-                    let message = '';
-                    for(let i in error.response.data) {
-                        for(let j in error.response.data[i]) {
-                            message += error.response.data[i][j]+'\n';
-                        }
-                    }
-                    alert(message);
                     break;
                 case /^4..$/.test(status):
                     alert(error);
