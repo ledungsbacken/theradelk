@@ -173,6 +173,8 @@ export default {
             }
             post.setPublished().then(response => {
                 this.load();
+            }).catch(error => {
+                post.reset();
             });
         },
         setHidden(post) {

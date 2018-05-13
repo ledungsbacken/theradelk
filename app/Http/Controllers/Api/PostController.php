@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller as Controller;
 use Illuminate\Http\Request;
 use Auth;
 use DB;
+use Validator;
 
 use App\User;
 use App\Role;
@@ -188,25 +189,46 @@ class PostController extends Controller
      * @return Post
      */
     public function update(Request $request, $id) {
+        $validatedData = $request->validate([
+            'title' => 'max:255',
+            'subtitle' => 'max:255',
+        ]);
+
         $post = Post::find((int)$id);
         // Return 403 if not enough permissions
         if(Auth::user()->cant('update', $post)) { return response()->json('Forbidden', 403); }
 
-        $slug = str_replace([' ', 'å', 'ä', 'ö', 'Å', 'Ä', 'Ö'], ['-', 'a', 'a', 'o', 'A', 'A', 'O'], strtolower($request->title));
-        $post->update([
-            'title' => $request->title,
-            'subtitle' => $request->subtitle,
-            'content' => $request->content,
-            'slug' => $slug,
-            'opacity' => $request->opacity,
-            'is_fullscreen' => $request->is_fullscreen,
-        ]);
-        $post->headImage()->associate((int)$request->head_image_id)->save();
-        $subcategories = [];
-        foreach($request->get('subcategories') as $subcategory) {
-            $subcategories[] = $subcategory['data']['id'];
+        DB::beginTransaction();
+        try {
+            $title = $request->title ?: '';
+            $subtitle = $request->subtitle ?: '';
+            $content = $request->content ?: '';
+            $slug = $request->title ? getSlug($request->title) : getSlug(uniqid(rand(1, 100)));
+
+            $post->update([
+                'title' => $title,
+                'subtitle' => $subtitle,
+                'content' => $content,
+                'slug' => $slug,
+                'opacity' => $request->opacity,
+                'is_fullscreen' => (Bool)$request->is_fullscreen ?: false,
+            ]);
+            if($request->head_image_id) {
+                $post->headImage()->associate((int)$request->head_image_id)->save();
+            }
+            $subcategories = [];
+            foreach($request->get('subcategories') as $subcategory) {
+                $subcategories[] = $subcategory['data']['id'];
+            }
+            $post->subcategories()->sync($subcategories);
+            DB::commit();
+        } catch(\Exception $e) {
+            DB::rollBack();
+            throw $e;
+        } catch(\Throwable $e) {
+            DB::rollBack();
+            throw $e;
         }
-        $post->subcategories()->sync($subcategories);
 
         return $post->load('subcategories.category', 'user', 'headImage');
     }
@@ -217,9 +239,14 @@ class PostController extends Controller
      * @return Post
      */
     public function setPublished(Request $request, $id) {
-        $post = Post::find((int)$id);
+        $post = Post::with('subcategories')->find((int)$id);
         // Return 403 if not enough permissions
         if(Auth::user()->cant('delete', $post)) { return response()->json('Forbidden', 403); }
+
+        $validator = Validator::make($post->toArray(), $post->publishRules, $post->validationMessages);
+        if($validator->fails()) {
+            return response()->json($validator->errors(), 400);
+        }
 
         $published = (int)$request->published;
         if($published == 0 || $published == 1) {
