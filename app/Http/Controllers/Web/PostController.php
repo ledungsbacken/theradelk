@@ -149,10 +149,21 @@ class PostController extends Controller
                 });
         }
 
+        $relatedPosts->where('id', '!=', $post->id);
         $relatedPosts->whereNotNull('published');
         $relatedPosts->where('hidden', '=', '0');
 
-        $relatedPosts = $relatedPosts->inRandomOrder()->limit(2)->get();
+        $limit = $post->is_fullscreen ? 2 : 3;
+        $relatedPosts = $relatedPosts->inRandomOrder()->limit($limit)->get();
+
+        $popularPosts = Post::with(['user', 'headImage'])->join('views', 'posts.id', '=', 'views.post_id');
+        $popularPosts->where('views.created_at', '>=', \Carbon\Carbon::now()->subDays(1));
+        $popularPosts->selectRaw('posts.*, COUNT(views.id) AS views_count')
+                     ->groupBy('posts.id')
+                     ->orderByRaw('views_count DESC');
+
+        $popularPosts = $popularPosts->limit(2)->get();
+
 
         $count = file_get_contents('https://graph.facebook.com/?id='.$request->fullUrl());
 
@@ -160,6 +171,7 @@ class PostController extends Controller
             [
                 'post' => $post->load('viewsCountRelation'),
                 'relatedPosts' => $relatedPosts,
+                'popularPosts' => $popularPosts,
                 'sharesCount' => $count,
             ]
         );

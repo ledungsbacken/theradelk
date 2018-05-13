@@ -35,6 +35,12 @@
                         {{ $related->id }}
                     </div>
                     @endforeach
+                    <div>Popular:</div>
+                    @foreach ($popularPosts as $popular)
+                    <div>
+                        {{ $popular->id }}
+                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>
