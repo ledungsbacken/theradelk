@@ -37,12 +37,12 @@
         <ul>
             <li>
                 <h2>popular right now</h2>
-                @foreach ($relatedPosts as $related)
+                @foreach ($popularPosts as $popular)
                 <article class="fullscreenRelated">
-                    <a href="{{ $related->slug }}">
-                        <img src="{{ $related->headImage->thumbnail }}" alt="">
-                        <h3>{{ $related->title }}</h3>
-                        <p>by {{ $related->user->name }}</p>
+                    <a href="{{ $popular->slug }}">
+                        <img src="{{ $popular->headImage->thumbnail }}" alt="">
+                        <h3>{{ $popular->title }}</h3>
+                        <p>by {{ $popular->user->name }}</p>
                     </a>
                 </article>
                 @endforeach
