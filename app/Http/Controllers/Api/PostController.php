@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller as Controller;
 use Illuminate\Http\Request;
 use Auth;
 use DB;
+use Validator;
 
 use App\User;
 use App\Role;
@@ -218,9 +219,14 @@ class PostController extends Controller
      * @return Post
      */
     public function setPublished(Request $request, $id) {
-        $post = Post::find((int)$id);
+        $post = Post::with('subcategories')->find((int)$id);
         // Return 403 if not enough permissions
         if(Auth::user()->cant('delete', $post)) { return response()->json('Forbidden', 403); }
+
+        $validator = Validator::make($post->toArray(), $post->publishRules, $post->validationMessages);
+        if($validator->fails()) {
+            return response()->json($validator->errors(), 400);
+        }
 
         $published = (int)$request->published;
         if($published == 0 || $published == 1) {

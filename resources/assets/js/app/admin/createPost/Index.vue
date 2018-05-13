@@ -51,10 +51,6 @@ export default {
             });
         },
     },
-    beforeRouteLeave (to, from, next) {
-        CKEDITOR.instances.editor1.destroy();
-        next();
-    },
     watch : {
 
     },

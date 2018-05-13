@@ -34,6 +34,29 @@ class Post extends Model
         'published'
     ];
 
+    /**
+     * Validation rules for publishing posts.
+     *
+     * @var array
+     */
+    public $publishRules = [
+        'head_image_id' => 'required',
+        'title' => 'required|max:255',
+        'subtitle' => 'required|max:255',
+        'content' => 'required',
+        'subcategories' => 'required',
+    ];
+
+    /**
+     * Custom validation messages.
+     *
+     * @var array
+     */
+    public $validationMessages = [
+        'head_image_id.required' => 'Head image is required.',
+        'subcategories.required' => 'Category is required.',
+    ];
+
     public function user() {
         return $this->belongsTo(User::class);
     }
