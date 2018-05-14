@@ -176,8 +176,8 @@ export default {
                 this.$swal({
                     type: post.data.published ? 'success' : 'info',
                     title: post.data.published ? 'Post has been published!' : 'Post has been unpublished!',
-                    showConfirmButton: true,
-                    timer: 1500,
+                    showConfirmButton: false,
+                    timer: 1200,
                 });
             }).catch(error => {
                 post.reset();

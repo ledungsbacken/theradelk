@@ -1,31 +1,14 @@
 <template>
     <div>
-        <button @click="showImagesModal = true">Images</button>
-        <images-modal
-            v-if="showImagesModal"
-            :show="showImagesModal"
-            @close="showImagesModal = false"></images-modal>
+        <div id="menu_togglers">
+            <li @click="showAdminPanel = !showAdminPanel">
+                <i class="fa fa-pencil"></i>
+            </li>
+            <li  @click="showImagesModal = true">
+                <i class="fa fa-image"></i>
+            </li>
+        </div>
 
-        <lh-switch
-            id="isFullscreenSwitch"
-            v-model="isFullscreen"
-            @input="$emit('fullscreen', $event)">
-                Fullscreen
-        </lh-switch>
-        <slider
-            ref="slider"
-            v-model="mutableOpacity"
-            @input="$emit('opacity', $event)"
-            :min="Number(0)"
-            :max="Number(1)"
-            :interval="Number(0.01)">
-        </slider>
-
-        <button
-            class="form-control"
-            @click="showHeadImagesModal = true">
-                Choose head image
-        </button>
         <head-images-modal
             v-model="headImage"
             v-if="showHeadImagesModal"
@@ -34,13 +17,44 @@
             @close="showHeadImagesModal = false">
         </head-images-modal>
 
-        <div v-for="subcategory in subcategories">
-            <label>
-                <input type="checkbox"
-                    v-model="chosenCategories"
-                    :value="subcategory" />
-                {{ subcategory.category.data.name }}/{{ subcategory.data.name }}
-            </label>
+        <images-modal
+            v-if="showImagesModal"
+            :show="showImagesModal"
+            @close="showImagesModal = false">
+        </images-modal>
+
+        <div id="admin" :show="showAdminPanel" v-if="showAdminPanel">
+            <div class="wrapper">
+                <section id="admin">
+                    <slider
+                        ref="slider"
+                        v-model="mutableOpacity"
+                        @input="$emit('opacity', $event)"
+                        :min="Number(0)"
+                        :max="Number(1)"
+                        :interval="Number(0.01)">
+                    </slider>
+
+                    <lh-switch
+                        id="isFullscreenSwitch"
+                        v-model="isFullscreen"
+                        @input="$emit('fullscreen', $event)">
+                            Fullscreen
+                    </lh-switch>
+
+                    <div v-for="subcategory in subcategories">
+                        <label>
+                            <input type="checkbox"
+                                v-model="chosenCategories"
+                                :value="subcategory" />
+                            {{ subcategory.category.data.name }}/{{ subcategory.data.name }}
+                        </label>
+                    </div>
+                    <button
+                        class="form-control"
+                        @click="showHeadImagesModal = true">Choose head image</button>
+                </section>
+            </div>
         </div>
     </div>
 </template>
@@ -74,6 +88,7 @@ export default {
             subcategories : {},
             chosenCategories : this.categories,
             showImagesModal : false,
+            showAdminPanel : false,
             showHeadImagesModal : false,
             headImage : new HeadImage(),
             isFullscreen : this.fullscreen,
