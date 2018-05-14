@@ -11,7 +11,7 @@
             @endforeach
         </ul>
         </nav>
-        <a href="https://theradelk.com">
+        <a href="/">
             <img src="https://theradelk.com/logo-realSize.png" id="logo" alt="">
         </a>
         <nav id="core" class="inline">
