@@ -32,6 +32,12 @@ Route::resource('/post', 'Api\PostController', [
 Route::get('/post/slug/{slug}', 'Api\PostController@showBySlug');
 Route::post('/post/{id}/add/view', 'Api\PostController@addView');
 
+Route::resource('/subscriber', 'Api\SubscriberController', [
+    'only' => [
+        'store',
+    ]
+]);
+
 Route::resource('/category', 'Api\CategoryController', [
     'only' => [
         'index',
@@ -85,6 +91,15 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::put('/post/{id}/publish', 'Api\PostController@setPublished');
     Route::put('/post/{id}/hidden', 'Api\PostController@setHidden');
     Route::delete('/post/{id}/delete/hard', 'Api\PostController@hardDelete');
+
+    Route::resource('/subscriber', 'Api\SubcategoryController', [
+        'only' => [
+            'index',
+            'show',
+            'update',
+            'destroy',
+        ]
+    ]);
 
     Route::resource('/category', 'Api\CategoryController', [
         'only' => [

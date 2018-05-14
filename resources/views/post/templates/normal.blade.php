@@ -78,13 +78,14 @@
                 </main>
             </div>
             <aside>
-                <div id="newsletter">
+                <div>
                     <h2>Join the newsletter</h2>
                     <p>
                         We send out newsletters on a regular basis
                         where we include the very latest of theradelk.
                         Subscribe and stay tuned to the elk's nest!
                     </p>
+                    @include('includes.newsletter')
                     <form action="">
                         <input type="text">
                         <button type="submit">Go!</button>

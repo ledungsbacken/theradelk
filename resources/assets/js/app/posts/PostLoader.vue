@@ -21,7 +21,7 @@ export default {
             count : 3,
         }
     },
-    mounted() {console.log('eqw');
+    mounted() {
         this.load();
     },
     methods : {

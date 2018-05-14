@@ -70,7 +70,7 @@ export default class Model {
     */
     static _createAxios(url = '') {
         let http = axios.create({
-            'baseURL' : 'api/' + url
+            'baseURL' : '/api/' + url
         });
 
         this.registerDefaultResponseInterceptor(http);
