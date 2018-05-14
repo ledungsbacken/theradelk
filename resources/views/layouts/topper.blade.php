@@ -11,7 +11,7 @@
             @endforeach
         </ul>
         </nav>
-        <a href="https://theradelk.com">
+        <a href="/">
             <img src="https://theradelk.com/logo-realSize.png" id="logo" alt="">
         </a>
         <nav id="core" class="inline">
@@ -29,17 +29,21 @@
                 <li><a target="_blank" href="https://discordapp.com/invite/yNAWDcv"><i class="fab fa-discord"></i></a></li>
             </ul>
             <ul id="switch">
-            @if(!session('theme') || session('theme') == 'light')
-                <li><a href="/theme/set/dark">
-                    <span>DARK</span>
-                    <i class="fa fa-toggle-off"></i>
-                </a></li>
+                @if(!session('theme') || session('theme') == 'light')
+                    <li>
+                        <a href="/theme/set/dark">
+                            <span>DARK</span>
+                            <i class="fa fa-toggle-off"></i>
+                        </a>
+                    </li>
                 @elseif(session('theme') == 'dark')
-                <li><a href="/theme/set/light">
-                    <span>DARK</span>
-                    <i class="fa fa-toggle-on"></i>
-                </a></li>
-            @endif
+                    <li>
+                        <a href="/theme/set/light">
+                            <span>DARK</span>
+                            <i class="fa fa-toggle-on"></i>
+                        </a>
+                    </li>
+                @endif
             </ul>
             <ul>
                 <li>
@@ -63,17 +67,17 @@
         @endforeach
     </ul>
     <ul id="switch">
-    @if(!session('theme') || session('theme') == 'light')
-        <li><a href="/theme/set/dark">
-            <span>DARK</span>
-            <i class="fas fa-toggle-off"></i>
-        </a></li>
+        @if(!session('theme') || session('theme') == 'light')
+            <li><a href="/theme/set/dark">
+                <span>DARK</span>
+                <i class="fas fa-toggle-off"></i>
+            </a></li>
         @elseif(session('theme') == 'dark')
-        <li><a href="/theme/set/light">
-            <span>DARK</span>
-            <i class="fas fa-toggle-on"></i>
-        </a></li>
-    @endif
+            <li><a href="/theme/set/light">
+                <span>DARK</span>
+                <i class="fas fa-toggle-on"></i>
+            </a></li>
+        @endif
     </ul>
     <ul>
         <li><a href="/about-us">about</a></li>

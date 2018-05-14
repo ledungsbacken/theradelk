@@ -12,8 +12,6 @@
 @section('content')
     @if($post->is_fullscreen == '1')
         @include('post.templates.fullscreen')
-   	@elseif($post->is_fullscreen == '2')
-   		@include('post.templates.middle')
     @else
         @include('post.templates.normal')
     @endif

@@ -1,12 +1,13 @@
 <template>
     <div>
-        
+
         <div class="row">
             <div class="col-md-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">Manage Posts</div>
 
                     <div class="panel-body">
+                        <newsletter></newsletter>
                         <div class="row" v-if="isModerator">
                             <div class="col-md-2">
                                 <lh-switch id="showAllSwitch" v-model="showAll">Show All</lh-switch>
@@ -115,6 +116,7 @@
 
 <script>
 import Post from '../../../models/Post.js';
+import Newsletter from '../../../components/Newsletter.vue';
 import User from '../../../models/User.js';
 import Paging from '../../Paging.vue';
 import Count from '../../Count.vue';
@@ -226,6 +228,7 @@ export default {
         paging : Paging,
         count : Count,
         LhSwitch : Switch,
+        Newsletter,
     }
 }
 </script>
