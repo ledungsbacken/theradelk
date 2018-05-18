@@ -33,6 +33,7 @@ Route::get('/category/{category}/{subcategory}', 'Web\PostController@indexBySubc
 Route::get('/user/{userId}', 'Web\UserController@show');
 
 Route::get('/about', 'ViewController@about');
+Route::get('/join', 'ViewController@join');
 
 Route::get('/join-us', 'ViewController@join');
 Route::get('/contact', 'ViewController@contact');

@@ -43,4 +43,13 @@ class ViewController extends Controller
         })->get();
         return View('info.about', ['users' => $users]);
     }
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function join()
+    {
+        return View('info.join');
+    }
 }

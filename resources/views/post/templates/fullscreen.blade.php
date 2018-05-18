@@ -1,5 +1,41 @@
 <div id="progressBar"></div>
+
+
 <div id="postPage_second">
+    <ul class="inline" id="phoneShare">
+        <li>
+            <a 
+                href="https://www.facebook.com/sharer/sharer.php?u=https://theradelk.com/post/{{ $post->slug }}" 
+                id="fb" 
+                class="sharer">
+                <i class="fab fa-facebook"></i>
+            </a>
+        </li>
+        <li>
+            <a 
+                href="http://twitter.com/share?text={{ $post->title }}&url=https://theradelk.com/post/{{ $post->slug }}" 
+                id="twitter" 
+                class="sharer">
+                <i class="fab fa-twitter"></i>
+            </a>
+        </li>
+        <li>
+            <a 
+                href="https://reddit.com/submit?url=https://theradelk.com/post/{{ $post->slug }}&title={{ $post->title }}" 
+                id="reddit"
+                class="sharer">
+                <i class="fab fa-reddit"></i>
+            </a>
+        </li>
+        <li>
+            <a 
+                href="https://www.linkedin.com/shareArticle?mini=true&url=https://theradelk.com/post/{{ $post->slug }}&title={{ $post->title }}&summary={{ $post->subheader }}&source=TheRadElk" 
+                id="linkedin" 
+                class="sharer">
+                <i class="fab fa-linkedin"></i>
+            </a>
+        </li>
+    </ul>
     <h1 id="largePageHeader">
         <a href="https://theradelk.com">theRadElk</a>
     </h1>
@@ -28,38 +64,51 @@
             </picture>
         </div>
         <div id="progressMarker">
+            <div id="largepage_share_scroll">
+                <ul>
+                    <li>
+                        <a href="#">
+                            <i class="fas fa-chevron-up"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.facebook.com/sharer/sharer.php?u=https://theradelk.com/post/{{ $post->slug }}" class="sharer">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://twitter.com/share?text={{ $post->title }}&url=https://theradelk.com/post/{{ $post->slug }}" class="sharer">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://reddit.com/submit?url=https://theradelk.com/post/{{ $post->slug }}&title={{ $post->title }}" target="_blank">
+                            <i class="fab fa-reddit"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://theradelk.com/post/{{ $post->slug }}&title={{ $post->title }}&summary={{ $post->subheader }}&source=TheRadElk" class="sharer">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
             <main id="postText-FullPage">
                 {!! $post->content !!}
             </main>
         </div>
     </div>
     <div id="continue">
-        <ul>
-            <li>
-                <h2>popular right now</h2>
-                @foreach ($popularPosts as $popular)
-                <article class="fullscreenRelated">
-                    <a href="{{ $popular->slug }}">
-                        <img src="{{ $popular->headImage->thumbnail }}" alt="">
-                        <h3>{{ $popular->title }}</h3>
-                        <p>by {{ $popular->user->name }}</p>
-                    </a>
-                </article>
-                @endforeach
-            </li>
-            <li>
-                <h2>you might also like..</h2>
-                @foreach ($relatedPosts as $related)
-                <article class="fullscreenRelated">
-                    <a href="{{ $related->slug }}">
-                        <img src="{{ $related->headImage->thumbnail }}" alt="">
-                        <h3>{{ $related->title }}</h3>
-                        <p>by {{ $related->user->name }}</p>
-                    </a>
-                </article>
-                @endforeach
-            </li>
-        </ul>
+        <h2>popular right now</h2>
+        @foreach ($popularPosts as $popular)
+        <article class="fullscreenRelated">
+            <a href="{{ $popular->slug }}">
+                <img src="{{ $popular->headImage->thumbnail }}" alt="">
+                <h3>{{ $popular->title }}</h3>
+                <p>by {{ $popular->user->name }}</p>
+            </a>
+        </article>
+        @endforeach
     </div>
     <div id="comment">
         <div id="disqus_thread"></div>

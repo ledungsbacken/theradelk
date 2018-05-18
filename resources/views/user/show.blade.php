@@ -10,7 +10,7 @@
                     <ul id="location_posts" class="inline">
                         <li>
                             <i class="fas fa-map-marker-alt"></i>
-                            Sweden
+                            {{ $user->country }}
                         </li>
                         <li>
                             <i class="far fa-edit"></i>
