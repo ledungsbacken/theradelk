@@ -7,7 +7,7 @@
 				The Team
 			</h1>
 			<p>
-				Let us introduce ourselfs - this is our awesome team (this far), we all love to write
+				Let us introduce ourselves - this is our awesome team (this far), we all love to write
 				and do so with a lot of passion, to deliver content of outstanding quality to you as
 				a reader.
 			</p>

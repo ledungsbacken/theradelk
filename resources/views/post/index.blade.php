@@ -61,12 +61,15 @@
         <section id="latest">
             <header>
                 <h1 id="subtitle">
-                    <a href="/latest">Recent <i class="fas fa-angle-right"></i></a>
+                    <a href="/latest">Recent</a>
                 </h1>
             </header>
             <main id="indexPosts">
                 @each('includes.post', $posts, 'post')
             </main>
+            <a href="/latest" id="loadmore">
+                load more articles
+            </a>
         </section>
     </div>
 @endsection

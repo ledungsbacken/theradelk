@@ -38,8 +38,8 @@ class SocialLinkController extends Controller
         // Return 403 if not enough permissions
         if(Auth::user()->cant('update', $user)) { return response()->json('Forbidden', 403); }
 
-        if($user->socialLinks->count() >= 4) {
-            return response()->json('Bad Request: You cannot have more than 4 links', 400);
+        if($user->socialLinks->count() >= 5) {
+            return response()->json('Bad Request: You cannot have more than 5 links', 400);
         }
 
         $socialLink = SocialLink::create([

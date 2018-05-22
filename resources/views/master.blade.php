@@ -12,6 +12,20 @@
 
     @stack('meta')
 
+    <?php echo (isset($title)) ? '' : '
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="We bring you the latest and greatest news within a lot of genres, from all around the globe!">
+    <meta property="og:url" content="http://www.theradelk.com">
+    <meta property="og:description"  content="By people who writes directly from the heart, with much passion, from all around the world">
+    <meta property="og:image" content="https://theradelk.com/logo-realSize.png">
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:description" content="We bring you the latest and greatest news within a lot of genres, from all around the globe!" />
+    <meta name="twitter:title" content="The Rad Elk" />
+    <meta name="twitter:site" content="@theradelk" />
+    <meta name="twitter:image" content="https://theradelk.com/logo-realSize.png" />
+    ' ?>
+
     @guest
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-90622404-4"></script>
@@ -33,8 +47,6 @@
     </script>
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <title><?php echo (isset($title)) ? $title : config('app.name', 'Laravel') ?></title>
 
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
     @if(!session('theme') || session('theme') == 'light')

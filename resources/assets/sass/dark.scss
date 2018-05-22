@@ -19,6 +19,12 @@ body{
 	}
 }
 
+#comment{
+	@media screen and (max-width:1030px){
+		background-color: #333;
+	}
+}
+
 #about-us{
 	.author{
 		h3{
@@ -120,4 +126,8 @@ body{
 			}
 		}
 	}
+}
+
+ol li{
+	color:#fff;
 }

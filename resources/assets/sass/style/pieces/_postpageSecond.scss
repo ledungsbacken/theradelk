@@ -210,26 +210,43 @@
 		background-color: #000 !important;
 	}
 
-	#postText-FullPage{
-		max-width:730px;
-		margin:auto;
-		position: relative;
-		margin-bottom: 2%;
-		margin-top: 4%;
-		@import '../../admin/adminStyle.scss';
-
+	.inputs{
 		img{
 			max-width: 100% !important;
 			height: auto !important;
 		}
+		iframe{
+			width: 100%;
+		}
+		@media screen and (max-width:699px){
+			iframe{
+				max-height: 50vw !important;
+			}
+		}
+		@media screen and (min-width:700px){
+			iframe{
+				height: 430px !important;
+			}
+		}
+	}
+
+	#postText-FullPage{
+		max-width:730px;
+		position: relative;
+		padding-top:80px;
+		padding-bottom: 30px;
+		margin:auto;
+		@import '../../admin/adminStyle.scss';
 
 		.instagram-media{
-			min-height:30px !important;
+			min-height: 700px !important;
+			height: auto !important;
+			margin: auto !important;
 		}
 
 		@media screen and (max-width:910px){
-			padding: 0 30px;
-
+			padding-left:30px;
+			padding-right:30px;
 			.imgOnly{
 				width:100% !important;
 				padding: 0 0 !important;
@@ -274,8 +291,12 @@
 	#comment{
 		max-width:940px;
 		margin:auto;
-		margin-top: 60px;
-		margin-bottom: 40px;
+		@media screen and (min-width:1031px){
+			padding: 50px 0;
+		}
+		@media screen and (max-width:1030px){
+			padding: 30px;
+		}
 	}
 
 	#continue{

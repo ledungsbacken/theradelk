@@ -5,7 +5,7 @@
 		<h1>
 			General information from The Rad Elk:
 		</h1>
-		<section id="desc">
+		<section id="desc" class="regular">
 			<p>
 				Welcome to The Rad Elk!<br><br>
  

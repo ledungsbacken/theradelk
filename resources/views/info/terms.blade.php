@@ -5,7 +5,7 @@
 		<h1>
 			General information from The Rad Elk:
 		</h1>
-		<section id="desc">
+		<section id="desc" class="regular">
 			<p>
 				• We aim to deliver quality work in all that we do, with a focus on continuous improvement.<br><br>
 • We work together with our stakeholders to provide products and services that meet or in favourable cases, exceed their expectations.<br><br>
@@ -19,13 +19,15 @@
 
 			</p>
 		</section><br><br><br><br>
-		<h1>For our users:</h1>
-		<p>
-			• We will always let you know what information we’d like about you, why we’d like it and what we do with this data.<br><br>
-			• We will always give you something back for doing this.<br><br>
-			• We will always make sure that you are in control of your information.<br><br>
-			• Please rest assured we don’t sell your personal details on to anyone else.  We will not bombard your inbox with emails you haven’t asked for.
-		</p>
+		<section class="regular">
+			<h1>For our users:</h1>
+			<p>
+				• We will always let you know what information we’d like about you, why we’d like it and what we do with this data.<br><br>
+				• We will always give you something back for doing this.<br><br>
+				• We will always make sure that you are in control of your information.<br><br>
+				• Please rest assured we don’t sell your personal details on to anyone else.  We will not bombard your inbox with emails you haven’t asked for.
+			</p>
+		</section>
 	</div>
 </main>
 @endsection
