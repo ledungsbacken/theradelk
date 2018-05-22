@@ -31,7 +31,19 @@ class PostController extends Controller
 
         $scenery = Scenery::whereNull('category_id')->first();
 
-        return View('post.index', ['posts' => $posts, 'scenery' => $scenery]);
+        $popularPosts = Post::with(['user', 'headImage'])->join('views', 'posts.id', '=', 'views.post_id');
+        $popularPosts->where('views.created_at', '>=', \Carbon\Carbon::now()->subHours(2));
+        $popularPosts->selectRaw('posts.*, COUNT(views.id) AS views_count')
+                     ->groupBy('posts.id')
+                     ->orderByRaw('views_count DESC');
+
+        $popularPosts = $popularPosts->limit($this->count)->get();
+
+        return View('post.index', [
+            'posts' => $posts,
+            'scenery' => $scenery,
+            'popularPosts' => $popularPosts,
+        ]);
     }
 
     /**
