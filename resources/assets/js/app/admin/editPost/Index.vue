@@ -76,9 +76,13 @@ export default {
             this.post.update().then(post => {
                 this.post = post;
                 this.post.data.subcategories = this.post.subcategories;
-                this.alert.data.status.name = 'success';
-                this.alert.data.status.label = 'Saved';
-                this.alert.data.message = 'Post successfully updated';
+
+                this.$swal({
+                    type: 'success',
+                    title: 'Update successful!',
+                    showConfirmButton: false,
+                    timer: 1000,
+                });
                 this.alert.show = true;
             });
         },

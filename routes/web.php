@@ -33,9 +33,12 @@ Route::get('/category/{category}/{subcategory}', 'Web\PostController@indexBySubc
 Route::get('/user/{userId}', 'Web\UserController@show');
 
 Route::get('/about', 'ViewController@about');
-
-Route::get('/join-us', 'ViewController@join');
+Route::get('/join', 'ViewController@join');
 Route::get('/contact', 'ViewController@contact');
+Route::get('/competitions', 'ViewController@competitions');
+Route::get('/terms', 'ViewController@terms');
+Route::get('/privacy', 'ViewController@privacy');
+Route::get('/trademarks', 'ViewController@trademarks');
 
 Route::get('/theme/set/{theme}', function($theme) {
     if($theme == 'light') {

@@ -1,36 +1,34 @@
 <template>
     <div>
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <div class="panel panel-default">
-                    <div class="panel-heading">Create fullscreen post</div>
-
-                    <div class="panel-body">
-                        <div class="row">
-                            <img v-if="mutablePost.headImage.data.thumbnail"
-                                :src="mutablePost.headImage.data.thumbnail"
-                                @click="showHeadImagesModal = true"
-                                width="100%" />
-                            <input
-                                type="text"
-                                class="form-control"
-                                v-model="mutablePost.data.title"
-                                placeholder="Title" />
-                            <input
-                                type="text"
-                                class="form-control"
-                                v-model="mutablePost.data.subtitle"
-                                placeholder="Subtitle" />
-
-                            <div>Author: {{ user.data.name }}</div>
-
-                            <editor id="editor1" v-model="mutablePost.data.content"></editor>
-                            <input type="button" class="btn btn-success" @click="save()" value="Create" />
+        <div id="postPage_second">
+            <div class="wrapper" id="postPage">
+                <div id="coverImage">
+                    <div id="filter" :style="'background-color: rgba(44, 62, 80,' +post.data.opacity+');'"></div>
+                    <header>
+                        <textarea v-model="mutablePost.data.title" rows="3" spellcheck="false" placeholder="replace w/ title"></textarea>
+                        <textarea v-model="mutablePost.data.subtitle" rows="1" spellcheck="false" placeholder="replace w/ title"></textarea>
+                        <div id="image_name_views">
+                            <img :src="user.data.picture" id="authorImage" />
+                            <p id="author_category">by <strong>{{ user.data.name }}</strong> about <strong>1 second ago</strong> in Tech</p>
+                            <p id="views">
+                                <i class="fa fa-eye"></i>
+                                332
+                            </p>
                         </div>
-                    </div>
+                    </header>
+                    <picture>
+                        <source media="(max-width:600px)" :srcset="mutablePost.headImage.data.phone" v-if="mutablePost.headImage.data.phone">
+                        <source media="(min-width:601px) and (max-width:900px)" :srcset="mutablePost.headImage.data.tablet" v-if="mutablePost.headImage.data.tablet">
+                        <source media="(min-width:901px)" :srcset="mutablePost.headImage.data.desktop" v-if="mutablePost.headImage.data.desktop">
+                        <img v-if="mutablePost.headImage.data.desktop" id="postImage" :src="mutablePost.headImage.data.desktop" @click="showHeadImagesModal = true" />
+                    </picture>
                 </div>
             </div>
+            <main id="postText-FullPage">
+                <editor id="editor1" v-model="mutablePost.data.content"></editor>
+            </main>
         </div>
+        <input type="button" class="btn btn-success" @click="save()" value="Create" />
     </div>
 </template>
 

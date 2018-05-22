@@ -3,19 +3,19 @@
         <h3>THERADELK © 2018</h3> designed & developed by Daniel Ljungqvist
     </section>
     <ul id="footNav" class="inline">
-        <li><a href="/pages/competitions">
+        <li><a href="/competitions">
             competitons
         </a></li>
         <li><a href="/contact">
             contact
         </a></li>
-        <li><a href="/pages/terms">
+        <li><a href="/terms">
             terms of use
         </a></li>
-        <li><a href="/pages/privacy">
+        <li><a href="/privacy">
             privacy policy
         </a></li>
-        <li><a href="/pages/trademarks">
+        <li><a href="/trademarks">
             trademarks
         </a></li>
     </ul>

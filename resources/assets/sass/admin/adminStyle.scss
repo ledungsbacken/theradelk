@@ -78,6 +78,18 @@ em {
 ul,ol li{
   font-size:1.1em;
 }
+ul{
+  color:red !important;
+  li{
+    color:#333;
+    line-height:1.6em;
+    &:before{
+      font-family: "Font Awesome 5 Brands"; content: "\f04d";
+      margin-right: 20px;
+      color:red;
+    }
+  }
+}
 ol{
     padding: 0;
     padding: 10px 0;
@@ -88,6 +100,7 @@ ol{
       line-height: 1.6em;
       list-style: none;
       font-family: 'Open Sans', sans-serif;
+      color:#333;
 
       &:before{
         position: absolute;

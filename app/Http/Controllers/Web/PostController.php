@@ -152,16 +152,16 @@ class PostController extends Controller
         $relatedPosts->whereNotNull('published');
         $relatedPosts->where('hidden', '=', '0');
 
-        $limit = $post->is_fullscreen ? 2 : 3;
+        $limit = $post->is_fullscreen ? 3 : 3;
         $relatedPosts = $relatedPosts->inRandomOrder()->limit($limit)->get();
 
         $popularPosts = Post::with(['user', 'headImage'])->join('views', 'posts.id', '=', 'views.post_id');
-        $popularPosts->where('views.created_at', '>=', \Carbon\Carbon::now()->subDays(1));
+        $popularPosts->where('views.created_at', '>=', \Carbon\Carbon::now()->subHours(12));
         $popularPosts->selectRaw('posts.*, COUNT(views.id) AS views_count')
                      ->groupBy('posts.id')
                      ->orderByRaw('views_count DESC');
 
-        $popularPosts = $popularPosts->limit(2)->get();
+        $popularPosts = $popularPosts->limit(3)->get();
 
 
         $count = file_get_contents('https://graph.facebook.com/?id='.$request->fullUrl());

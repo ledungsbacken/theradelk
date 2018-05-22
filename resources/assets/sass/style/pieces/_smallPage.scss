@@ -27,7 +27,7 @@
 		margin-top: 90px;
 	}
 
-	@media screen and (min-width:600px) and (max-width:1309px){
+	@media screen and (min-width:600px) and (max-width:1410px){
 		max-width:1220px;
 		padding: 0 70px;
 	}
@@ -60,9 +60,24 @@
 			margin-top: 20px;
 			padding: 20px 40px;
 		}
-
+		@media screen and (min-width:600px){
+			#phoneShare{
+				display:none;
+			}
+		}
 		#phoneShare{
-			display:none;
+			margin-top: 22px !important;
+			overflow: hidden;
+			li{
+				float:left;
+				.fab{
+					margin-right: 22px;
+					font-size:1.6em;
+				}
+			}
+			a{
+				color:#ddd;
+			}
 		}
 
 		@media screen and (max-width:600px){
@@ -98,7 +113,7 @@
 
 		#subtitle{
 			font-style:italic;
-			font-size:1em;
+			font-size:1.3em;
 			padding:22px 0;
 			font-weight:400;
 			line-height: 1.6em;
@@ -135,10 +150,18 @@
 					max-width:100% !important;
 					padding-top:10px !important;
 					padding-bottom:30px !important;
+					@media screen and (max-width:800px){
+						max-height:70vw;
+					}
 				}
 				twitterwidget{
 					width:100% !important;
 					padding-bottom: 40px;
+				}
+				p{
+					&:empty{
+						display:none;
+					}
 				}
 				@import '../../admin/adminStyle.scss';
 			}
@@ -155,7 +178,7 @@
 	}
 
 	#comment{
-		width:940px;
+		width:100%;
 		margin:auto;
 	}
 
@@ -172,8 +195,41 @@
 			padding-left: 30px;
 			margin-top: 10px;
 			border-left:dotted 2px #b2bec3;
+			#newsletter{
+				overflow: hidden;
+				h2{
+					font-family: 'Montserrat', sans-serif;
+					font-size:1.4em;
+					font-weight:800;
+				}
+				p{
+					font-size:.9em;
+					padding: 15px 0;
+					line-height: 1.5em;
+				}
+				input{
+					width: 100%;
+					float:left;
+					padding:12px;
+					box-sizing:border-box;
+				}
+				#subscribeButton{
+					float:right;
+					margin-top: -43px;
+					padding:13.5px;
+					background-color: #c0392b;
+					transition: background-color .3s;
+					color:#fff;
+					cursor:pointer;
+					&:hover{
+						background-color:#e74c3c;
+						transition: background-color .3s;
+					}
+				}
+			}
 			
 			#relatedPosts{
+				margin-top: 70px;
 				h2{
 					padding-bottom: 20px;
 					font-weight:800;
@@ -199,37 +255,6 @@
 						font-size:.8em;
 						margin-top: 5px;
 						color:#7f8c8d;
-					}
-				}
-			}
-			#newsletter{
-				margin-bottom: 60px;
-				h2{
-					font-family: 'Montserrat', sans-serif;
-					font-size:1.4em;
-					font-weight:800;
-				}
-				p{
-					font-size:.9em;
-					padding: 15px 0;
-					line-height: 1.5em;
-				}
-				.fa{
-					margin-right: 15px;
-				}
-				form{
-					overflow: hidden;
-					input{
-						width: 100%;
-						float:left;
-						padding:12px;
-						box-sizing:border-box;
-						margin-top: 10px;
-					}
-					button{
-						float:right;
-						margin-top: -43px;
-						padding:12px;
 					}
 				}
 			}

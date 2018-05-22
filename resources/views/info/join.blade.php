@@ -5,7 +5,7 @@
 		<h1>
 			JOIN US
 		</h1>
-		<section id="desc">
+		<section id="desc" class="regular">
 			<p>
 				Got a passion for writing, designing or telling stories? The Rad Elk is always on the lookout for new and enthusiastic contributors and therefore we have plenty spots for diligent writers, storytellers and designers. If you know anything about tech, film, music or anything linked to the entertainment industry (i.e. fashion, photography) and are driven by your ecstatic ambitions, then we might just be a match made in heaven!
 			</p>
@@ -18,15 +18,17 @@
 			<p>
 				We can’t wait to hear from you and we’re eager to work together!
 			</p>
-			<form action="" id="subpage">
-				<label for="">Full name</label>
-				<input type="text">
-				<label for="">E-mail address</label>
-				<input type="text">
-				<label for="">Tell us about yourself</label>
-				<textarea name="" id="" cols="30" rows="10"></textarea>
-				<input type="submit" value="Done!" id="submit">
-			</form>
+			<!--
+				<form action="" id="subpage">
+					<label for="">Full name</label>
+					<input type="text">
+					<label for="">E-mail address</label>
+					<input type="text">
+					<label for="">Tell us about yourself</label>
+					<textarea name="" id="" cols="30" rows="10"></textarea>
+					<input type="submit" value="Done!" id="submit">
+				</form>
+			-->
 		</section>
 	</div>
 </main>

@@ -68,4 +68,46 @@ export default {
 </script>
 
 <style>
+body{
+    background-color: #fff;
+    line-height:inherit !important;
+    color:inherit !important;
+    font-family: inherit !important;
+    font-size:inherit !important;
+}
+.container{
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+#topper_padding{
+}
+h1,h2,h3{
+    line-height: inherit !important;
+}
+.navbar{
+    padding:0;
+    margin: 0;
+    overflow: hidden;
+    height:39px;
+    min-height:auto;
+    padding:10px;
+    box-sizing:border-box !important;
+}
+.navbar *{
+    padding: 0;
+    margin: 0;
+}
+.navbar li a{
+    margin: 0;
+    padding: 0;
+}
+#app-navbar-collapse{
+    padding: 0;
+    margin: 0;
+    height:30px !important;
+}
+*{
+    box-sizing:content-box !important;
+}
 </style>

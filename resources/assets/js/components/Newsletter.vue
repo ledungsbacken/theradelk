@@ -1,13 +1,12 @@
 <template>
-    <div>
+    <div id="newsletter">
         <input
             type="email"
             placeholder="Email"
             id="subscriber_email"
-            required
             v-model="subscriber.data.email"
             @keydown.enter="signUp()" />
-        <button @click="signUp()">Sign up</button>
+            <i class="fa fa-arrow-right" @click="signUp()" id="subscribeButton"></i>
     </div>
 </template>
 

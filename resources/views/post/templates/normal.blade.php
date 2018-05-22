@@ -1,4 +1,9 @@
 <div id="progressBar"></div>
+<script>
+    window.FontAwesomeConfig = {
+    searchPseudoElements: true
+  }
+</script>
 <div id="smallPage">
     <div id="progressMarker">
         <div id="sections">
@@ -17,7 +22,7 @@
                     <ul class="inline" id="phoneShare">
                         <li>
                             <a href="https://www.facebook.com/sharer/sharer.php?u=https://theradelk.com/post/{{ $post->slug }}" class="sharer">
-                                <i class="fab fa-facebook"></i>
+                                <i class="fab fa-facebook" id="facebook"></i>
                             </a>
                         </li>
                         <li>
@@ -78,7 +83,7 @@
                 </main>
             </div>
             <aside>
-                <div>
+                <div id="newsletter">
                     <h2>Join the newsletter</h2>
                     <p>
                         We send out newsletters on a regular basis
@@ -86,10 +91,6 @@
                         Subscribe and stay tuned to the elk's nest!
                     </p>
                     @include('includes.newsletter')
-                    <form action="">
-                        <input type="text">
-                        <button type="submit">Go!</button>
-                    </form>
                 </div>
                 <section id="relatedPosts">
                     <h2>You might also like..</h2>
@@ -107,6 +108,30 @@
         </div>
     </div>
     <div id="endContent">
+        <div id="endShare">
+            <ul class="inline">
+                <li>
+                    <a href="https://www.facebook.com/sharer/sharer.php?u=https://theradelk.com/post/{{ $post->slug }}" id="fb" class="sharer">
+                        <i class="fab fa-facebook"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="http://twitter.com/share?text={{ $post->title }}&url=https://theradelk.com/post/{{ $post->slug }}" id="twitter" class="sharer">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://reddit.com/submit?url=https://theradelk.com/post/{{ $post->slug }}&title={{ $post->title }}" id="reddit" target="_blank">
+                        <i class="fab fa-reddit"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://theradelk.com/post/{{ $post->slug }}&title={{ $post->title }}&summary={{ $post->subheader }}&source=TheRadElk" id="linkedin" class="sharer">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
         <div class="wrapper">
             <div id="comment">
                 <div id="disqus_thread"></div>

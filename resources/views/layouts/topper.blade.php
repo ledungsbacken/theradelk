@@ -18,7 +18,7 @@
             <ul>
                 <li><a href="/about">about</a></li>
                 <li><a href="/contact">contact</a></li>
-                <li><a href="/join-us">join us</a></li>
+                <li><a href="/join">join us</a></li>
             </ul>
             <ul id="social">
                 <li><a target="_blank" href="https://www.facebook.com/theradelk/"><i class="fab fa-facebook-f"></i></a></li>

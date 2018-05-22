@@ -3,7 +3,7 @@
 <main id="about-us">
 	<div class="wrapper">
 		<h1>
-			contact
+			Contact
 		</h1>
 		<section id="desc">
 			<p>
@@ -19,21 +19,6 @@
 			<p>
 				We can't promise anything, but we're usually able to get back within 24 hours.
 			</p>
-			<form action="" id="subpage">
-				<label for="">Your name</label>
-				<input type="text">
-				<label for="">E-Mail Address</label>
-				<input type="text">
-				<label for="">Choose a Subject</label>
-				<select name="" id="">
-					<option value="">Advertisement</option>
-					<option value="">Feedback</option>
-					<option value="">Question</option>
-				</select>
-				<label for="">Text</label>
-				<textarea name="" id="" cols="30" rows="10"></textarea>
-				<input type="submit" value="Send" id="submit">
-			</form>
 		</section>
 	</div>
 </main>
