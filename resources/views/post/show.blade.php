@@ -7,7 +7,6 @@
 <meta property="og:title" content="{{ $post->title }}">
 <meta property="og:description"  content="{{ $post->subtitle }}">
 <meta property="og:image" content="https://theradelk.com{{ $post->headImage->thumbnail }}">
-
 @endpush
 @section('content')
     @if($post->is_fullscreen == '1')

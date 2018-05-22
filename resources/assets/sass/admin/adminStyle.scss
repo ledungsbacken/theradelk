@@ -100,7 +100,6 @@ ol{
       line-height: 1.6em;
       list-style: none;
       font-family: 'Open Sans', sans-serif;
-      color:#333;
 
       &:before{
         position: absolute;
@@ -127,8 +126,11 @@ strong {
 }
 
 blockquote {
-    margin:0 30px;
     margin-bottom: 30px;
+    @media screen and (min-width:600px){
+      margin:0 30px;
+      margin-bottom: 30px;
+    }
     p{
       padding-left: 20px;
       font-style: italic;

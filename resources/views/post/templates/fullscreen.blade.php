@@ -93,7 +93,7 @@
                     </li>
                 </ul>
             </div>
-            <main id="postText-FullPage">
+            <main id="postText-FullPage" class="inputs">
                 {!! $post->content !!}
             </main>
         </div>

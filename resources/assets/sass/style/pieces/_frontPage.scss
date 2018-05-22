@@ -31,6 +31,28 @@
 	}
 }
 
+#loadmore{
+	display: inline-block;
+	font-family: 'Montserrat', sans-serif;
+	padding: 17px;
+	margin:auto;
+	width: 100%;
+	margin-bottom: 40px;
+	text-transform: uppercase;
+	box-sizing:border-box;
+	text-align: center;
+}
+#loadmore{
+	border:solid 5px #e74c3c;
+	color:#e74c3c;
+	transition: .3s;
+	&:hover{
+		background-color: #e74c3c;
+		color:#fff;
+		transition: .3s;
+	}
+}
+
 #indexPosts,
 #authPage{
 	display:flex;

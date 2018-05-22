@@ -5,7 +5,7 @@
 		<h1>
 			Contact
 		</h1>
-		<section id="desc">
+		<section id="desc" class="regular">
 			<p>
 				Got any feedback or questions? We're eager to hear from you!
 				We're also very flexible. You can either contact us directly via any social
