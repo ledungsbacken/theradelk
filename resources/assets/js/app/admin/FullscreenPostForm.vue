@@ -28,7 +28,6 @@
                 <editor id="editor1" v-model="mutablePost.data.content"></editor>
             </main>
         </div>
-        <input type="button" class="btn btn-success" @click="save()" value="Create" />
     </div>
 </template>
 
@@ -55,9 +54,7 @@ export default {
 
     },
     methods : {
-        save() {
-            this.$emit('save');
-        },
+        
     },
     watch : {
 

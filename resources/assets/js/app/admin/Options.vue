@@ -53,6 +53,7 @@
                     <button
                         class="form-control"
                         @click="showHeadImagesModal = true">Choose head image</button>
+                    <button class="btn btn-success" @click="save()">Save</button>
                 </section>
             </div>
         </div>
@@ -99,13 +100,13 @@ export default {
         this.load();
     },
     methods : {
-        debug(data) {
-            console.log(data);
-        },
         load() {
             Subcategory.index().then(response => {
                 this.subcategories = response;
             });
+        },
+        save() {
+            this.$emit('save');
         },
     },
     watch : {

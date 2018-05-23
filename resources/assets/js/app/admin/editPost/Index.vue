@@ -9,20 +9,19 @@
             @subcategories="post.data.subcategories = $event"
             @headImage="post.data.head_image_id = $event.data.id; post.headImage = $event"
             @fullscreen="post.data.is_fullscreen = $event"
+            @save="update()"
             v-if="exists">
         </options>
         <normal-post
             :post="post"
             :user="post.user"
             @post="post = $event"
-            @save="update()"
             v-if="!post.data.is_fullscreen && exists">
         </normal-post>
         <fullscreen-post
             :post="post"
             :user="post.user"
             @post="post = $event"
-            @save="update()"
             v-if="post.data.is_fullscreen && exists">
         </fullscreen-post>
     </div>

@@ -7,20 +7,19 @@
             @opacity="post.data.opacity = $event"
             @subcategories="post.data.subcategories = $event"
             @headImage="post.data.head_image_id = $event.data.id; post.headImage = $event"
-            @fullscreen="post.data.is_fullscreen = $event">
+            @fullscreen="post.data.is_fullscreen = $event"
+            @save="store()">
         </options>
         <normal-post
             :post="post"
             :user="user"
             @post="post = $event"
-            @save="store()"
             v-if="!post.data.is_fullscreen">
         </normal-post>
         <fullscreen-post
             :post="post"
             :user="user"
             @post="post = $event"
-            @save="store()"
             v-if="post.data.is_fullscreen">
         </fullscreen-post>
     </div>

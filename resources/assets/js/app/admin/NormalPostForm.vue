@@ -121,7 +121,6 @@
                     </div>
                 </aside>
             </div>
-            <input type="button" class="btn btn-success" @click="save()" value="Create" />
         </div>
     </div>
 </template>
@@ -149,9 +148,7 @@ export default {
 
     },
     methods : {
-        save() {
-            this.$emit('save');
-        },
+        
     },
     watch : {
         'post' : function(value) {
