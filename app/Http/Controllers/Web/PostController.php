@@ -175,15 +175,11 @@ class PostController extends Controller
 
         $popularPosts = $popularPosts->limit(3)->get();
 
-
-        $count = file_get_contents('https://graph.facebook.com/?id='.$request->fullUrl());
-
         return view('post.show',
             [
                 'post' => $post->load('viewsCountRelation'),
                 'relatedPosts' => $relatedPosts,
                 'popularPosts' => $popularPosts,
-                'sharesCount' => $count,
             ]
         );
     }
