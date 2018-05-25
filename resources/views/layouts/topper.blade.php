@@ -25,7 +25,6 @@
                 <li><a target="_blank" href="https://twitter.com/theradelk"><i class="fab fa-twitter"></i></a></li>
                 <li><a target="_blank" href="https://www.instagram.com/theradelk"><i class="fab fa-instagram"></i></a></li>
                 <li><a target="_blank" href="https://www.snapchat.com/add/theradelk"><i class="fab fa-snapchat"></i></a></li>
-                <li><a target="_blank" href="https://www.snapchat.com/theradelk"><i class="fab fa-linkedin"></i></a></li>
                 <li><a target="_blank" href="https://discordapp.com/invite/yNAWDcv"><i class="fab fa-discord"></i></a></li>
             </ul>
             <ul id="switch">

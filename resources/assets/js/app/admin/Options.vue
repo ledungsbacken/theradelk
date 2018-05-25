@@ -7,6 +7,7 @@
             <li  @click="showImagesModal = true">
                 <i class="fa fa-image"></i>
             </li>
+            <button class="btn btn-success" @click="save()">Save</button>
         </div>
 
         <head-images-modal
@@ -53,7 +54,6 @@
                     <button
                         class="form-control"
                         @click="showHeadImagesModal = true">Choose head image</button>
-                    <button class="btn btn-success" @click="save()">Save</button>
                 </section>
             </div>
         </div>
