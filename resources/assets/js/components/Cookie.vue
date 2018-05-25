@@ -25,6 +25,7 @@
                 let date = new Date();
                 date.setTime(date.getTime() + (364*24*60*60*1000));
                 window.document.cookie = 'cookie=1; expires=' + date + '; path=/';
+                window.document.getElementById('cookie').remove();
             },
         },
     }
