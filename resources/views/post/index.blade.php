@@ -77,14 +77,16 @@
                 <div class="icon">
                     <i class="fas fa-pencil-alt"></i>
                 </div>
-                <header>
-                    <h2>join our team</h2>
-                    <p>
-                        Got a passion for writing? we're looking for people
-                        who wants to contribute to our site - no matter what
-                        category you wanna write in!
-                    </p>
-                </header>
+                <aside>
+                    <header>
+                        <h2>join our team</h2>
+                        <p>
+                            Got a passion for writing? we're looking for people
+                            who wants to contribute to our site - no matter what
+                            category you wanna write in!
+                        </p>
+                    </header>
+                </aside>
             </section>
             <section id="subscribe">
                 <div class="icon">
