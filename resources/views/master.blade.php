@@ -57,6 +57,11 @@
 </head>
 <body>
     <div>
+        @if(!isset($_COOKIE['cookie']) || $_COOKIE['cookie'] != '1')
+            <div id="cookie">
+                <cookie></cookie>
+            </div>
+        @endif
         @auth
             @include('layouts.admin_nav')
         @endauth
