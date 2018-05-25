@@ -57,6 +57,9 @@
 </head>
 <body>
     <div>
+        <div id="cookie">
+            <cookie></cookie>
+        </div>
         @auth
             @include('layouts.admin_nav')
         @endauth

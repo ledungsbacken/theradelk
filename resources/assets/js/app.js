@@ -52,6 +52,7 @@ Vue.use(VueSweetalert2);
 // Vue.component('example-component', require('./components/ExampleComponent.vue'));
 Vue.component('share-count', require('./components/ShareCount.vue'));
 Vue.component('search', require('./components/Search.vue'));
+Vue.component('cookie', require('./components/Cookie.vue'));
 
 // Vue.component('postjson', require('./app/posts/PostJson.vue'));
 // Vue.component('postload', require('./app/posts/PostLoad.vue'));
@@ -59,4 +60,8 @@ Vue.component('search', require('./components/Search.vue'));
 
 const app = new Vue({
     el: '#app'
+});
+
+const cookie = new Vue({
+    el: '#cookie'
 });
