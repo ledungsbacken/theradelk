@@ -43,58 +43,32 @@ class ViewController extends Controller
         })->get();
         return View('info.about', ['users' => $users]);
     }
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function join()
     {
         return View('info.join');
     }
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function contact()
     {
         return View('info.contact');
     }
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function competitions()
     {
         return View('info.competitions');
     }
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function terms()
     {
         return View('info.terms');
     }
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function privacy()
     {
         return View('info.privacy');
     }
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function trademarks()
     {
         return View('info.trademarks');
+    }
+    public function cookies()
+    {
+        return View('info.cookies');
     }
 }
