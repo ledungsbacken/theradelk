@@ -83,7 +83,7 @@ class PostController extends Controller
 
         $scenery = Scenery::where('category_id', '=', $category->id)->first();
 
-        return View('post.index', ['posts' => $posts, 'scenery' => $scenery]);
+        return View('category.index', ['posts' => $posts, 'scenery' => $scenery]);
     }
 
     /**
