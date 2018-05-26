@@ -103,6 +103,7 @@
                         <img v-if="mutablePost.headImage.data.desktop"
                                 :src="mutablePost.headImage.data.desktop"
                                 @click="showHeadImagesModal = true">
+                        <span @click="showCreditsModal = true">{{ mutablePost.headImage.data.credits }}</span>
                     </picture>
                     <editor id="editor1" v-model="mutablePost.data.content"></editor>
                 </div>
@@ -122,11 +123,18 @@
                 </aside>
             </div>
         </div>
+        <credits-modal
+            v-if="showCreditsModal"
+            v-model="mutablePost.headImage"
+            :show="showCreditsModal"
+            @close="showCreditsModal = false">
+        </credits-modal>
     </div>
 </template>
 
 <script>
 import Editor from './Ckeditor.vue';
+import CreditsModal from './CreditsModal.vue';
 
 export default {
     props : {
@@ -142,13 +150,14 @@ export default {
     data() {
         return {
             mutablePost : this.post,
+            showCreditsModal : false,
         }
     },
     mounted() {
 
     },
     methods : {
-        
+
     },
     watch : {
         'post' : function(value) {
@@ -156,7 +165,8 @@ export default {
         },
     },
     components : {
-        Editor : Editor,
+        Editor,
+        CreditsModal,
     }
 }
 </script>

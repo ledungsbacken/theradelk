@@ -21,7 +21,8 @@
                             @click="bind">
                                 Bind
                         </button>
-                        <input type="text" v-model="credits" />
+                        <br />
+                        <input type="text" v-model="credits" placeholder="Credits" style="width:40%;" />
                         <croppie :url="url" :viewport="sizes.thumbnail" @cropped="cropThumbnail"></croppie>
                         <croppie :url="url" :viewport="sizes.desktop" @cropped="cropDesktop"></croppie>
                         <croppie :url="url" :viewport="sizes.tablet" @cropped="cropTablet"></croppie>

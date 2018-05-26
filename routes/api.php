@@ -153,6 +153,7 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::resource('/headimage', 'Api\HeadImageController', [
         'only' => [
             'index',
+            'update',
         ]
     ]);
 });

@@ -26,6 +26,15 @@ class HeadImageController extends Controller
 
     }
 
+    public function update(Request $request, $id) {
+        $headImage = HeadImage::find((int)$id);
+        $headImage->update([
+            'credits' => $request->credits,
+        ]);
+
+        return $headImage;
+    }
+
     public function upload(Request $request) {
         // Return 403 if not enough permissions
         if(Auth::user()->cant('create', Post::class)) { return response()->json('Forbidden', 403); }
