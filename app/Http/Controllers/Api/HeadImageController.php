@@ -106,6 +106,7 @@ class HeadImageController extends Controller
         $phone = $phonePath;
 
         $image = HeadImage::create([
+            'credits' => $request->credits,
             'thumbnail' => '/'.$thumbnail,
             'desktop' => '/'.$desktop,
             'tablet' => '/'.$tablet,

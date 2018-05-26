@@ -16,6 +16,7 @@ class CreateHeadImagesTable extends Migration
         Schema::create('head_images', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned()->nullable();
+            $table->string('credits')->nullable();
             $table->string('thumbnail');
             $table->string('desktop');
             $table->string('tablet');

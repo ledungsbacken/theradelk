@@ -22,7 +22,7 @@
         </vue-croppie>
 
         <!-- the result -->
-        <img v-bind:src="cropped">
+        <img v-bind:src="cropped" width="400px">
 
     </div>
 </template>

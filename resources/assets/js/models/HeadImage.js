@@ -8,6 +8,7 @@ export default class HeadImage extends Model {
         super({
             'id'         : args.id,
             'user_id'    : args.user_id,
+            'credits'    : args.credits,
             'thumbnail'  : args.thumbnail,
             'desktop'    : args.desktop,
             'tablet'     : args.tablet,
@@ -48,6 +49,7 @@ export default class HeadImage extends Model {
     */
     store(files){
         let formData = new FormData();
+        formData.append("credits", files.credits);
         formData.append("thumbnail", files.thumbnail);
         formData.append("desktop", files.desktop);
         formData.append("tablet", files.tablet);

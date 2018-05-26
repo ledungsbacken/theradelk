@@ -15,6 +15,7 @@ class HeadImage extends Model
      */
     protected $fillable = [
         'user_id',
+        'credits',
         'thumbnail',
         'desktop',
         'tablet',

@@ -12,7 +12,16 @@
                             @close="show = false"></images-modal>
                         <button class="btn btn-sm btn-info" @click="show = true">Images</button>
                         <br />
-                        <input type="text" v-model="url" style="width:40%;" /> <button class="btn btn-sm btn-primary" @click="bind">Bind</button>
+                        <input
+                            type="text"
+                            v-model="url"
+                            style="width:40%;" />
+                        <button
+                            class="btn btn-sm btn-primary"
+                            @click="bind">
+                                Bind
+                        </button>
+                        <input type="text" v-model="credits" />
                         <croppie :url="url" :viewport="sizes.thumbnail" @cropped="cropThumbnail"></croppie>
                         <croppie :url="url" :viewport="sizes.desktop" @cropped="cropDesktop"></croppie>
                         <croppie :url="url" :viewport="sizes.tablet" @cropped="cropTablet"></croppie>
@@ -37,6 +46,7 @@ export default {
     data() {
         return {
             image : new HeadImage(),
+            credits : '',
             thumbnail : '',
             desktop : '',
             tablet : '',
@@ -69,6 +79,7 @@ export default {
     methods : {
         upload(files = {}) {
             files = {
+                credits: this.credits,
                 thumbnail: this.thumbnail,
                 desktop: this.desktop,
                 tablet: this.tablet,

@@ -66,6 +66,7 @@ $factory->define(App\Subcategory::class, function(Faker $faker) {
 
 $factory->define(App\HeadImage::class, function(Faker $faker) {
     return [
+        'credits' => $faker->sentence,
         'thumbnail' => 'https://cataas.com/cat',
         'desktop' => 'https://cataas.com/cat',
         'tablet' => 'https://cataas.com/cat',
