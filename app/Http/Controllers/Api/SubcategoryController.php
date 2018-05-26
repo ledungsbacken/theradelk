@@ -39,7 +39,7 @@ class SubcategoryController extends Controller
         // Return 403 if not enough permissions
         if(!Auth::user()->hasPermission('full')) { return response()->json('Forbidden', 403); }
 
-        $slug = str_replace([' ', 'å', 'ä', 'ö', 'Å', 'Ä', 'Ö'], ['-', 'a', 'a', 'o', 'A', 'A', 'O'], strtolower($request->name));
+        $slug = $request->name ? getSlug($request->name) : getSlug(uniqid(rand(1, 100)));
         $subcategory = Subcategory::create([
             'slug' => $slug,
             'name' => $request->name,
@@ -57,7 +57,12 @@ class SubcategoryController extends Controller
         if(!Auth::user()->hasPermission('full')) { return response()->json('Forbidden', 403); }
 
         $subcategory = Subcategory::find($id);
-        $subcategory->update($request->all());
+        $slug = $request->name ? getSlug($request->name) : getSlug(uniqid(rand(1, 100)));
+        $subcategory->update([
+            'slug' => $slug,
+            'name' => $request->name,
+            'category_id' => $request->category_id,
+        ]);
 
         return $subcategory;
     }

@@ -49,19 +49,16 @@ Vue.use(VueSweetalert2);
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-// Vue.component('example-component', require('./components/ExampleComponent.vue'));
-Vue.component('share-count', require('./components/ShareCount.vue'));
-Vue.component('search', require('./components/Search.vue'));
-Vue.component('cookie', require('./components/Cookie.vue'));
-
-// Vue.component('postjson', require('./app/posts/PostJson.vue'));
-// Vue.component('postload', require('./app/posts/PostLoad.vue'));
-// Vue.component('nav-categories', require('./app/Categories.vue'));
-
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    components : {
+        search : require('./components/Search.vue'),
+    },
 });
 
 const cookie = new Vue({
-    el: '#cookie'
+    el: '#cookie',
+    components : {
+        cookie : require('./components/Cookie.vue'),
+    },
 });

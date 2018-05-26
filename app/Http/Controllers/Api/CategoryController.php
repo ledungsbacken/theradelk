@@ -41,8 +41,11 @@ class CategoryController extends Controller
         // Return 403 if not enough permissions
         if(!Auth::user()->hasPermission('full')) { return response()->json('Forbidden', 403); }
 
-        $request->slug = str_replace([' ', 'å', 'ä', 'ö', 'Å', 'Ä', 'Ö'], ['-', 'a', 'a', 'o', 'A', 'A', 'O'], strtolower($request->name));
-        $category = Category::create($request->all());
+        $slug = $request->name ? getSlug($request->name) : getSlug(uniqid(rand(1, 100)));
+        $category = Category::create([
+            'slug' => $slug,
+            'name' => $request->name,
+        ]);
 
         Scenery::create([
             'category_id' => $category->id,
@@ -60,7 +63,11 @@ class CategoryController extends Controller
         if(!Auth::user()->hasPermission('full')) { return response()->json('Forbidden', 403); }
 
         $category = Category::find($id);
-        $category->update($request->all());
+        $slug = $request->name ? getSlug($request->name) : getSlug(uniqid(rand(1, 100)));
+        $category->update([
+            'slug' => $slug,
+            'name' => $request->name,
+        ]);
 
         return $category;
     }
