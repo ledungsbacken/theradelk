@@ -115,7 +115,7 @@
             </header>
             <main id="indexPosts">
                 <article class="large">
-                    <img src="http://theradelk-server.test/images/JUohHPcp8i3lQ0ecihebZohD3vO4wlJNma4FqwvB.jpeg" alt="">
+                    <img src="http://theradelk-server.test/images/7dLRO8E8XYCWVy1SF6oK7SgMUTrqS3hLrTnIfRq3.jpeg" alt="">
                     <header>
                         <h1>Battlefield V just got its first trailer and more details before its fall launch</h1>
                         <p>
