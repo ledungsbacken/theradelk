@@ -7,19 +7,15 @@
                 <h1 id="subtitle">
                     RECENT
                 </h1>
-                <!--
-                    <a href="" class="loadmore">
-                        <span>load more</span>
-                        <i class="fas fa-chevron-right"></i>
-                    </a>
-                -->
+                <a href="" class="loadmore">
+                    <span>load more</span>
+                    <i class="fas fa-chevron-right"></i>
+                </a>
             </header>
             <main id="indexPosts">
                 @each('includes.post', $posts, 'post')
             </main>
-        <a href="/latest" id="loadmore">read more articles</a>
         </section>
-        <!--
             <section id="join_subscribe">
                 <section id="join">
                     <div class="icon">
@@ -360,6 +356,5 @@
                     </article>
                 </main>
             </section>
-        -->
     </div>
 @endsection
