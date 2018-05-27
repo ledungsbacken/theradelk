@@ -51,25 +51,27 @@
                 </aside>
             </section>
         </section>
+        <header class="placeholder middle-alone">
+            <h1 id="subtitle">
+                POPULAR RIGHT NOW
+            </h1>
+        </header>
+        <article class="popular-large">
+            <img src="http://theradelk-server.test/images/7dLRO8E8XYCWVy1SF6oK7SgMUTrqS3hLrTnIfRq3.jpeg" alt="">
+            <div id="popular-bottom">
+                <header>
+                    <h1>Battlefield V just got its first trailer and more details before its fall launch</h1>
+                    <p>
+                        <a href="">Daniel Ljungqvist</a> •
+                        <span>
+                            about 2 hours ago
+                        </span>
+                    </p>
+                </header>
+            </div>
+        </article>
         <section id="popular">
-            <header class="placeholder">
-                <h1 id="subtitle">
-                    POPULAR RIGHT NOW
-                </h1>
-            </header>
             <main id="indexPosts">
-                <article class="large">
-                    <img src="http://theradelk-server.test/images/7dLRO8E8XYCWVy1SF6oK7SgMUTrqS3hLrTnIfRq3.jpeg" alt="">
-                    <header>
-                        <h1>Battlefield V just got its first trailer and more details before its fall launch</h1>
-                        <p>
-                            <a href="">Daniel Ljungqvist</a>
-                            <span>
-                                about 2 hours ago
-                            </span>
-                        </p>
-                    </header>
-                </article>
                 <article class="middle">
                     <a href="google.com" class="large-link"></a>
                     <img src="http://www.theradelk.com/images/T3QKagxLNnp4Qusd6IaFDKcHbVsZE32weSnsJF9g.jpeg" alt="">

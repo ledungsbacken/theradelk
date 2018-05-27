@@ -1,15 +1,73 @@
 #startPage{
+	.middle-alone{
+		width:1150px;
+		padding: 70px 0 30px 0;
+		margin:auto;
+	}
+	.popular-large{
+		position: relative;
+		width: 100%;
+		height:714px;
+		overflow: hidden;
+		&:before{
+			content: "";
+			position: absolute;
+			display: block;
+			height: 150%;
+			width: 100%;
+			background: rgba(0, 0, 0, 0.03) -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(30%, transparent), color-stop(80%, rgba(0, 0, 0, 0.75)));
+			background: rgba(0, 0, 0, 0.03) linear-gradient(transparent, transparent 30%, rgba(0, 0, 0, 0.75) 80%);
+			bottom: 0;
+			z-index: 0;
+		}
+		#popular-bottom{
+			bottom: 3vw;
+			position: absolute;
+			z-index: 1;	
+		}
+		header{
+			padding:100px;
+			box-sizing:border-box;
+			width:57%;
+			margin:auto;
+			h1{
+				color:#fff;
+				font-size:3.5em;
+				font-weight:800;
+				line-height: 1.6em;
+				&:after{
+					content: "";
+					display: block;
+					height: 5px;
+					background-color: #fff;
+					width: 50%;
+					margin-top: 3%;
+				}
+			}
+			p{
+				margin-top: 22px;
+				span{
+					color:#fff;
+				}
+				a{
+					color:#fff;
+				}
+			}
+		}
+		img{
+			height:auto;
+			width: 100%;
+			top:-100%;
+			bottom: -100%;
+			margin:auto;
+			position: absolute;
+			z-index: -1;
+		}
+	}
 	#latest,
 	#popular{
 		max-width:1150px;
 		margin:auto;
-
-		@media screen and (min-width:800px){
-			margin-top: 90px;
-			&:last-of-type{
-				margin-top: 20px;
-			}
-		}
 
 		@media screen and (max-width:1300px){
 			max-width:91%;
@@ -39,7 +97,6 @@
 		}
 	}
 	#popular{
-		margin-top: 80px !important;
 		.large,
 		.middle{
 			&:before{
@@ -51,45 +108,6 @@
 				background: rgba(0, 0, 0, 0.03) -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(30%, transparent), color-stop(80%, rgba(0, 0, 0, 0.75)));
 				background: rgba(0, 0, 0, 0.03) linear-gradient(transparent, transparent 30%, rgba(0, 0, 0, 0.75) 80%);
 				bottom: 0;
-			}
-		}
-		.large{
-			width:100%;
-			height:60vh;
-			position: relative;
-			header{
-				bottom: 0;
-				position: absolute;
-				z-index: 1;
-				padding:100px;
-				box-sizing:border-box;
-				h1{
-					color:#fff;
-					font-size:2.7em;
-					font-weight:800;
-					line-height: 1.6em;
-					&:after{
-						content: "";
-						display: block;
-						height: 5px;
-						background-color: #fff;
-						width: 50%;
-						margin-top: 3%;
-					}
-				}
-				p{
-					margin-top: 22px;
-					span{
-						color:#fff;
-						float:right;
-					}
-					a{
-						color:#fff;
-					}
-				}
-			}
-			img{
-				height:auto;
 			}
 		}
 		.middle{
