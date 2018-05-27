@@ -17,14 +17,6 @@
 
 		.placeholder{
 			overflow: hidden;
-			&:after{
-				content: "";
-				display: block;
-				height: 8px;
-				background-color: #e74c3c;
-				width: 100%;
-				margin-top: 6%;
-			}
 			h1{
 				color:#e74c3c;
 				font-family: 'Poppins', sans-serif !important;
@@ -172,25 +164,25 @@
 }
 
 #join_subscribe{
-	width:1150px;
+	max-width:1150px;
 	margin:auto;
 	overflow: hidden;
 	margin-top: 15px;
+	display:flex;
+	justify-content: space-between;
 	#join{
-		float:left;
 		.icon{
 			background-color: #e74c3c;
 		}
 	}
 	#subscribe{
-		float:right;
 		.icon{
 			background-color: #e056fd;
 		}
 	}
 	section{
-		width:49%;
-		background-color: #fff;
+		width:48%;
+		background-color: #f1f2f6;
 		position: relative;
 		overflow: hidden;
 		aside{
@@ -266,8 +258,6 @@
 	text-transform: uppercase;
 	box-sizing:border-box;
 	text-align: center;
-}
-#loadmore{
 	border:solid 5px #e74c3c;
 	color:#e74c3c;
 	transition: .3s;
@@ -277,7 +267,6 @@
 		transition: .3s;
 	}
 }
-
 #indexPosts,
 #authPage{
 	display:flex;
