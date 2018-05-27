@@ -15,19 +15,43 @@ use Illuminate\Database\Seeder;
 class DevUsersSeeder extends Seeder
 {
 
-    const N_POSTS_PER_USER = 100;
+    const N_POSTS_PER_USER = 20;
 
     private $devUsers = [
         [
             'name' => 'Robin Sandström',
             'email' => 'ledungsbacken@gmail.com',
-            'role' => 'super_admin',
+            'password' => 'secret',
+            'role' => [
+                'super_admin',
+                'admin',
+            ],
         ],
         [
             'name' => 'Daniel Ljungqvist',
             'email' => 'tkdanne@gmail.com',
-            'role' => 'admin',
-        ]
+            'password' => 'secret',
+            'role' => [
+                'super_admin',
+                'admin',
+            ],
+        ],
+        [
+            'name' => 'Demo Admin',
+            'email' => 'admin@theradelk.com',
+            'password' => '#Awesome2018',
+            'role' => [
+                'admin',
+            ],
+        ],
+        [
+            'name' => 'Demo Editor',
+            'email' => 'editor@theradelk.com',
+            'password' => '#Awesome2018',
+            'role' => [
+                'editor',
+            ],
+        ],
     ];
 
 
@@ -62,7 +86,7 @@ class DevUsersSeeder extends Seeder
                 [
                     'name' => $devUser['name'],
                     'email' => $devUser['email'],
-                    'password' => bcrypt('secret'),
+                    'password' => bcrypt($devUser['password']),
                 ]
             );
 
@@ -90,8 +114,10 @@ class DevUsersSeeder extends Seeder
 
             // Set role
             $roles = Role::all();
-            $role = $roles->where('name', $devUser['role']);
-            $user->roles()->attach($role);
+            foreach($devUser['role'] as $devUserRole) {
+                $role = $roles->where('name', $devUserRole);
+                $user->roles()->attach($role);
+            }
         }
     }
 }
