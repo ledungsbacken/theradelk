@@ -39,6 +39,7 @@ Route::get('/competitions', 'ViewController@competitions');
 Route::get('/terms', 'ViewController@terms');
 Route::get('/privacy', 'ViewController@privacy');
 Route::get('/trademarks', 'ViewController@trademarks');
+Route::get('/cookies', 'ViewController@cookies');
 
 Route::get('/theme/set/{theme}', function($theme) {
     if($theme == 'light') {
